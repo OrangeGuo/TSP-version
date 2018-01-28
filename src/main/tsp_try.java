@@ -1,12 +1,11 @@
-package tsp_00_beta440;
+package main;
+
+import backends.Point;
+import backends.PublicSettingIndex;
+import ui.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FileDialog;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Toolkit;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -36,11 +34,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
-import javax.swing.filechooser.FileSystemView;
 
 
 //主要交互窗口
