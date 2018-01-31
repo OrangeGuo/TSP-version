@@ -11,17 +11,17 @@ import java.awt.event.MouseListener;
 import java.util.Vector;
 
 //求解时的运行窗口(弹出)
-public class FunctionView extends JDialog implements MouseListener {
+public class WorkFrame extends JDialog implements MouseListener {
 
     JPanel jp2=null;
     DrawPanel dp=null;
-    NewPanel np=null;
-    antpanel ap=null;
+    GeneticPanel np=null;
+    AntPanel ap=null;
     JButton jb=null;
     JTextField jtf1=null;
     JTextField jtf2=null;
 
-    public FunctionView (Vector<Point> p, PublicSettingIndex psi){
+    public WorkFrame(Vector<Point> p, PublicSettingIndex psi){
 
         jp2=new JPanel();
         jb=new JButton("exit");
@@ -38,20 +38,20 @@ public class FunctionView extends JDialog implements MouseListener {
             this.add(dp);
         }
         else if(psi.suanfa_flag==0){
-            np=new NewPanel(p,psi);
+            np=new GeneticPanel(p,psi);
             Thread thread=new Thread(np);
             thread.start();
             this.add(np);
         }
         else {
-            ap=new antpanel(p,psi);
+            ap=new AntPanel(p,psi);
             this.add(ap);
         }
         this.add(jp2,BorderLayout.SOUTH);
         Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/p2.jpg"));
         this.setIconImage(a);
         this.setSize(600, 600);
-        this.setTitle("Run for answer");
+        this.setTitle("Find the shortest path");
         this.setLocationRelativeTo(null);
         this.setModal(true);
         this.setResizable(false);

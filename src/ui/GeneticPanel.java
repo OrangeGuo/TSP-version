@@ -1,9 +1,9 @@
 package ui;
 
+import backends.PathList;
 import backends.Point;
 import backends.PublicSettingIndex;
-import backends.adapt;
-import backends.list;
+import backends.Adapt;
 
 import javax.swing.*;
 
@@ -11,16 +11,16 @@ import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
-public class NewPanel extends JPanel implements Runnable{
+public class GeneticPanel extends JPanel implements Runnable{
     DecimalFormat df=new DecimalFormat("######0.00");//最终结果保留两位小数
     Vector<Point> points=new Vector<Point>();//初始化点向量
     PublicSettingIndex psi=null;//接收设置参数
     double distance_max=0;//记录点之间最大距离
     double distance_min=0;//记录最优解
     double distance_now=0;//记录每代最优解
-    list list_shortest=null;//记录每代最优个体
-    list list_01=null;
-    adapt bestAdapt=null;//记录最优个体
+    PathList list_shortest=null;//记录每代最优个体
+    PathList list_01=null;
+    Adapt bestAdapt=null;//记录最优个体
     int N=0;//种群个体数
     double rate_best=0.1;//最优个体复制率
     double rate_mix=0;//交叉率
@@ -28,24 +28,24 @@ public class NewPanel extends JPanel implements Runnable{
     int time_all=20;//循环代数
     int time_now=0;//当前代数
     double rate_change=0.05;//个体变异率
-    Vector<list> all=null;//种群
-    Vector<adapt> allAdapts=null;//记录种群适应度
+    Vector<PathList> all=null;//种群
+    Vector<Adapt> allAdapts=null;//记录种群适应度
 
     int scale=0;
 
     double distance_all=0;//
     double sum_same=0;//
-    public NewPanel(Vector<Point> p,PublicSettingIndex psi){
+    public GeneticPanel(Vector<Point> p, PublicSettingIndex psi){
         this.points=p;
         this.psi=psi;
         this.N=psi.N;
         this.rate_best=psi.rate_copy;
         this.time_all=psi.circle;
 
-        list_shortest=new list();
-        bestAdapt=new adapt();
-        all=new Vector<list>();
-        allAdapts=new Vector<adapt>();
+        list_shortest=new PathList();
+        bestAdapt=new Adapt();
+        all=new Vector<PathList>();
+        allAdapts=new Vector<Adapt>();
         this.get_max();
         this.get_group(N);
         scale=500/p.size();
@@ -97,7 +97,7 @@ public class NewPanel extends JPanel implements Runnable{
             psi.state++;
         }
     }
-    public void show(list li,Graphics g){
+    public void show(PathList li, Graphics g){
         g.setColor(Color.yellow);
 
         g.drawString("表示个体", 30, 520);
@@ -134,8 +134,8 @@ public class NewPanel extends JPanel implements Runnable{
         int k=0;
         for(int i=0;i<num;i++)
         {
-            list li=new list();//链表头
-            list li_copy=li;
+            PathList li=new PathList();//链表头
+            PathList li_copy=li;
             k=0;
             while(k<size)
             {
@@ -150,14 +150,14 @@ public class NewPanel extends JPanel implements Runnable{
                         break;
                     }
                     if(li_copy.next==null)
-                        li_copy.next=new list();
+                        li_copy.next=new PathList();
                     li_copy=li_copy.next;
                 }
                 li_copy=li;
                 for(int j=0;j<k;j++)
                 {
                     if(li_copy.next==null)
-                        li_copy.next=new list();
+                        li_copy.next=new PathList();
                     li_copy=li_copy.next;
 
                 }
@@ -177,7 +177,7 @@ public class NewPanel extends JPanel implements Runnable{
 
         if(allAdapts.size()!=0)
         {
-            allAdapts=new Vector<adapt>();
+            allAdapts=new Vector<Adapt>();
         }
 
         for(int i=0;i<all.size();i++)
@@ -185,7 +185,7 @@ public class NewPanel extends JPanel implements Runnable{
             //分别取出每个个体计算适应度
             double distance_adapt=this.getdistance(all.get(i));
 
-            adapt newAdapt=new adapt();
+            Adapt newAdapt=new Adapt();
             newAdapt.distance=distance_adapt;
 
             newAdapt.n=i;
@@ -193,7 +193,7 @@ public class NewPanel extends JPanel implements Runnable{
         }
 
     }
-    public void show(list l)
+    public void show(PathList l)
     {
         System.out.print(' ');
         for(int i=0;i<points.size();i++)
@@ -211,7 +211,7 @@ public class NewPanel extends JPanel implements Runnable{
 
         for(int i=0;i<allAdapts.size();i++)
         {
-            adapt newAdapt=allAdapts.get(i);
+            Adapt newAdapt=allAdapts.get(i);
             if(copy_max>newAdapt.distance)//记录个体最大复制期望值及该个体编号
             {
                 copy_max=newAdapt.distance;
@@ -222,11 +222,11 @@ public class NewPanel extends JPanel implements Runnable{
 
 
         list_shortest=all.get(best_index);
-        adapt newAdapts=allAdapts.get(best_index);
+        Adapt newAdapts=allAdapts.get(best_index);
         if(newAdapts.distance<bestAdapt.distance||bestAdapt.distance==0)
         {
             bestAdapt=newAdapts;
-            list_01=new list(list_shortest);
+            list_01=new PathList(list_shortest);
         }
 
         distance_now=newAdapts.distance;
@@ -237,8 +237,8 @@ public class NewPanel extends JPanel implements Runnable{
 
         for(int i=0;i<N*(rate_best);i++)
         {
-            list newlList=new list(list_01);
-            adapt adapt=new adapt();
+            PathList newlList=new PathList(list_01);
+            Adapt adapt=new Adapt();
             adapt=bestAdapt;
             all.add(0,newlList);
             allAdapts.add(0,adapt);
@@ -251,7 +251,7 @@ public class NewPanel extends JPanel implements Runnable{
             int index=0;
             for(int i=0;i<allAdapts.size();i++)
             {
-                adapt nAdapt=allAdapts.get(i);
+                Adapt nAdapt=allAdapts.get(i);
 
                 if(max<nAdapt.distance)
                 {
@@ -287,10 +287,10 @@ public class NewPanel extends JPanel implements Runnable{
                 {
                     y=(int)(Math.random()*size);
                 }
-                list li1=all.get(a);
-                list li2=all.get(b);
-                //list w1=new list(li1);
-                //list w2=new list(li2);
+                PathList li1=all.get(a);
+                PathList li2=all.get(b);
+                //PathList w1=new PathList(li1);
+                //PathList w2=new PathList(li2);
                 //all.add(w1);
                 //all.add(w2);
                 //交叉点位
@@ -315,8 +315,8 @@ public class NewPanel extends JPanel implements Runnable{
         for(int i=0;i<N;i++)
         {
 
-            list lix=all.get(i);
-            //list wList=new list(lix);
+            PathList lix=all.get(i);
+            //PathList wList=new PathList(lix);
             //all.add(wList);
             //随机产生交叉基因片段
             int a=(int)(Math.random()*points.size());
@@ -332,8 +332,8 @@ public class NewPanel extends JPanel implements Runnable{
         for(int i=0;i<N;i++)
         {
 
-            list lix=all.get(i);
-            //list wList=new list(lix);
+            PathList lix=all.get(i);
+            //PathList wList=new PathList(lix);
             //all.add(wList);
             //随机产生交叉基因片段
             double di=allAdapts.get(i).distance/points.size();
@@ -358,7 +358,7 @@ public class NewPanel extends JPanel implements Runnable{
         Point point=points.get(m);
         return Math.sqrt(point.getdistence(points.get(n)));
     }
-    public double getdistance(list li)
+    public double getdistance(PathList li)
     {
         double distance=0;
         int m=li.n;

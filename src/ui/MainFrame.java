@@ -39,7 +39,7 @@ import javax.swing.JToolBar;
 
 
 //主要交互窗口
-public class tsp_try extends JFrame implements MouseListener,ActionListener,Runnable {
+public class MainFrame extends JFrame implements MouseListener,ActionListener,Runnable {
 
 	/**
 	 * @param args
@@ -49,11 +49,11 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 	 * 完成日期:16年
 	 */
 	//自定义组件
-	MyPanel mp=null;
+	StartUpPanel mp=null;
     DirectoryFrame dFrame=null;
 	HelpFrame hf=null;
 	SettingFrame sf=null;
-	FunctionView fv=null;
+	WorkFrame fv=null;
 	PublicSettingIndex psi=null;
 	Vector<Point> points=null;
 	//swing组件
@@ -86,22 +86,15 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 	boolean p=false;//防止JFrame窗体重复添加JPanel组件
 	boolean flag=false;//是否按要求读入文件
 	int file_error=0;//文件读入错误类型
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		tsp_try tsp=new tsp_try();
-		 Thread t=new Thread(tsp);
- 		 t.start();
- 	
- 	
-	}
-	public tsp_try(){
+
+	public MainFrame(){
 		//初始化控件
 		jp_01=new JPanel();
 		jp_02=new JPanel();
 
         jsp=new JScrollPane();
 		psi=new PublicSettingIndex();
-		mp=new MyPanel();
+		mp=new StartUpPanel();
 		jmb=new JMenuBar();
 		
 		jm2=new JMenu("帮助设置");
@@ -196,7 +189,7 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 				else {
 					this.psi.suanfa_flag=2;
 				}
-				fv=new FunctionView(points,psi);
+				fv=new WorkFrame(points,psi);
 			}
 			else{
 				if(this.file_error==0)

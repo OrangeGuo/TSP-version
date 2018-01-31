@@ -3,7 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-class MyPanel extends JPanel implements Runnable{
+class StartUpPanel extends JPanel implements Runnable{
     int time=6;
 
 
