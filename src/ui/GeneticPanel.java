@@ -1,8 +1,8 @@
 package ui;
 
 import backends.PathList;
-import backends.Point;
-import backends.PublicSettingIndex;
+import backends.City;
+import backends.Config;
 import backends.Adapt;
 
 import javax.swing.*;
@@ -13,8 +13,8 @@ import java.util.Vector;
 
 public class GeneticPanel extends JPanel implements Runnable{
     DecimalFormat df=new DecimalFormat("######0.00");//最终结果保留两位小数
-    Vector<Point> points=new Vector<Point>();//初始化点向量
-    PublicSettingIndex psi=null;//接收设置参数
+    Vector<City> points=new Vector<City>();//初始化点向量
+    Config psi=null;//接收设置参数
     double distance_max=0;//记录点之间最大距离
     double distance_min=0;//记录最优解
     double distance_now=0;//记录每代最优解
@@ -35,7 +35,7 @@ public class GeneticPanel extends JPanel implements Runnable{
 
     double distance_all=0;//
     double sum_same=0;//
-    public GeneticPanel(Vector<Point> p, PublicSettingIndex psi){
+    public GeneticPanel(Vector<City> p, Config psi){
         this.points=p;
         this.psi=psi;
         this.N=psi.N;
@@ -114,7 +114,7 @@ public class GeneticPanel extends JPanel implements Runnable{
 
         for(int i=0;i<points.size()-1;i++)
         {
-            Point point_start=points.get(i);
+            City point_start=points.get(i);
             for(int j=i+1;j<points.size();j++)
             {
                 double distance=Math.sqrt(point_start.getdistence(points.get(j)));
@@ -355,7 +355,7 @@ public class GeneticPanel extends JPanel implements Runnable{
     }
     public double betwwenpoints(int m,int n)
     {
-        Point point=points.get(m);
+        City point=points.get(m);
         return Math.sqrt(point.getdistence(points.get(n)));
     }
     public double getdistance(PathList li)

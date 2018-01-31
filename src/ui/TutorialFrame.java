@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class DirectoryFrame extends JDialog implements ActionListener {
+class TutorialFrame extends JDialog implements ActionListener {
     JPanel jp1=null;
     JPanel jp2=null;
     JPanel jPanel=null;
@@ -13,7 +13,7 @@ class DirectoryFrame extends JDialog implements ActionListener {
     JTextArea jta1=null;
     JTextArea jta2=null;
     JButton jb3=null;
-    public DirectoryFrame(){
+    public TutorialFrame(){
         jp1=new JPanel();
         jp2=new JPanel();
         jPanel=new JPanel();

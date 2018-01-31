@@ -1,7 +1,7 @@
 package ui;
 
-import backends.Point;
-import backends.PublicSettingIndex;
+import backends.City;
+import backends.Config;
 
 import javax.swing.*;
 
@@ -14,14 +14,14 @@ import java.util.Vector;
 public class WorkFrame extends JDialog implements MouseListener {
 
     JPanel jp2=null;
-    DrawPanel dp=null;
+    GreedyPanel dp=null;
     GeneticPanel np=null;
     AntPanel ap=null;
     JButton jb=null;
     JTextField jtf1=null;
     JTextField jtf2=null;
 
-    public WorkFrame(Vector<Point> p, PublicSettingIndex psi){
+    public WorkFrame(Vector<City> p, Config psi){
 
         jp2=new JPanel();
         jb=new JButton("exit");
@@ -32,7 +32,7 @@ public class WorkFrame extends JDialog implements MouseListener {
         jp2.add(jb);
 
         if(psi.suanfa_flag==1){
-            dp=new DrawPanel(p,psi);
+            dp=new GreedyPanel(p,psi);
             Thread thread=new Thread(dp);
             thread.start();
             this.add(dp);

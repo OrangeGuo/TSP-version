@@ -2,8 +2,8 @@ package ui;
 
 import backends.Ant;
 import backends.PathList;
-import backends.Point;
-import backends.PublicSettingIndex;
+import backends.City;
+import backends.Config;
 
 import javax.swing.*;
 
@@ -14,7 +14,7 @@ import java.util.Vector;
 public class AntPanel extends JPanel {
     DecimalFormat df=new DecimalFormat("######0.00");//最终结果保留两位小数
     Vector<Ant> ants=null;//蚁群
-    Vector<Point> points=null;//城市信息记录
+    Vector<City> points=null;//城市信息记录
     double[][] distance;//城市之间距离矩阵
     double[][] t;//城市之间信息素矩阵
     double c=5;//初始信息素浓
@@ -27,14 +27,14 @@ public class AntPanel extends JPanel {
     int index;
     double distance_min=200000000;//记录最优解
     PathList list_01;//记录最优解
-    public AntPanel(Vector<Point> p, PublicSettingIndex psi){
+    public AntPanel(Vector<City> p, Config psi){
         distance=new double[150][150];
         t=new double[150][150];
         points=p;
         this.scale=psi.getscale();
         for(int i=0;i<p.size();i++)
         {
-            Point point=p.get(i);
+            City point=p.get(i);
             for(int j=0;j<p.size();j++)
             {
                 distance[i][j]=point.getdistence(p.get(j));
@@ -53,7 +53,7 @@ public class AntPanel extends JPanel {
         {
             this.ants_get();
             this.ants_run();
-            System.out.println(i+"   "+distance_min);
+            //System.out.println(i+"   "+distance_min);
         }
         //System.out.println(distance_min);
         //this.show(list_01);
@@ -65,12 +65,12 @@ public class AntPanel extends JPanel {
         for(int i=0;i<points.size();i++)
         {
             int x=list_01.get(i);
-            Point p=points.get(x);
+            City p=points.get(x);
             g.setColor(Color.white);
             g.fillOval((int)(p.getx()*scale),(int)(p.gety()*scale),size,size);
             int y=list_01.get(i+1);
-            Point point_first=p;
-            Point point_near=points.get(y);
+            City point_first=p;
+            City point_near=points.get(y);
             g.setColor(Color.blue);
             g.drawLine((int)(point_first.getx()*scale+3),(int)(point_first.gety()*scale+3),(int)(point_near.getx()*scale+3),(int)(point_near.gety()*scale+3));
 
@@ -102,7 +102,6 @@ public class AntPanel extends JPanel {
         {
             Ant ant =ants.get(j);
             ant.distance+=this.betwwenpoints(ant.citynum, ant.start);
-
             if(distance_min>ant.distance)
             {
                 distance_min=ant.distance;
@@ -119,9 +118,6 @@ public class AntPanel extends JPanel {
             }
             //System.out.println();
         }
-
-
-
     }
     public void show(PathList l)
     {
@@ -165,7 +161,7 @@ public class AntPanel extends JPanel {
     }
     public double betwwenpoints(int m,int n)
     {
-        Point point=points.get(m);
+        City point=points.get(m);
         return Math.sqrt(point.getdistence(points.get(n)));
     }
     public double getdistance(PathList li)

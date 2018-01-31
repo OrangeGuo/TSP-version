@@ -1,7 +1,7 @@
 package ui;
 
-import backends.Point;
-import backends.PublicSettingIndex;
+import backends.City;
+import backends.Config;
 
 import javax.swing.*;
 
@@ -9,9 +9,9 @@ import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
-public class DrawPanel extends JPanel implements Runnable{
-    Vector<Point> points=new Vector<Point>();
-    Vector<Point> point=new Vector<Point>();
+public class GreedyPanel extends JPanel implements Runnable{
+    Vector<City> points=new Vector<City>();
+    Vector<City> point=new Vector<City>();
     DecimalFormat df=new DecimalFormat("######0.00");
     int index_all=0;
     int index_min=0;
@@ -24,8 +24,8 @@ public class DrawPanel extends JPanel implements Runnable{
     long Time_start=System.currentTimeMillis();
     long Time_total=0;
     long time=10;//最小刷新时间间隔10毫秒
-    public PublicSettingIndex psi=null;
-    public DrawPanel(Vector<Point> p,PublicSettingIndex psi){
+    public Config psi=null;
+    public GreedyPanel(Vector<City> p, Config psi){
         point=p;
         scale=psi.getscale();
         time*=psi.gettime();
@@ -39,7 +39,7 @@ public class DrawPanel extends JPanel implements Runnable{
         g.setColor(Color.white);
         for(int i=0;i<point.size();i++)
         {
-            Point p=point.get(i);
+            City p=point.get(i);
             g.fillOval((int)(p.getx()*scale),(int)(p.gety()*scale),size,size);
         }
 
@@ -69,7 +69,7 @@ public class DrawPanel extends JPanel implements Runnable{
         }
         int index=n;
 
-        Point point_01=points.get(index);
+        City point_01=points.get(index);
         if(get&&this.psi.flag)
         {
             this.psi.path_short.add(point_01.getn());
@@ -79,13 +79,13 @@ public class DrawPanel extends JPanel implements Runnable{
         g.setColor(Color.blue);
         while(true)
         {
-            Point point_first=points.get(index);
+            City point_first=points.get(index);
             points.remove(index);
             double distance=2000000000;
 
             for(int i=0;i<points.size();i++)
             {
-                Point point_now=points.get(i);
+                City point_now=points.get(i);
                 if(distance>point_first.getdistence(point_now))
                 {
                     distance=point_first.getdistence(point_now);
@@ -93,7 +93,7 @@ public class DrawPanel extends JPanel implements Runnable{
                 }
             }
 
-            Point point_near=points.get(index);
+            City point_near=points.get(index);
             if(get&&this.psi.flag)
             {
                 this.psi.path_short.add(point_near.getn());
@@ -106,7 +106,7 @@ public class DrawPanel extends JPanel implements Runnable{
             }
 
         }
-        Point point_last=points.get(0);
+        City point_last=points.get(0);
         get=false;
         points.remove(0);
         distance_now+=Math.sqrt(point_01.getdistence(point_last));

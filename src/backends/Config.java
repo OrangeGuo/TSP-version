@@ -2,7 +2,7 @@ package backends;
 
 import java.util.Vector;
 
-public class PublicSettingIndex {
+public class Config {
     private static int time_flush=1;//运行界面刷新时间间隔控制
     private static double scale=1;//控制Drawpanel绘图范围
     public static boolean flag=true;
@@ -13,7 +13,7 @@ public class PublicSettingIndex {
     public static int circle=200;//记录种群繁衍代数
     public static int state=0;
     public static double rate_copy=0.1;//最优个体复制率
-    public PublicSettingIndex(){
+    public Config(){
 
     }
     public int gettime(){

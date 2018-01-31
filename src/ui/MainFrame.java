@@ -1,7 +1,7 @@
 package ui;
 
-import backends.Point;
-import backends.PublicSettingIndex;
+import backends.City;
+import backends.Config;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -50,12 +50,12 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	 */
 	//自定义组件
 	StartUpPanel mp=null;
-    DirectoryFrame dFrame=null;
+    TutorialFrame dFrame=null;
 	HelpFrame hf=null;
 	SettingFrame sf=null;
 	WorkFrame fv=null;
-	PublicSettingIndex psi=null;
-	Vector<Point> points=null;
+	Config psi=null;
+	Vector<City> points=null;
 	//swing组件
 	JToolBar jtl=null;
 	JPanel jp_01=null;
@@ -93,7 +93,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		jp_02=new JPanel();
 
         jsp=new JScrollPane();
-		psi=new PublicSettingIndex();
+		psi=new Config();
 		mp=new StartUpPanel();
 		jmb=new JMenuBar();
 		
@@ -232,7 +232,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 			jfc.setDialogTitle("请选择文件(当前仅支持TXT格式)");
 			jfc.showOpenDialog(null);
 			jfc.setVisible(true);
-			points=new Vector<Point>();
+			points=new Vector<City>();
 			String st=null;
 			try {
 				if(jfc.getSelectedFile().getAbsolutePath()!=null)
@@ -269,7 +269,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 						{
 							s.trim();
 							n++;
-							Point p=new Point();
+							City p=new City();
 							int i=0;
 							int x=0;
 							int y=0;
@@ -383,7 +383,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("six")){
 	
-	       dFrame=new DirectoryFrame();
+	       dFrame=new TutorialFrame();
 
 		
 		

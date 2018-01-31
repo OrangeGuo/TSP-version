@@ -1,6 +1,6 @@
 package ui;
 
-import backends.PublicSettingIndex;
+import backends.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +27,8 @@ public class SettingFrame extends JDialog implements ActionListener {
     JRadioButton jrb2=null;
     JRadioButton jrb3=null;
     ButtonGroup bg=null;
-    PublicSettingIndex psi=null;
-    public SettingFrame(PublicSettingIndex psi){
+    Config psi=null;
+    public SettingFrame(Config psi){
         this.psi=psi;
         jp1=new JPanel();
         jp2=new JPanel();
