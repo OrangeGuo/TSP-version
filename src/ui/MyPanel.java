@@ -3,7 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyPanel extends JPanel implements Runnable{
+class MyPanel extends JPanel implements Runnable{
     int time=6;
 
 
@@ -12,7 +12,7 @@ public class MyPanel extends JPanel implements Runnable{
         super.paint(g);
         g.fillRect(0, 0, 600, 480);
         g.setColor(Color.yellow);
-        Font font=new Font("ï¿½ï¿½ï¿½ï¿½",Font.BOLD,100);
+        Font font=new Font("ËÎÌå",Font.BOLD,100);
         this.setFont(font);
         this.paints(g);
     }
@@ -22,7 +22,7 @@ public class MyPanel extends JPanel implements Runnable{
         }
         else
         {
-            g.drawString("TSPï¿½ï¿½ï¿½ï¿½", 120, 240);
+            g.drawString("TSPÎÊÌâ", 120, 240);
 
         }
     }

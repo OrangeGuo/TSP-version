@@ -1,6 +1,6 @@
 package backends;
 
-public class Point {
+public class Point{
     private int x=0;
     private int y=0;
     private int n=0;

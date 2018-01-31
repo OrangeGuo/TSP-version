@@ -1,8 +1,9 @@
 package backends;
 
+//ÊÊÓ¦¶È
 public class adapt{
-    public int n=0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    public double distance=0;//ï¿½Ã¸ï¿½ï¿½ï¿½(Â·ï¿½ï¿½)ï¿½Ü¾ï¿½ï¿½ï¿½
+    public int n=0;//¸öÌå±àºÅ
+    public double distance=0;//¸Ã¸öÌå(Â·¾¶)×Ü¾àÀë
     public adapt(){
 
     }

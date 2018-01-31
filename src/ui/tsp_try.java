@@ -1,11 +1,11 @@
-package main;
+package ui;
 
 import backends.Point;
 import backends.PublicSettingIndex;
-import ui.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Toolkit;
@@ -19,6 +19,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Vector;
+
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -34,6 +35,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+
 
 
 //主要交互窗口
@@ -83,6 +85,7 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 	
 	boolean p=false;//防止JFrame窗体重复添加JPanel组件
 	boolean flag=false;//是否按要求读入文件
+	int file_error=0;//文件读入错误类型
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		tsp_try tsp=new tsp_try();
@@ -111,7 +114,7 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 		jb1=new JButton("运行");
 		jb2=new JButton("读入数据");
 		jb3=new JButton("查看路径");
-		String []option={"贪心算法","遗传算法"};
+		String []option={"贪心算法","遗传算法","蚁群算法"};
 	
 		jcb=new JComboBox(option);
        
@@ -172,7 +175,10 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
     
 
 	}
-
+    public void ErrorMesseger(String string)
+    {
+    	JOptionPane.showMessageDialog(null,string,"警告",JOptionPane.ERROR_MESSAGE);
+    }
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -182,20 +188,29 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 				this.psi.path_short.removeAllElements();
 				if(this.jcb.getSelectedItem().equals("遗传算法"))
 				{
-					this.psi.suanfa_flag=false;
+					this.psi.suanfa_flag=0;
+				}
+				else if(this.jcb.getSelectedItem().equals("贪心算法")){
+					this.psi.suanfa_flag=1;
 				}
 				else {
-					this.psi.suanfa_flag=true;
+					this.psi.suanfa_flag=2;
 				}
 				fv=new FunctionView(points,psi);
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "未按要求正确读入文件！！！","警告",JOptionPane.ERROR_MESSAGE);
+				if(this.file_error==0)
+				{
+					this.ErrorMesseger("        未读入文件!!!");
+				}
+				else {
+					this.ErrorMesseger("          读入错误!!!");
+				}
 			}
 			
 		}
 	    else if(e.getSource().equals(jb3)){
-	    	if(this.psi.state==2)
+	    	if(this.psi.state>1)
 			{
 	    	DecimalFormat df=new DecimalFormat("######0.00");
 			String s="共有"+String.valueOf(this.psi.path_short.size())+"个点\n最短距离为"+String.valueOf(df.format(this.psi.distance))+"\n"+"最短路径如下\n";
@@ -239,13 +254,14 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 				int ii=st.length();
 				String name="" +st.charAt(ii-1)+st.charAt(ii-2)+st.charAt(ii-3);
 				double max=0;//记录所有点横纵坐标最大绝对值
+				this.file_error=1;
 				if(name.equals("txt"))
 				{
 					flag=true;
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "文件格式错误！！！","警告",JOptionPane.ERROR_MESSAGE);
+					this.ErrorMesseger("         文件格式错误!!!");
 				}
 				FileReader fr=null;
 				BufferedReader br=null;
@@ -278,7 +294,7 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 							} catch (NumberFormatException e1) {
 								// TODO Auto-generated catch block
 						
-								JOptionPane.showMessageDialog(null, "文件内容格式错误！！！","警告",JOptionPane.ERROR_MESSAGE);
+								this.ErrorMesseger("         文件格式错误!!!");
 								break;
 								//e1.printStackTrace();
 							}
@@ -300,8 +316,7 @@ public class tsp_try extends JFrame implements MouseListener,ActionListener,Runn
 								y=Integer.parseInt(string);
 							} catch (NumberFormatException e1) {
 								// TODO Auto-generated catch block
-					
-								JOptionPane.showMessageDialog(null, "文件内容格式错误！！！","警告",JOptionPane.ERROR_MESSAGE);
+								this.ErrorMesseger("         文件内容错误!!!");
 								break;
 								//e1.printStackTrace();
 							}

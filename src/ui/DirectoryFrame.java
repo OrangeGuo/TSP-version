@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DirectoryFrame extends JDialog implements ActionListener {
+class DirectoryFrame extends JDialog implements ActionListener {
     JPanel jp1=null;
     JPanel jp2=null;
     JPanel jPanel=null;
@@ -20,29 +20,29 @@ public class DirectoryFrame extends JDialog implements ActionListener {
         jtb=new JTabbedPane();
         jta1=new JTextArea();
         jta2=new JTextArea();
-        String s1="ï¿½ï¿½Ò»ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Ò±ï¿½Ç©Ò³)ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ã·¨\nï¿½Ú¶ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½é¿´Â·ï¿½ï¿½";
-        String s2="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ä±ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½TXTï¿½ï¿½Ê½\nï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ü³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖºÍ¿Õ¸ï¿½\nÃ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª:ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½Öµ" +
-                "Ö®ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Õ¸ï¿½ï¿½ï¿½ï¿½ï¿½:\n1 34 62\n2 98 14\n3 5 25\n......\nTips:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê²»ï¿½ï¿½ï¿½é³¬ï¿½ï¿½1000";
-        jb3=new JButton("ï¿½ï¿½ï¿½Ä¶ï¿½");
+        String s1="µÚÒ»²½:¶ÁÈëÊý¾Ý(Ïê¼ûÓÒ±êÇ©Ò³)»òÕßÑ¡ÔñËã·¨\nµÚ¶þ²½:µã»÷ÔËÐÐ\nµÚÈý²½:²é¿´Â·¾¶";
+        String s2="Ëù¶ÁÈëÎÄ¼þ±ØÐëÎªÎÄ±¾ÎÄ¼þ¼´TXT¸ñÊ½\nÎÄ¼þÄÚÈÝÖ»ÄÜ³öÏÖÊý×ÖºÍ¿Õ¸ñ\nÃ¿ÐÐÄÚÈÝÎª:µãÐòºÅ£¬ºá×ø±ê£¬×Ý×ø±ê£¬ÊýÖµ" +
+                "Ö®¼äÁôÒ»¸ö¿Õ¸ñÈçÏÂ:\n1 34 62\n2 98 14\n3 5 25\n......\nTips:ËùÓÐÊýÖµ±ØÐëÎªÕýÕûÊý,ºá×Ý×ø±ê²»½¨Òé³¬¹ý1000";
+        jb3=new JButton("ÒÑÔÄ¶Á");
         jta1.setText(s1);
         jta2.setText(s2);
-        jb3.setContentAreaFilled(false);//ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½
+        jb3.setContentAreaFilled(false);//ÉèÖÃÍ¸Ã÷
         jb3.addActionListener(this);
-        //jb3.setBorder(BorderFactory.createLoweredBevelBorder());//ï¿½ï¿½ï¿½ï¿½Í¹ï¿½ï¿½
+        //jb3.setBorder(BorderFactory.createLoweredBevelBorder());//ÉèÖÃÍ¹Æð
         jp1.setBackground(Color.white);
         jp2.setBackground(Color.white);
         jp1.add(jta1);
         jp2.add(jta2);
         jPanel.add(jb3);
-        jtb.add(jp1,"ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½");
-        jtb.add(jp2,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+        jtb.add(jp1,"²Ù×÷ËµÃ÷");
+        jtb.add(jp2,"¶ÁÈëÊý¾Ý");
         this.add(jtb);
         this.add(jPanel,BorderLayout.SOUTH);
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/Í¼ï¿½ï¿½4.jpg"));
+        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/Í¼±ê4.jpg"));
         this.setIconImage(a);
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
-        this.setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½");
+        this.setTitle("°ïÖúÎÄµµ");
         this.setResizable(false);
         this.dispose();
         this.setModal(true);

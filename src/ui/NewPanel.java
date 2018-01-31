@@ -1,7 +1,5 @@
 package ui;
 
-
-
 import backends.Point;
 import backends.PublicSettingIndex;
 import backends.adapt;
@@ -14,34 +12,36 @@ import java.text.DecimalFormat;
 import java.util.Vector;
 
 public class NewPanel extends JPanel implements Runnable{
-    DecimalFormat df=new DecimalFormat("######0.00");//ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»Ð¡ï¿½ï¿½
-    Vector<Point> points=new Vector<Point>();//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    PublicSettingIndex psi=null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
-    double distance_max=0;//ï¿½ï¿½Â¼ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    double distance_min=0;//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Å½ï¿½
-    double distance_now=0;//ï¿½ï¿½Â¼Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½
-    list list_shortest=null;//ï¿½ï¿½Â¼Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½
+    DecimalFormat df=new DecimalFormat("######0.00");//×îÖÕ½á¹û±£ÁôÁ½Î»Ð¡Êý
+    Vector<Point> points=new Vector<Point>();//³õÊ¼»¯µãÏòÁ¿
+    PublicSettingIndex psi=null;//½ÓÊÕÉèÖÃ²ÎÊý
+    double distance_max=0;//¼ÇÂ¼µãÖ®¼ä×î´ó¾àÀë
+    double distance_min=0;//¼ÇÂ¼×îÓÅ½â
+    double distance_now=0;//¼ÇÂ¼Ã¿´ú×îÓÅ½â
+    list list_shortest=null;//¼ÇÂ¼Ã¿´ú×îÓÅ¸öÌå
     list list_01=null;
-    adapt bestAdapt=null;//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½
-    int N=0;//ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    double rate_best=0.1;//ï¿½ï¿½ï¿½Å¸ï¿½ï¿½å¸´ï¿½ï¿½ï¿½ï¿½
-    double rate_mix=0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    int best_index=0;//ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½
-    int time_all=200;//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    int time_now=0;//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
-    double rate_change=0.02;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    Vector<list> all=null;//ï¿½ï¿½Èº
-    Vector<adapt> allAdapts=null;//ï¿½ï¿½Â¼ï¿½ï¿½Èºï¿½ï¿½Ó¦ï¿½ï¿½
+    adapt bestAdapt=null;//¼ÇÂ¼×îÓÅ¸öÌå
+    int N=0;//ÖÖÈº¸öÌåÊý
+    double rate_best=0.1;//×îÓÅ¸öÌå¸´ÖÆÂÊ
+    double rate_mix=0;//½»²æÂÊ
+    int best_index=0;//×îÓÅ¸öÌå±àºÅ
+    int time_all=20;//Ñ­»·´úÊý
+    int time_now=0;//µ±Ç°´úÊý
+    double rate_change=0.05;//¸öÌå±äÒìÂÊ
+    Vector<list> all=null;//ÖÖÈº
+    Vector<adapt> allAdapts=null;//¼ÇÂ¼ÖÖÈºÊÊÓ¦¶È
 
     int scale=0;
 
     double distance_all=0;//
     double sum_same=0;//
-    public NewPanel(Vector<Point> p, PublicSettingIndex psi){
+    public NewPanel(Vector<Point> p,PublicSettingIndex psi){
         this.points=p;
         this.psi=psi;
         this.N=psi.N;
+        this.rate_best=psi.rate_copy;
         this.time_all=psi.circle;
+
         list_shortest=new list();
         bestAdapt=new adapt();
         all=new Vector<list>();
@@ -52,35 +52,40 @@ public class NewPanel extends JPanel implements Runnable{
     }
     public void paint(Graphics g)
     {
-        //ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½à·½ï¿½ï¿½
+        //ÖØÔØ¸¸Àà·½·¨
         super.paint(g);
         g.fillRect(0, 0, 500, 600);
         this.start(g);
     }
-    //ï¿½ï¿½ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½ï¿½Í¼
+    //Æô¶¯Ëã·¨²¢»æÍ¼
     public void start(Graphics g)
     {
         g.setColor(Color.cyan);
         this.get_adapt();
         this.copy();
         this.mix();
+        this.get_adapt();
+        this.copy();
         this.change();
+
         g.setColor(Color.yellow);
         this.show(list_shortest,g);
         g.setColor(Color.black);
-        String str="ï¿½ï¿½"+String.valueOf(time_now)+"ï¿½ï¿½"+"ï¿½ï¿½ï¿½Å½ï¿½";
+        String str="µÚ"+String.valueOf(time_now)+"´ú"+"×îÓÅ½â";
         String string=String.valueOf(df.format(distance_now));
 
-        g.drawString(str, 505, 200);
-        g.drawString(string, 505, 220);
-        str="ï¿½ï¿½Ê·ï¿½ï¿½ï¿½Å½ï¿½";
+        g.drawString(str, 505, 360);
+        g.drawString(string, 505, 380);
+        str="ÀúÊ·×îÓÅ½â";
         string=String.valueOf(df.format(distance_min));
         g.drawString(str, 505, 400);
         g.drawString(string, 505, 420);
-        str="ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½:"+String.valueOf(N);
-        string="ï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½:"+String.valueOf(time_all);
-        g.drawString(str, 505, 300);
-        g.drawString(string, 505, 320);
+        str="ÖÖÈºÊýÁ¿:"+String.valueOf(N);
+        string="·±ÑÜ´úÊý:"+String.valueOf(time_all);
+        g.drawString(str, 505, 130);
+        g.drawString(string, 505, 150);
+        string="×îÓÅ¸´ÖÆÂÊ:"+String.valueOf(df.format(rate_best));
+        g.drawString(string, 505, 170);
         if(time_now==time_all)
         {
             psi.path_short.removeAllElements();
@@ -95,16 +100,16 @@ public class NewPanel extends JPanel implements Runnable{
     public void show(list li,Graphics g){
         g.setColor(Color.yellow);
 
-        g.drawString("ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 30, 520);
+        g.drawString("±íÊ¾¸öÌå", 30, 520);
         g.setColor(Color.white);
         while(li.next!=null)
         {
             g.fillOval(li.n*scale, li.next.n*scale, scale, scale);
             li=li.next;
         }
-        g.fillOval(20, 510, scale, scale);
+        g.fillOval(20, 510, 10, 10);
     }
-    //ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ÇóµãÖ®¼ä×î´ó¾àÀë
     public void get_max(){
 
         for(int i=0;i<points.size()-1;i++)
@@ -122,21 +127,21 @@ public class NewPanel extends JPanel implements Runnable{
         distance_min=points.size()*distance_max;
 
     }
-    //ï¿½ï¿½Èºï¿½ï¿½Ê¼ï¿½ï¿½
+    //ÖÖÈº³õÊ¼»¯
     public void get_group(int num){
 
         int size=this.points.size();
         int k=0;
         for(int i=0;i<num;i++)
         {
-            list li=new list();//ï¿½ï¿½ï¿½ï¿½Í·
+            list li=new list();//Á´±íÍ·
             list li_copy=li;
             k=0;
             while(k<size)
             {
                 li_copy=li;
-                int n=(int)(Math.random()*size);//ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½size-1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-                boolean p=true;//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½
+                int n=(int)(Math.random()*size);//Éú³É0µ½size-1µÄËæ»úÊý
+                boolean p=true;//·ÀÖ¹Ìí¼ÓÖØ¸´µÄµãÐòºÅ
                 for(int j=0;j<k;j++)
                 {
                     if(li_copy.n==n)
@@ -164,171 +169,189 @@ public class NewPanel extends JPanel implements Runnable{
             }
             all.add(li);
         }
+
     }
-    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½Ó¦ï¿½ï¿½
+    //¼ÆËãÖÖÈºÊÊÓ¦¶È
     public void get_adapt(){
-        distance_all=0;
-        sum_same=0;
+
 
         if(allAdapts.size()!=0)
         {
-            allAdapts.removeAllElements();
+            allAdapts=new Vector<adapt>();
         }
 
         for(int i=0;i<all.size();i++)
         {
-            //ï¿½Ö±ï¿½È¡ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½
+            //·Ö±ðÈ¡³öÃ¿¸ö¸öÌå¼ÆËãÊÊÓ¦¶È
             double distance_adapt=this.getdistance(all.get(i));
-            adapt newAdapt=new adapt();
-            distance_all+=distance_adapt;
 
+            adapt newAdapt=new adapt();
             newAdapt.distance=distance_adapt;
+
             newAdapt.n=i;
             allAdapts.add(newAdapt);
         }
+
     }
-    //ï¿½ï¿½ï¿½ï¿½
+    public void show(list l)
+    {
+        System.out.print(' ');
+        for(int i=0;i<points.size();i++)
+        {
+            System.out.print(l.get(i)+" ");
+        }
+        System.out.println();
+    }
+    //¸´ÖÆ
     public void copy(){
 
         best_index=0;
-        double copy_max=points.size()*distance_max;
-        //copy_min=1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-        double rate=0;//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½å¸´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
-        double rate_sum=0;
-        Vector<list>  new_all=new Vector<list>();//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Èº
+        double copy_max=2000000000;
+
+
         for(int i=0;i<allAdapts.size();i++)
         {
             adapt newAdapt=allAdapts.get(i);
-            if(copy_max>newAdapt.distance)//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½
+            if(copy_max>newAdapt.distance)//¼ÇÂ¼¸öÌå×î´ó¸´ÖÆÆÚÍûÖµ¼°¸Ã¸öÌå±àºÅ
             {
                 copy_max=newAdapt.distance;
                 best_index=i;
             }
 
         }
-        //ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½
+
+
         list_shortest=all.get(best_index);
         adapt newAdapts=allAdapts.get(best_index);
         if(newAdapts.distance<bestAdapt.distance||bestAdapt.distance==0)
         {
             bestAdapt=newAdapts;
-            list_01=list_shortest;
+            list_01=new list(list_shortest);
         }
+
         distance_now=newAdapts.distance;
         if(distance_min>distance_now)
         {
             distance_min=distance_now;
         }
-        for(int i=0;i<N*rate_best;i++)
-        {
-            new_all.add(all.get(best_index));
 
+        for(int i=0;i<N*(rate_best);i++)
+        {
+            list newlList=new list(list_01);
+            adapt adapt=new adapt();
+            adapt=bestAdapt;
+            all.add(0,newlList);
+            allAdapts.add(0,adapt);
         }
 
-        all.remove(best_index);
-        allAdapts.remove(best_index);
-        int num=0;
-        while(num<N*0.9)
+
+        while(all.size()>N)
         {
-            double min=distance_max*points.size();
+            double max=0;
             int index=0;
-            for(int i=0;i<all.size();i++)
+            for(int i=0;i<allAdapts.size();i++)
             {
                 adapt nAdapt=allAdapts.get(i);
-                if(min>nAdapt.distance)
+
+                if(max<nAdapt.distance)
                 {
-                    min=nAdapt.distance;
+                    max=nAdapt.distance;
+
                     index=i;
+
                 }
+
             }
-            new_all.add(all.get(index));
             all.remove(index);
             allAdapts.remove(index);
-            num++;
         }
 
-        all=new_all;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½
+
         N=all.size();
     }
-    //ï¿½ï¿½ï¿½ï¿½
+    //½»²æ
     public void mix(){
-
-        rate_mix=0.1-0.1*(time_now-1)/(time_all-1);
-        int pairs=(int)(N*rate_mix/2);//ï¿½Ü½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-        int pairs_now=0;//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
-        int size=points.size();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-        int step=size/3;//ï¿½ï¿½ï¿½æ²½ï¿½ï¿½
-        while(pairs_now!=pairs)
+        int size=points.size();//µ¥¸ö¸öÌå»ùÒò×ÜÊý
+        int a=-2,b=-1;//½»²æ²½³¤
+        while(b<N)
         {
-            pairs_now++;
-            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-            int a=(int)(Math.random()*N);
-            int b=(int)(Math.random()*N);
-            while(a==b)
+            a+=2;
+            b+=2;
+
+            if(b>=N)break;
+            if(true)
             {
-                b=(int)(Math.random()*N);
-            }
-            list li1=all.get(a);
-            list li2=all.get(b);
-            int start=(int)(size*Math.random());
-            //ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
-            int mix_index1=0;
-            int mix_index2=0;
-            for(int i=start;i<size;i=i+step)
-            {
-                //ï¿½Ö±ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-                for(int j=0;j<size;j++)
+                int x=(int)(Math.random()*size);
+                int y=(int)(Math.random()*size);
+                while(x==y)
                 {
-                    if(li1.get(i)==li2.get(j))
-                        mix_index1=j;
-                    break;
+                    y=(int)(Math.random()*size);
                 }
-                for(int j=0;j<size;j++)
-                {
-                    if(li2.get(i)==li1.get(j))
-                        mix_index2=j;
-                    break;
-                }
-                //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
-                int temp=li1.get(i);
-                li1.set(i, li1.get(mix_index2));
-                li1.set(mix_index2, temp);
-                temp=li2.get(i);
-                li2.set(i, li2.get(mix_index1));
-                li2.set(mix_index1, temp);
+                list li1=all.get(a);
+                list li2=all.get(b);
+                //list w1=new list(li1);
+                //list w2=new list(li2);
+                //all.add(w1);
+                //all.add(w2);
+                //½»²æµãÎ»
+
+                //¿ªÊ¼½»²æ
+                int temp=li1.get(x);
+                li1.set(x, li1.get(y));
+                li1.set(y, temp);
+                temp=li2.get(x);
+                li2.set(x, li2.get(y));
+                li2.set(y, temp);
+
             }
-            all.remove(a);
-            all.add(a,li1);
-            all.remove(b);
-            all.add(b,li2);
+
 
         }
+
     }
-    //ï¿½ï¿½ï¿½ï¿½
+    //±äÒì
 
     public void change() {
-
-        for(int i=0;i<N*rate_change;i++)
+        for(int i=0;i<N;i++)
         {
-            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-            int x=(int)(Math.random()*N);
-            list lix=all.get(x);
-
-            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½
+            list lix=all.get(i);
+            //list wList=new list(lix);
+            //all.add(wList);
+            //Ëæ»ú²úÉú½»²æ»ùÒòÆ¬¶Î
             int a=(int)(Math.random()*points.size());
-            int b=(int)(Math.random()*points.size());
+            if(a==points.size()-1) a--;
 
-            //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+            //¿ªÊ¼±äÒì
             int temp=lix.get(a);
-            lix.set(a, lix.get(b));
-            lix.set(b, temp);
+            lix.set(a, lix.get(a+1));
+            lix.set(a+1, temp);
+        }
+    }
+    public void explode(){
+        for(int i=0;i<N;i++)
+        {
 
-            all.remove(x);
-            all.add(x,lix);
+            list lix=all.get(i);
+            //list wList=new list(lix);
+            //all.add(wList);
+            //Ëæ»ú²úÉú½»²æ»ùÒòÆ¬¶Î
+            double di=allAdapts.get(i).distance/points.size();
+            for(int j=0;j<points.size()-1;j++)
+            {
+                if(this.betwwenpoints(j, j+1)>di)
+                {
+                    //¿ªÊ¼±äÒì
+                    int temp=lix.get(j);
+                    lix.set(j, lix.get(j+1));
+                    lix.set(j+1, temp);
+                    break;
+                }
+
+
+            }
 
         }
-
     }
     public double betwwenpoints(int m,int n)
     {
@@ -364,4 +387,3 @@ public class NewPanel extends JPanel implements Runnable{
         }
     }
 }
-

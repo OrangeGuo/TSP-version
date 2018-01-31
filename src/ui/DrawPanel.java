@@ -4,6 +4,7 @@ import backends.Point;
 import backends.PublicSettingIndex;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.Vector;
@@ -22,9 +23,9 @@ public class DrawPanel extends JPanel implements Runnable{
     boolean get=false;
     long Time_start=System.currentTimeMillis();
     long Time_total=0;
-    long time=10;//ï¿½ï¿½Ð¡Ë¢ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½
+    long time=10;//×îÐ¡Ë¢ÐÂÊ±¼ä¼ä¸ô10ºÁÃë
     public PublicSettingIndex psi=null;
-    public DrawPanel(Vector<Point> p, PublicSettingIndex psi){
+    public DrawPanel(Vector<Point> p,PublicSettingIndex psi){
         point=p;
         scale=psi.getscale();
         time*=psi.gettime();
@@ -116,20 +117,20 @@ public class DrawPanel extends JPanel implements Runnable{
             distance_min=distance_now;
             index_min=index_all;
         }
-        g.drawString("Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½", 500, 20);
-        g.drawString("ï¿½ï¿½É«Ô²ï¿½ï¿½Îªï¿½ï¿½ï¿½", 500, 40);
+        g.drawString("Ê±¼ä½ö¹©²Î¿¼", 500, 20);
+        g.drawString("ºìÉ«Ô²µãÎªÆðµã", 500, 40);
         if(p){
-            g.drawString("ï¿½ï¿½Ç°ï¿½Ü¾ï¿½ï¿½ï¿½:"+s, 0,520);
+            g.drawString("µ±Ç°×Ü¾àÀë:"+s, 0,520);
             s=String.valueOf(df.format(distance_min));
-            g.drawString("ï¿½ï¿½Ç°ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½:"+s, 450, 520);
+            g.drawString("µ±Ç°×î¶Ì¾àÀë:"+s, 450, 520);
             Time_total=(System.currentTimeMillis()-Time_start);
             s=String.valueOf(Time_total);
-            g.drawString("ï¿½ï¿½ï¿½ï¿½Ê±:"+s+"ï¿½ï¿½ï¿½ï¿½", 250, 520);
+            g.drawString("×ÜÓÃÊ±:"+s+"ºÁÃë", 250, 520);
         }
         else{
-            g.drawString("ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½:"+s, 150,520);
+            g.drawString("×î¶Ì¾àÀë:"+s, 150,520);
             s=String.valueOf(Time_total);
-            g.drawString("ï¿½ï¿½ï¿½ï¿½Ê±:"+s+"ï¿½ï¿½ï¿½ï¿½",350, 520);
+            g.drawString("×ÜÓÃÊ±:"+s+"ºÁÃë",350, 520);
             this.psi.distance=distance_min;
             if(this.psi.state==1)
             {
@@ -156,4 +157,3 @@ public class DrawPanel extends JPanel implements Runnable{
         }
     }
 }
-

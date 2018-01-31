@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class HelpFrame extends JDialog implements MouseListener {
+class HelpFrame extends JDialog implements MouseListener {
     JPanel jp=null;
     public  int flag=0;
     JLabel jl=null;
@@ -22,24 +22,24 @@ public class HelpFrame extends JDialog implements MouseListener {
         jp.setBackground(Color.white);
         jta.setEditable(false);
         jta.setBackground(Color.white);
-        jta.setText("    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¾ï¿½ï¿½É¸ï¿½ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½É¡ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ú½ï¿½ï¿½TSPï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Travelling Sellmen Problems)ï¿½ï¿½ï¿½ï¿½Ç°ï¿½æ±¾\nï¿½Ð³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½" +
-                "ï¿½ã·¨ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½Å´ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ï½ï¿½ï¿½TSPï¿½ï¿½\nï¿½ï¿½ï¿½ï¿½ã·¨ï¿½ÐºÜ¶ï¿½ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Ô£ï¿½Êµï¿½ï¿½ï¿½Ï¶ï¿½\nï¿½ï¿½TSPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½" +
-                "Ö»ï¿½Ü¾ï¿½ï¿½ï¿½ï¿½Ü½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½â¡£ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ã·¨(Ì°ï¿½ï¿½ï¿½ã·¨)ï¿½ï¿½ï¿½ï¿½òµ¥µï¿½ï¿½ã·¨Í¬Ê±Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ù²ï¿½ï¿½Ãµï¿½ï¿½ã·¨ï¿½ï¿½ï¿½ï¿½\nÎªï¿½ï¿½ï¿½ï¿½Ð§ï¿½ÊºÜµÍ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å´ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ï¿½ï¿½Öµï¿½" +
-                "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½\nï¿½Ä½â£¬ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½\n    ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ü¶Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Ôµï¿½Ê±ï¿½ä²¢ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ï¿½" +
-                "ï¿½ï¿½ï¿½ï¿½Ä³Ð©Î´Öªbugï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ°ï¿½ï¿½Õ²ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½âµ¼ï¿½ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ì³£bugï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµ\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ï¿½ï¿½ä£º1772086465@qq" +
-                ".comï¿½ï¿½" );
-        jb=new JButton("ï¿½Ë³ï¿½");
+        jta.setText("    ±¾³ÌÐòÈ«²¿´úÂë±àÐ´¡¢²âÊÔ¼°ºóÆÚÖÆ×÷£¬½çÃæÉè¼Æ¾ùÓÉ¸öÈË¶ÀÁ¢Íê³É¡£\n³ÌÐòÖ÷ÒªÓÃÓÚ½â¾öTSPÎÊÌâ(¼´Travelling Sellmen Problems)£¬µ±Ç°°æ±¾\nÖÐ³ÌÐò½ö½öÌá¹©Á½ÖÖ" +
+                "Ëã·¨£ºÌ°ÐÄËã·¨ºÍÒÅ´«Ëã·¨¡£µ«ÆäÊµÍøÉÏ½â¾öTSPÎÊ\nÌâµÄËã·¨ÓÐºÜ¶àÖÖ¡£µ«ÊÇ¿ª·¢ÕßÌá¹©µÄÕâÁ½ÖÖËã·¨¾ßÓÐ´ú±íÐÔ£ºÊµ¼ÊÉÏ¶Ô\nÓÚTSPÕâÀàÎÊÌâ£¬Ò»°ãÇé¿öÏÂÎÒÃÇºÜÄÑÇó³ö×îÓÅ½â" +
+                "Ö»ÄÜ¾¡¿ÉÄÜ½Ó½üÓÚ×îÓÅ\n½â¡£µÚÒ»ÖÖËã·¨(Ì°ÐÄËã·¨)ÊÇ×î¼òµ¥µÄËã·¨Í¬Ê±Ò²ÊÇ×îÉÙ²ÉÓÃµÄËã·¨£¬Òò\nÎªËüµÄÐ§ÂÊºÜµÍ£¬½ö½öÊÊÓÃÓÚµãÊýºÜÉÙµÄÇé¿ö¡£¶øºóÃæµÄÒÅ´«Ëã·¨¼°ÍøÉÏ\n³öÏÖµÄ" +
+                "ÆäÑÜÉúºÍÓÅ»¯Ëã·¨¿ÉÒÔÔÚµãÊýºÜ¶àµÄÇé¿öÏÂÇó³öÎÞÏÞ½Ó½üÓÚ×îÓÅ½â\nµÄ½â£¬ÕâÊÇÌ°ÐÄËã·¨Ëù²»ÄÜ×öµ½µÄ¡£\n    ÓÉÓÚ¿ª·¢Ê±¼äºÜ¶Ì£¬¿ª·¢Õß»¨ÔÚÔÚ²âÊÔµÄÊ±¼ä²¢²»¶à£¬ËùÒÔ±¾³ÌÐò¿É\nÄÜ" +
+                "´æÔÚÄ³Ð©Î´Öªbug£¬ËùÒÔÇëÊ¹ÓÃÕß¾¡Á¿°´ÕÕ°´ÕÕ²Ù×÷ËµÃ÷²Ù×÷ÒÔÃâµ¼ÖÂ\n³ÌÐòÒì³£ÉõÖÁËð»µÄúµÄÉè±¸¡£Èç¹ûÕæµÄ³öÏÖÒì³£bug£¬Çë½ØÍ¼²¢¸½ÎÄ×ÖËµ\nÃ÷·¢µ½¿ª·¢ÍÅ¶ÓÓÊÏä£º1772086465@qq" +
+                ".com¡£" );
+        jb=new JButton("ÍË³ö");
         jb.setBackground(Color.pink);
         jb.addMouseListener(this);
         this.add(jl,BorderLayout.NORTH);
         jp.add(jta);
         this.add(jp);
         this.add(jb,BorderLayout.SOUTH);
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/Í¼ï¿½ï¿½2.jpg"));
+        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/Í¼±ê2.jpg"));
         this.setIconImage(a);
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
-        this.setTitle("ï¿½ï¿½ï¿½ï¿½&ï¿½ï¿½ï¿½ï¿½");
+        this.setTitle("¿ª·¢&¹ØÓÚ");
         this.setResizable(false);
         this.dispose();
         this.setModal(true);

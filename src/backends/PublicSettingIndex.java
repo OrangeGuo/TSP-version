@@ -3,15 +3,16 @@ package backends;
 import java.util.Vector;
 
 public class PublicSettingIndex {
-    private static int time_flush=1;//ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-    private static double scale=1;//ï¿½ï¿½ï¿½ï¿½Drawpanelï¿½ï¿½Í¼ï¿½ï¿½Î§
+    private static int time_flush=1;//ÔËÐÐ½çÃæË¢ÐÂÊ±¼ä¼ä¸ô¿ØÖÆ
+    private static double scale=1;//¿ØÖÆDrawpanel»æÍ¼·¶Î§
     public static boolean flag=true;
-    public static boolean suanfa_flag=true;
-    public static Vector path_short=new Vector();//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
-    public static int N=100;//ï¿½ï¿½Â¼ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½
-    public static double distance=0;//ï¿½ï¿½Â¼ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
-    public static int circle=200;//ï¿½ï¿½Â¼ï¿½ï¿½Èºï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½
+    public static int suanfa_flag=1;
+    public static Vector path_short=new Vector();//¼ÇÂ¼×î¶ÌÂ·¾¶
+    public static int N=100;//¼ÇÂ¼ÖÖÈºÊýÁ¿
+    public static double distance=0;//¼ÇÂ¼×î¶Ì¾àÀë
+    public static int circle=200;//¼ÇÂ¼ÖÖÈº·±ÑÜ´úÊý
     public static int state=0;
+    public static double rate_copy=0.1;//×îÓÅ¸öÌå¸´ÖÆÂÊ
     public PublicSettingIndex(){
 
     }

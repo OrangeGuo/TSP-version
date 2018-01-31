@@ -12,12 +12,15 @@ public class SettingFrame extends JDialog implements ActionListener {
     JPanel jp2=null;
     JPanel jp3=null;
     JPanel jp4=null;
+    JPanel jp5=null;
     JLabel jl1=null;
     JLabel jl2=null;
     JLabel jl3=null;
     JLabel jl4=null;
+    JLabel jl5=null;
     JComboBox jcb=null;
     JComboBox jcb2=null;
+    JComboBox jcb3=null;
     JButton jb1=null;
     JButton jb2=null;
     JRadioButton jrb1=null;
@@ -31,8 +34,9 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp2=new JPanel();
         jp3=new JPanel();
         jp4=new JPanel();
-        jb1=new JButton("Ó¦ï¿½ï¿½");
-        jb2=new JButton("È¡ï¿½ï¿½");
+        jp5=new JPanel();
+        jb1=new JButton("Ó¦ÓÃ");
+        jb2=new JButton("È¡Ïû");
         jrb1=new JRadioButton("100");
         jrb2=new JRadioButton("300");
         jrb3=new JRadioButton("500");
@@ -41,14 +45,17 @@ public class SettingFrame extends JDialog implements ActionListener {
         jb1.setActionCommand("sure");
         jb2.addActionListener(this);
         jb2.setActionCommand("exit");
-        jl1=new JLabel("ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½");
-        jl2=new JLabel("ï¿½ï¿½Ê¼ï¿½ï¿½Èºï¿½ï¿½Ä£");
-        jl3=new JLabel("(Ì°ï¿½ï¿½ï¿½ã·¨)");
-        jl4=new JLabel("ï¿½ï¿½Èºï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½");
-        String []content={"0.01ï¿½ï¿½(ï¿½Æ¼ï¿½)","0.1ï¿½ï¿½","1ï¿½ï¿½"};
+        jl1=new JLabel("ÔËÐÐ´°¿ÚË¢ÐÂÊ±¼ä¼ä¸ô");
+        jl2=new JLabel("³õÊ¼ÖÖÈº¹æÄ£");
+        jl3=new JLabel("(Ì°ÐÄËã·¨)");
+        jl4=new JLabel("ÖÖÈº·±ÑÜ´úÊý");
+        jl5=new JLabel("×îÓÅ¸öÌå¸´ÖÆÂÊ");
+        String []content={"0.01Ãë(ÍÆ¼ö)","0.1Ãë","1Ãë"};
         String []times={"200","400","600","800","1000"};
+        String []rate={"0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9"};
         jcb=new JComboBox(content);
         jcb2=new JComboBox(times);
+        jcb3=new JComboBox(rate);
         jp1.add(jl1);
         jp1.add(jcb);
         jp1.add(jl3);
@@ -56,6 +63,8 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp2.add(jb2);
         jp4.add(jl4);
         jp4.add(jcb2);
+        jp5.add(jl5);
+        jp5.add(jcb3);
         if(this.psi.N==100)
         {
             jrb1.setSelected(true);
@@ -75,16 +84,17 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp3.add(jrb1);
         jp3.add(jrb2);
         jp3.add(jrb3);
-        //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/Í¼ï¿½ï¿½3.jpg"));
+        //ÉèÖÃÍ¼±ê
+        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/Í¼±ê3.jpg"));
         this.setIconImage(a);
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
-        this.setTitle("ï¿½ï¿½ï¿½ï¿½");
+        this.setTitle("ÉèÖÃ");
         this.setLayout(new GridLayout(8,1));
         this.add(jp1);
         this.add(jp3);
         this.add(jp4);
+        this.add(jp5);
         this.add(jp2);
         this.setResizable(false);
         this.dispose();
@@ -96,10 +106,10 @@ public class SettingFrame extends JDialog implements ActionListener {
         // TODO Auto-generated method stub
         if(e.getActionCommand().equals("sure"))
         {
-            if(jcb.getSelectedItem().equals("1ï¿½ï¿½")){
+            if(jcb.getSelectedItem().equals("1Ãë")){
                 psi.settime(100);
             }
-            else if(jcb.getSelectedItem().equals("0.1ï¿½ï¿½")){
+            else if(jcb.getSelectedItem().equals("0.1Ãë")){
                 psi.settime(10);
             }
             else{
@@ -129,6 +139,8 @@ public class SettingFrame extends JDialog implements ActionListener {
             {
                 psi.circle=1000;
             }
+            int scale=jcb3.getSelectedIndex();
+            psi.rate_copy=0.1*(scale+1);
             this.dispose();
         }
         else if(e.getActionCommand().equals("exit")){

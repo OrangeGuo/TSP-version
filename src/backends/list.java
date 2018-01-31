@@ -1,12 +1,56 @@
 package backends;
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½Â¼Â·ï¿½ï¿½(Ã¿ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ÎªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+//Á´±íÓÃÒÔ¼ÇÂ¼Â·¾¶(Ã¿¸öÂ·¾¶ÊÓÎªÒ»¸ö¸öÌå)
 public class list{
     public int n=-1;
     public list next=null;
 
     public list(){
 
+    }
+    public list(list li){
+        this.n=li.n;
+        li=li.next;
+        while(li!=null)
+        {
+            this.add(li.n);
+            li=li.next;
+        }
+    }
+    public void add(int citynum)
+    {
+        list list=this;
+        while(list.next!=null)
+        {
+            list=list.next;
+        }
+        list list2=new list();
+        list2.n=citynum;
+        list.next=list2;
+    }
+    public list remove(int citynum)
+    {
+        if(this.n==citynum)
+        {
+            return this.next;
+        }
+        else {
+            list list=this;
+            list li=list;
+            list li_next=list.next;
+            while(li_next!=null)
+            {
+                if(li_next.n==citynum)
+                {
+                    li.next=li_next.next;
+                    return list;
+                }
+                li=li.next;
+                li_next=li_next.next;
+            }
+            list=null;
+            return list;
+        }
     }
     public int get(int i)
     {
@@ -19,7 +63,7 @@ public class list{
             list list_now=this;
             for(int j=0;j<i;j++)
             {
-                list_now=list_now.next;
+                if(list_now.next!=null)list_now=list_now.next;
             }
             return list_now.n;
         }

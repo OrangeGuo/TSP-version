@@ -4,17 +4,19 @@ import backends.Point;
 import backends.PublicSettingIndex;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-//ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
+//Çó½âÊ±µÄÔËÐÐ´°¿Ú(µ¯³ö)
 public class FunctionView extends JDialog implements MouseListener {
 
     JPanel jp2=null;
     DrawPanel dp=null;
     NewPanel np=null;
+    antpanel ap=null;
     JButton jb=null;
     JTextField jtf1=null;
     JTextField jtf2=null;
@@ -29,20 +31,24 @@ public class FunctionView extends JDialog implements MouseListener {
 
         jp2.add(jb);
 
-        if(psi.suanfa_flag){
+        if(psi.suanfa_flag==1){
             dp=new DrawPanel(p,psi);
             Thread thread=new Thread(dp);
             thread.start();
             this.add(dp);
         }
-        else {
+        else if(psi.suanfa_flag==0){
             np=new NewPanel(p,psi);
             Thread thread=new Thread(np);
             thread.start();
             this.add(np);
         }
+        else {
+            ap=new antpanel(p,psi);
+            this.add(ap);
+        }
         this.add(jp2,BorderLayout.SOUTH);
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/ï¿½ï¿½ï¿½ï¿½Í¼Æ¬.jpg"));
+        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/p2.jpg"));
         this.setIconImage(a);
         this.setSize(600, 600);
         this.setTitle("Run for answer");
