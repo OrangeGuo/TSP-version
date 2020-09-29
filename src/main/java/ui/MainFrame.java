@@ -6,9 +6,6 @@ import backends.Config;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-import java.awt.Image;
-import java.awt.Panel;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -18,7 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import javax.swing.JButton;
@@ -55,7 +53,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	SettingFrame sf=null;
 	WorkFrame fv=null;
 	Config psi=null;
-	Vector<City> points=null;
+	List<City> points=null;
 	//swing组件
 	JToolBar jtl=null;
 	JPanel jp_01=null;
@@ -160,8 +158,8 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
     	 Thread thread=new Thread(mp);
  		 thread.start();
     	 this.add(mp);
-    	 Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/p1.jpg"));
- 		 this.setIconImage(a);
+    	 //Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("//home/orange/TSP-version/src/main/java/tu/p1.jpg"));
+ 		 //this.setIconImage(a);
     	 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	 this.setVisible(true);
     
@@ -178,16 +176,16 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		if(e.getSource().equals(jb1)){
 			if(flag){
 				this.psi.flag=true;
-				this.psi.path_short.removeAllElements();
+				this.psi.shortestPath.removeAllElements();
 				if(this.jcb.getSelectedItem().equals("遗传算法"))
 				{
-					this.psi.suanfa_flag=0;
+					this.psi.algoType =0;
 				}
 				else if(this.jcb.getSelectedItem().equals("贪心算法")){
-					this.psi.suanfa_flag=1;
+					this.psi.algoType =1;
 				}
 				else {
-					this.psi.suanfa_flag=2;
+					this.psi.algoType =2;
 				}
 				fv=new WorkFrame(points,psi);
 			}
@@ -206,14 +204,14 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	    	if(this.psi.state>1)
 			{
 	    	DecimalFormat df=new DecimalFormat("######0.00");
-			String s="共有"+String.valueOf(this.psi.path_short.size())+"个点\n最短距离为"+String.valueOf(df.format(this.psi.distance))+"\n"+"最短路径如下\n";
-			for(int i=0;i<this.psi.path_short.size();i++)
+			String s="共有"+String.valueOf(this.psi.shortestPath.size())+"个点\n最短距离为"+String.valueOf(df.format(this.psi.shortestDistance))+"\n"+"最短路径如下\n";
+			for(int i = 0; i<this.psi.shortestPath.size(); i++)
 			{
 				
-				s+=String.valueOf(this.psi.path_short.get(i));
+				s+=String.valueOf(this.psi.shortestPath.get(i));
 				s+='-';
 			}
-			s+=String.valueOf(this.psi.path_short.get(0));
+			s+=String.valueOf(this.psi.shortestPath.get(0));
 			jta=new JTextArea(s,8,50);
 	
 			jta.setLineWrap(true);
@@ -232,7 +230,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 			jfc.setDialogTitle("请选择文件(当前仅支持TXT格式)");
 			jfc.showOpenDialog(null);
 			jfc.setVisible(true);
-			points=new Vector<City>();
+			points=new ArrayList<>();
 			String st=null;
 			try {
 				if(jfc.getSelectedFile().getAbsolutePath()!=null)

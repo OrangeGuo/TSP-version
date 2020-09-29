@@ -21,8 +21,8 @@ public class SettingFrame extends JDialog implements ActionListener {
     JComboBox jcb=null;
     JComboBox jcb2=null;
     JComboBox jcb3=null;
-    JButton jb1=null;
-    JButton jb2=null;
+    JButton apply =null;
+    JButton cancle =null;
     JRadioButton jrb1=null;
     JRadioButton jrb2=null;
     JRadioButton jrb3=null;
@@ -35,16 +35,16 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp3=new JPanel();
         jp4=new JPanel();
         jp5=new JPanel();
-        jb1=new JButton("应用");
-        jb2=new JButton("取消");
+        apply =new JButton("应用");
+        cancle =new JButton("取消");
         jrb1=new JRadioButton("100");
         jrb2=new JRadioButton("300");
         jrb3=new JRadioButton("500");
         bg=new ButtonGroup();
-        jb1.addActionListener(this);
-        jb1.setActionCommand("sure");
-        jb2.addActionListener(this);
-        jb2.setActionCommand("exit");
+        apply.addActionListener(this);
+        apply.setActionCommand("sure");
+        cancle.addActionListener(this);
+        cancle.setActionCommand("exit");
         jl1=new JLabel("运行窗口刷新时间间隔");
         jl2=new JLabel("初始种群规模");
         jl3=new JLabel("(贪心算法)");
@@ -59,8 +59,8 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp1.add(jl1);
         jp1.add(jcb);
         jp1.add(jl3);
-        jp2.add(jb1);
-        jp2.add(jb2);
+        jp2.add(apply);
+        jp2.add(cancle);
         jp4.add(jl4);
         jp4.add(jcb2);
         jp5.add(jl5);
@@ -125,22 +125,22 @@ public class SettingFrame extends JDialog implements ActionListener {
             }
             if(jcb2.getSelectedItem().equals("400"))
             {
-                psi.circle=400;
+                psi.generations =400;
             }
             else if(jcb2.getSelectedItem().equals("600"))
             {
-                psi.circle=600;
+                psi.generations =600;
             }
             else if(jcb2.getSelectedItem().equals("800"))
             {
-                psi.circle=800;
+                psi.generations =800;
             }
             else if(jcb2.getSelectedItem().equals("1000"))
             {
-                psi.circle=1000;
+                psi.generations =1000;
             }
             int scale=jcb3.getSelectedIndex();
-            psi.rate_copy=0.1*(scale+1);
+            psi.copyRate =0.1*(scale+1);
             this.dispose();
         }
         else if(e.getActionCommand().equals("exit")){

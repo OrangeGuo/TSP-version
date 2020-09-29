@@ -2,18 +2,18 @@ package backends;
 
 //链表用以记录路径(每个路径视为一个个体)
 public class PathList {
-    public int n=-1;
+    public int no =-1;
     public PathList next=null;
 
     public PathList(){
 
     }
     public PathList(PathList li){
-        this.n=li.n;
+        this.no =li.no;
         li=li.next;
         while(li!=null)
         {
-            this.add(li.n);
+            this.add(li.no);
             li=li.next;
         }
     }
@@ -25,12 +25,12 @@ public class PathList {
             list=list.next;
         }
         PathList list2=new PathList();
-        list2.n=citynum;
+        list2.no =citynum;
         list.next=list2;
     }
     public PathList remove(int citynum)
     {
-        if(this.n==citynum)
+        if(this.no ==citynum)
         {
             return this.next;
         }
@@ -40,7 +40,7 @@ public class PathList {
             PathList li_next=list.next;
             while(li_next!=null)
             {
-                if(li_next.n==citynum)
+                if(li_next.no ==citynum)
                 {
                     li.next=li_next.next;
                     return list;
@@ -56,7 +56,7 @@ public class PathList {
     {
         if(i==0)
         {
-            return this.n;
+            return this.no;
         }
         else
         {
@@ -65,14 +65,14 @@ public class PathList {
             {
                 if(list_now.next!=null)list_now=list_now.next;
             }
-            return list_now.n;
+            return list_now.no;
         }
     }
     public void set(int i,int temp)
     {
         if(i==0)
         {
-            this.n=temp;
+            this.no =temp;
         }
         else {
             PathList list_now=this;
@@ -80,12 +80,12 @@ public class PathList {
             {
                 list_now=list_now.next;
             }
-            list_now.n=temp;
+            list_now.no =temp;
         }
     }
     public PathList setfirst(int n)
     {
-        if(this.n==n)
+        if(this.no ==n)
         {
             return this;
         }
@@ -99,14 +99,14 @@ public class PathList {
             while(list_first.next!=null)
             {
                 list_copy.next=new PathList();
-                list_copy.next.n=list_first.n;
+                list_copy.next.no =list_first.no;
                 list_copy=list_copy.next;
                 list_first=list_first.next;
-                if(list_first.n==n)
+                if(list_first.no ==n)
                 {
                     return list_first;
                 }
-                if(list_first.n==this.n)
+                if(list_first.no ==this.no)
                 {
                     break;
                 }

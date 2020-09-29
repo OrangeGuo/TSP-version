@@ -9,12 +9,13 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AntPanel extends JPanel {
     DecimalFormat df=new DecimalFormat("######0.00");//最终结果保留两位小数
-    Vector<Ant> ants=null;//蚁群
-    Vector<City> points=null;//城市信息记录
+    List<Ant> ants=null;//蚁群
+    List<City> points=null;//城市信息记录
     double[][] distance;//城市之间距离矩阵
     double[][] t;//城市之间信息素矩阵
     double c=5;//初始信息素浓
@@ -27,7 +28,7 @@ public class AntPanel extends JPanel {
     int index;
     double distance_min=200000000;//记录最优解
     PathList list_01;//记录最优解
-    public AntPanel(Vector<City> p, Config psi){
+    public AntPanel(List<City> p, Config psi){
         distance=new double[150][150];
         t=new double[150][150];
         points=p;
@@ -67,12 +68,12 @@ public class AntPanel extends JPanel {
             int x=list_01.get(i);
             City p=points.get(x);
             g.setColor(Color.white);
-            g.fillOval((int)(p.getx()*scale),(int)(p.gety()*scale),size,size);
+            g.fillOval((int)(p.getX()*scale),(int)(p.getY()*scale),size,size);
             int y=list_01.get(i+1);
             City point_first=p;
             City point_near=points.get(y);
             g.setColor(Color.blue);
-            g.drawLine((int)(point_first.getx()*scale+3),(int)(point_first.gety()*scale+3),(int)(point_near.getx()*scale+3),(int)(point_near.gety()*scale+3));
+            g.drawLine((int)(point_first.getX()*scale+3),(int)(point_first.getY()*scale+3),(int)(point_near.getX()*scale+3),(int)(point_near.getY()*scale+3));
 
         }
         String string=String.valueOf(df.format(distance_min))+"      "+String.valueOf(time);
@@ -81,7 +82,7 @@ public class AntPanel extends JPanel {
     }
     public void ants_get()//初始化蚁群
     {
-        ants=new Vector<Ant>();
+        ants=new ArrayList<>();
         for(int i=0;i<points.size();i++)
         {
             Ant an=new Ant(i,points.size());
@@ -101,20 +102,20 @@ public class AntPanel extends JPanel {
         for(int j=0;j<points.size();j++)
         {
             Ant ant =ants.get(j);
-            ant.distance+=this.betwwenpoints(ant.citynum, ant.start);
-            if(distance_min>ant.distance)
+            ant.setDistance(ant.getDistance()+this.betwwenpoints(ant.getCityNo(), ant.getDepartCityNo()));
+            if(distance_min>ant.getDistance())
             {
-                distance_min=ant.distance;
+                distance_min=ant.getDistance();
                 index=j;
-                list_01=new PathList(ant.list);
-                list_01.add(ant.start);
+                list_01=new PathList(ant.getWalkOverCities());
+                list_01.add(ant.getDepartCityNo());
             }
             //System.out.print(Ant.distance+" ");
-            ant.list.add(ant.start);
+            ant.getWalkOverCities().add(ant.getDepartCityNo());
             for(int i=0;i<points.size();i++)
             {
-                t[ant.list.get(i)][ant.list.get(i+1)]=t[ant.list.get(i)][ant.list.get(i+1)]*p+Q/ant.distance;
-                t[ant.list.get(i+1)][ant.list.get(i)]=t[ant.list.get(i+1)][ant.list.get(i)]*p+Q/ant.distance;
+                t[ant.getWalkOverCities().get(i)][ant.getWalkOverCities().get(i+1)]=t[ant.getWalkOverCities().get(i)][ant.getWalkOverCities().get(i+1)]*p+Q/ant.getDistance();
+                t[ant.getWalkOverCities().get(i+1)][ant.getWalkOverCities().get(i)]=t[ant.getWalkOverCities().get(i+1)][ant.getWalkOverCities().get(i)]*p+Q/ant.getDistance();
             }
             //System.out.println();
         }
@@ -125,7 +126,7 @@ public class AntPanel extends JPanel {
         PathList list=new PathList(l);
         while(list!=null)
         {
-            System.out.print(list.n+" ");
+            System.out.print(list.no +" ");
             list=list.next;
         }
         System.out.println();
@@ -137,24 +138,24 @@ public class AntPanel extends JPanel {
         double random=Math.random();
         double sump=0,sum=0;
         double p[]=new double[150];
-        for(int i=0;i<a.city_left;i++)
+        for(int i = 0; i<a.getCityNumLeft(); i++)
         {
-            double di=1/distance[a.citynum][a.list_allow.get(i)];//启发因子
-            double ti=t[a.citynum][a.list_allow.get(i)];//信息素因子
+            double di=1/distance[a.getCityNo()][a.getToGoCities().get(i)];//启发因子
+            double ti=t[a.getCityNo()][a.getToGoCities().get(i)];//信息素因子
             p[i]=ti*di*di*di*di*di;
             sump+=p[i];
         }
-        for(int i=0;i<a.city_left;i++)
+        for(int i = 0; i<a.getCityNumLeft(); i++)
         {
             sum+=(p[i]/sump);
             if(random<=sum)
             {
-                a.distance+=this.betwwenpoints(a.citynum, a.list_allow.get(i));
-                a.citynum=a.list_allow.get(i);
-                a.length++;
-                a.list.add(a.citynum);
-                a.list_allow=a.list_allow.remove(a.citynum);
-                a.city_left--;
+                a.setDistance(a.getDistance()+this.betwwenpoints(a.getCityNo(), a.getToGoCities().get(i)));
+                a.setCityNo(a.getToGoCities().get(i));
+                a.setWalkOverCityNum(a.getWalkOverCityNum()+1);
+                a.getWalkOverCities().add(a.getCityNo());
+                a.setToGoCities(a.getToGoCities().remove(a.getCityNo()));
+                a.setCityNumLeft(a.getCityNumLeft()-1);
                 break;
             }
         }
@@ -167,14 +168,14 @@ public class AntPanel extends JPanel {
     public double getdistance(PathList li)
     {
         double distance=0;
-        int m=li.n;
+        int m=li.no;
         while(li.next!=null)
         {
 
-            distance+=this.betwwenpoints(li.n, li.next.n);
+            distance+=this.betwwenpoints(li.no, li.next.no);
             li=li.next;
         }
-        distance+=this.betwwenpoints(m, li.n);
+        distance+=this.betwwenpoints(m, li.no);
         return distance;
     }
 

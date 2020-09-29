@@ -1,5 +1,9 @@
 package backends;
 
+
+import lombok.Data;
+
+@Data
 public class City {
     private int x=0;
     private int y=0;
@@ -10,18 +14,9 @@ public class City {
         this.y=y;
         this.n=n;
     }
-    public int getx(){
-        return x;
-    }
-    public int gety(){
-        return y;
-    }
-    public int getn(){
-        return n;
-    }
     public int getdistence(City p){
-        int dx=this.x-p.getx();
-        int dy=this.y-p.gety();
+        int dx=this.x-p.getX();
+        int dy=this.y-p.getY();
         return dx*dx+dy*dy;
     }
 }

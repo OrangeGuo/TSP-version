@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Vector;
+import java.util.List;
 
 //求解时的运行窗口(弹出)
 public class WorkFrame extends JDialog implements MouseListener {
@@ -21,7 +21,7 @@ public class WorkFrame extends JDialog implements MouseListener {
     JTextField jtf1=null;
     JTextField jtf2=null;
 
-    public WorkFrame(Vector<City> p, Config psi){
+    public WorkFrame(List<City> p, Config psi){
 
         jp2=new JPanel();
         jb=new JButton("exit");
@@ -30,14 +30,13 @@ public class WorkFrame extends JDialog implements MouseListener {
         jp2.setBackground(Color.CYAN);
 
         jp2.add(jb);
-
-        if(psi.suanfa_flag==1){
+        if(Config.algoType ==1){
             dp=new GreedyPanel(p,psi);
             Thread thread=new Thread(dp);
             thread.start();
             this.add(dp);
         }
-        else if(psi.suanfa_flag==0){
+        else if(Config.algoType ==0){
             np=new GeneticPanel(p,psi);
             Thread thread=new Thread(np);
             thread.start();

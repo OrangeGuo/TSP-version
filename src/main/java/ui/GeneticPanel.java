@@ -7,13 +7,15 @@ import backends.Adapt;
 
 import javax.swing.*;
 
+
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GeneticPanel extends JPanel implements Runnable{
     DecimalFormat df=new DecimalFormat("######0.00");//最终结果保留两位小数
-    Vector<City> points=new Vector<City>();//初始化点向量
+    List<City> points=new ArrayList<>();
     Config psi=null;//接收设置参数
     double distance_max=0;//记录点之间最大距离
     double distance_min=0;//记录最优解
@@ -28,24 +30,24 @@ public class GeneticPanel extends JPanel implements Runnable{
     int time_all=20;//循环代数
     int time_now=0;//当前代数
     double rate_change=0.05;//个体变异率
-    Vector<PathList> all=null;//种群
-    Vector<Adapt> allAdapts=null;//记录种群适应度
+    List<PathList> all=null;//种群
+    List<Adapt> allAdapts=new ArrayList<>();//记录种群适应度
 
     int scale=0;
 
     double distance_all=0;//
     double sum_same=0;//
-    public GeneticPanel(Vector<City> p, Config psi){
+    public GeneticPanel(List<City> p, Config psi){
         this.points=p;
         this.psi=psi;
         this.N=psi.N;
-        this.rate_best=psi.rate_copy;
-        this.time_all=psi.circle;
+        this.rate_best=psi.copyRate;
+        this.time_all=psi.generations;
 
         list_shortest=new PathList();
         bestAdapt=new Adapt();
-        all=new Vector<PathList>();
-        allAdapts=new Vector<Adapt>();
+        all=new ArrayList<>();
+        allAdapts=new ArrayList<>();
         this.get_max();
         this.get_group(N);
         scale=500/p.size();
@@ -88,12 +90,12 @@ public class GeneticPanel extends JPanel implements Runnable{
         g.drawString(string, 505, 170);
         if(time_now==time_all)
         {
-            psi.path_short.removeAllElements();
+            psi.shortestPath.removeAllElements();
             while(list_01!=null){
-                psi.path_short.add(list_01.n);
+                psi.shortestPath.add(list_01.no);
                 list_01=list_01.next;
             }
-            psi.distance=distance_min;
+            psi.shortestDistance =distance_min;
             psi.state++;
         }
     }
@@ -104,7 +106,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         g.setColor(Color.white);
         while(li.next!=null)
         {
-            g.fillOval(li.n*scale, li.next.n*scale, scale, scale);
+            g.fillOval(li.no *scale, li.next.no *scale, scale, scale);
             li=li.next;
         }
         g.fillOval(20, 510, 10, 10);
@@ -144,7 +146,7 @@ public class GeneticPanel extends JPanel implements Runnable{
                 boolean p=true;//防止添加重复的点序号
                 for(int j=0;j<k;j++)
                 {
-                    if(li_copy.n==n)
+                    if(li_copy.no ==n)
                     {
                         p=false;
                         break;
@@ -163,7 +165,7 @@ public class GeneticPanel extends JPanel implements Runnable{
                 }
                 if(p)
                 {
-                    li_copy.n=n;
+                    li_copy.no =n;
                     k++;
                 }
             }
@@ -177,7 +179,7 @@ public class GeneticPanel extends JPanel implements Runnable{
 
         if(allAdapts.size()!=0)
         {
-            allAdapts=new Vector<Adapt>();
+            allAdapts=new ArrayList<>();
         }
 
         for(int i=0;i<all.size();i++)
@@ -186,9 +188,8 @@ public class GeneticPanel extends JPanel implements Runnable{
             double distance_adapt=this.getdistance(all.get(i));
 
             Adapt newAdapt=new Adapt();
-            newAdapt.distance=distance_adapt;
-
-            newAdapt.n=i;
+            newAdapt.setDistance(distance_adapt);
+            newAdapt.setNo(i);
             allAdapts.add(newAdapt);
         }
 
@@ -212,9 +213,9 @@ public class GeneticPanel extends JPanel implements Runnable{
         for(int i=0;i<allAdapts.size();i++)
         {
             Adapt newAdapt=allAdapts.get(i);
-            if(copy_max>newAdapt.distance)//记录个体最大复制期望值及该个体编号
+            if(copy_max>newAdapt.getDistance())//记录个体最大复制期望值及该个体编号
             {
-                copy_max=newAdapt.distance;
+                copy_max=newAdapt.getDistance();
                 best_index=i;
             }
 
@@ -223,13 +224,13 @@ public class GeneticPanel extends JPanel implements Runnable{
 
         list_shortest=all.get(best_index);
         Adapt newAdapts=allAdapts.get(best_index);
-        if(newAdapts.distance<bestAdapt.distance||bestAdapt.distance==0)
+        if(newAdapts.getDistance()<bestAdapt.getDistance()||bestAdapt.getDistance()==0)
         {
             bestAdapt=newAdapts;
             list_01=new PathList(list_shortest);
         }
 
-        distance_now=newAdapts.distance;
+        distance_now=newAdapts.getDistance();
         if(distance_min>distance_now)
         {
             distance_min=distance_now;
@@ -253,9 +254,9 @@ public class GeneticPanel extends JPanel implements Runnable{
             {
                 Adapt nAdapt=allAdapts.get(i);
 
-                if(max<nAdapt.distance)
+                if(max<nAdapt.getDistance())
                 {
-                    max=nAdapt.distance;
+                    max=nAdapt.getDistance();
 
                     index=i;
 
@@ -336,7 +337,7 @@ public class GeneticPanel extends JPanel implements Runnable{
             //PathList wList=new PathList(lix);
             //all.add(wList);
             //随机产生交叉基因片段
-            double di=allAdapts.get(i).distance/points.size();
+            double di=allAdapts.get(i).getDistance()/points.size();
             for(int j=0;j<points.size()-1;j++)
             {
                 if(this.betwwenpoints(j, j+1)>di)
@@ -361,14 +362,14 @@ public class GeneticPanel extends JPanel implements Runnable{
     public double getdistance(PathList li)
     {
         double distance=0;
-        int m=li.n;
+        int m=li.no;
         while(li.next!=null)
         {
 
-            distance+=this.betwwenpoints(li.n, li.next.n);
+            distance+=this.betwwenpoints(li.no, li.next.no);
             li=li.next;
         }
-        distance+=this.betwwenpoints(m, li.n);
+        distance+=this.betwwenpoints(m, li.no);
         return distance;
     }
     @Override
