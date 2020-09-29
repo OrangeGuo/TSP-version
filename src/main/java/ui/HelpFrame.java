@@ -35,8 +35,7 @@ class HelpFrame extends JDialog implements MouseListener {
         jp.add(jta);
         this.add(jp);
         this.add(jb,BorderLayout.SOUTH);
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/图标2.jpg"));
-        this.setIconImage(a);
+        this.setIconImage(Icons.HelpIcon.getImage());
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
         this.setTitle("开发&关于");

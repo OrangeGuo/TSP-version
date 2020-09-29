@@ -38,8 +38,7 @@ class TutorialFrame extends JDialog implements ActionListener {
         jtb.add(jp2,"读入数据");
         this.add(jtb);
         this.add(jPanel,BorderLayout.SOUTH);
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/图标4.jpg"));
-        this.setIconImage(a);
+        this.setIconImage(Icons.TutorialIcon.getImage());
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
         this.setTitle("帮助文档");

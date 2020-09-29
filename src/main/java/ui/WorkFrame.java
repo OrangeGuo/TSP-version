@@ -47,8 +47,7 @@ public class WorkFrame extends JDialog implements MouseListener {
             this.add(ap);
         }
         this.add(jp2,BorderLayout.SOUTH);
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/p2.jpg"));
-        this.setIconImage(a);
+        this.setIconImage(Icons.WorkIcon.getImage());
         this.setSize(600, 600);
         this.setTitle("Find the shortest path");
         this.setLocationRelativeTo(null);

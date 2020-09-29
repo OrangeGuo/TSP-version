@@ -22,37 +22,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44411567-ad30-4941-97b7-a3f471364be2" name="Default" comment="">
+    <list default="true" id="44411567-ad30-4941-97b7-a3f471364be2" name="Default" comment="xiugai">
       <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/Icons.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/tu/p1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/tu/图标2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/tu/图标3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/tu/图标4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backends/Adapt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/Adapt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backends/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/Ant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backends/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backends/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backends/PathList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/PathList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tu/p1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tu/p1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tu/p2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tu/p2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tu/图标2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tu/图标2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tu/图标3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tu/图标3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tu/图标4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tu/图标4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/AntPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/AntPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GeneticPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/GeneticPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GreedyPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/GreedyPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/HelpFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/HelpFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/SettingFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/SettingFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/StartUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/StartUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/TutorialFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/TutorialFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/WorkFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/WorkFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsp_version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tsp_version.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tu/p1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tu/p2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tu/图标2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tu/图标3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tu/图标4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/HelpFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/HelpFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/SettingFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/SettingFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/TutorialFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/TutorialFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/WorkFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/WorkFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +47,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -91,7 +76,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
@@ -99,6 +84,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/main" />
     </key>
@@ -199,9 +187,9 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.tsp_try" />
       <item itemvalue="Application.MainFrame" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.tsp_try" />
     </list>
     <recent_temporary>
       <list>
@@ -230,6 +218,14 @@
       <workItem from="1517371027104" duration="3370000" />
       <workItem from="1517388285724" duration="2556000" />
     </task>
+    <task id="LOCAL-00001" summary="xiugai">
+      <created>1601391166536</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601391166536</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -250,6 +246,10 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="xiugai" />
+    <option name="LAST_COMMIT_MESSAGE" value="xiugai" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="663" y="209" width="583" height="668" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1601382495916">
       <screen x="0" y="0" width="1920" height="1080" />
@@ -259,46 +259,50 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="760" y="419" width="389" height="249" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1601385741486" />
-    <state x="718" y="282" width="613" height="521" key="#xdebugger.evaluate" timestamp="1601384277875">
+    <state x="718" y="282" width="613" height="521" key="#xdebugger.evaluate" timestamp="1601391483032">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="718" y="282" width="613" height="521" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1601384277875" />
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom" timestamp="1601386619691">
+    <state x="718" y="282" width="613" height="521" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1601391483032" />
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1601392253361">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619691" />
-    <state width="1874" height="351" key="GridCell.Tab.0.center" timestamp="1601386619690">
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253361" />
+    <state width="1874" height="284" key="GridCell.Tab.0.center" timestamp="1601392253361">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619690" />
-    <state width="1874" height="351" key="GridCell.Tab.0.left" timestamp="1601386619690">
+    <state width="1874" height="284" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253361" />
+    <state width="1874" height="284" key="GridCell.Tab.0.left" timestamp="1601392253360">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619690" />
-    <state width="1874" height="351" key="GridCell.Tab.0.right" timestamp="1601386619691">
+    <state width="1874" height="284" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253360" />
+    <state width="1874" height="284" key="GridCell.Tab.0.right" timestamp="1601392253361">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619691" />
-    <state width="1874" height="351" key="GridCell.Tab.1.bottom" timestamp="1601386619692">
+    <state width="1874" height="284" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253361" />
+    <state width="1874" height="351" key="GridCell.Tab.1.bottom" timestamp="1601391515589">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619692" />
-    <state width="1874" height="351" key="GridCell.Tab.1.center" timestamp="1601386619691">
+    <state width="1874" height="351" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601391515589" />
+    <state width="1874" height="351" key="GridCell.Tab.1.center" timestamp="1601391515588">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619691" />
-    <state width="1874" height="351" key="GridCell.Tab.1.left" timestamp="1601386619691">
+    <state width="1874" height="351" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601391515588" />
+    <state width="1874" height="351" key="GridCell.Tab.1.left" timestamp="1601391515588">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619691" />
-    <state width="1874" height="351" key="GridCell.Tab.1.right" timestamp="1601386619692">
+    <state width="1874" height="351" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601391515588" />
+    <state width="1874" height="351" key="GridCell.Tab.1.right" timestamp="1601391515588">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601386619692" />
+    <state width="1874" height="351" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601391515588" />
     <state x="449" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1601382384738">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="449" y="175" width="1022" height="737" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1601382384738" />
+    <state x="555" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1601391186618">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="555" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1601391186618" />
     <state x="506" y="259" width="898" height="569" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1601384386350">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -309,18 +313,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar:///opt/jdk1.8.0_261/src.zip!/java/lang/Class.java</url>
-          <line>2261</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar:///opt/jdk1.8.0_261/src.zip!/java/lang/Class.java</url>
           <line>2267</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar:///opt/jdk1.8.0_261/src.zip!/java/lang/Class.java</url>
-          <line>2266</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

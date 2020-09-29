@@ -3,8 +3,7 @@ package ui;
 import backends.City;
 import backends.Config;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,21 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-
+import javax.swing.*;
 
 
 //主要交互窗口
@@ -158,8 +143,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
     	 Thread thread=new Thread(mp);
  		 thread.start();
     	 this.add(mp);
-    	 //Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("//home/orange/TSP-version/src/main/java/tu/p1.jpg"));
- 		 //this.setIconImage(a);
+ 		 this.setIconImage(Icons.ProgramIcon.getImage());
     	 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	 this.setVisible(true);
     
@@ -175,17 +159,17 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		// TODO Auto-generated method stub
 		if(e.getSource().equals(jb1)){
 			if(flag){
-				this.psi.flag=true;
-				this.psi.shortestPath.removeAllElements();
+				Config.flag =true;
+				Config.shortestPath.removeAllElements();
 				if(this.jcb.getSelectedItem().equals("遗传算法"))
 				{
-					this.psi.algoType =0;
+					Config.algoType =0;
 				}
 				else if(this.jcb.getSelectedItem().equals("贪心算法")){
-					this.psi.algoType =1;
+					Config.algoType =1;
 				}
 				else {
-					this.psi.algoType =2;
+					Config.algoType =2;
 				}
 				fv=new WorkFrame(points,psi);
 			}
@@ -201,17 +185,17 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 			
 		}
 	    else if(e.getSource().equals(jb3)){
-	    	if(this.psi.state>1)
+	    	if(Config.state >1)
 			{
 	    	DecimalFormat df=new DecimalFormat("######0.00");
-			String s="共有"+String.valueOf(this.psi.shortestPath.size())+"个点\n最短距离为"+String.valueOf(df.format(this.psi.shortestDistance))+"\n"+"最短路径如下\n";
-			for(int i = 0; i<this.psi.shortestPath.size(); i++)
+			String s="共有"+String.valueOf(Config.shortestPath.size())+"个点\n最短距离为"+String.valueOf(df.format(this.psi.shortestDistance))+"\n"+"最短路径如下\n";
+			for(int i = 0; i< Config.shortestPath.size(); i++)
 			{
 				
-				s+=String.valueOf(this.psi.shortestPath.get(i));
+				s+=String.valueOf(Config.shortestPath.get(i));
 				s+='-';
 			}
-			s+=String.valueOf(this.psi.shortestPath.get(0));
+			s+=String.valueOf(Config.shortestPath.get(0));
 			jta=new JTextArea(s,8,50);
 	
 			jta.setLineWrap(true);
@@ -219,7 +203,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 			jta.setEditable(false);
 			jp_01.removeAll();
 				jp_01.add(jta);
-				this.psi.state=1;
+				Config.state =1;
 			}
 		
 			jp_01.updateUI();

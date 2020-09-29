@@ -85,8 +85,7 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp3.add(jrb2);
         jp3.add(jrb3);
         //设置图标
-        Image a=Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/tu/图标3.jpg"));
-        this.setIconImage(a);
+        this.setIconImage(Icons.SettingIcon.getImage());
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
         this.setTitle("设置");
