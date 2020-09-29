@@ -1,9 +1,9 @@
-package ui;
+package frontends.panel;
 
 import javax.swing.*;
 import java.awt.*;
 
-class StartUpPanel extends JPanel implements Runnable{
+public class StartUpPanel extends JPanel implements Runnable{
     int time=6;
 
 

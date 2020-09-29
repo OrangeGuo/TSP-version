@@ -1,19 +1,19 @@
-package ui;
+package frontends.panel;
 
 import backends.City;
 import backends.Config;
+import com.google.common.collect.Lists;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class GreedyPanel extends JPanel implements Runnable{
-    List<City> points=new ArrayList<>();
-    List<City> point=new ArrayList<>();
+    List<City> points= Lists.newArrayList();
+    List<City> point=Lists.newArrayList();
     DecimalFormat df=new DecimalFormat("######0.00");
     int index_all=0;
     int index_min=0;
@@ -39,10 +39,8 @@ public class GreedyPanel extends JPanel implements Runnable{
         g.setColor(Color.black);
         g.fillRect(0, 0, 600, 600);
         g.setColor(Color.white);
-        for(int i=0;i<point.size();i++)
-        {
-            City p=point.get(i);
-            g.fillOval((int)(p.getX()*scale),(int)(p.getY()*scale),size,size);
+        for (City p : point) {
+            g.fillOval((int) (p.getX() * scale), (int) (p.getY() * scale), size, size);
         }
 
 
@@ -65,16 +63,13 @@ public class GreedyPanel extends JPanel implements Runnable{
 
     }
     public void drawline(Graphics g,int n){
-        for(int i=0;i<point.size();i++)
-        {
-            points.add(point.get(i));
-        }
+        points.addAll(point);
         int index=n;
 
         City point_01=points.get(index);
-        if(get&&this.psi.flag)
+        if(get&& Config.flag)
         {
-            this.psi.shortestPath.add(point_01.getN());
+            Config.shortestPath.add(point_01.getN());
         }
         g.setColor(Color.red);
         g.fillOval((int)(point_01.getX()*scale-2),(int)(point_01.getY()*scale-2), 10, 10);
@@ -96,9 +91,9 @@ public class GreedyPanel extends JPanel implements Runnable{
             }
 
             City point_near=points.get(index);
-            if(get&&this.psi.flag)
+            if(get&& Config.flag)
             {
-                this.psi.shortestPath.add(point_near.getN());
+                Config.shortestPath.add(point_near.getN());
             }
             g.drawLine((int)(point_first.getX()*scale+3),(int)(point_first.getY()*scale+3),(int)(point_near.getX()*scale+3),(int)(point_near.getY()*scale+3));
             distance_now+=Math.sqrt(distance);
@@ -133,11 +128,11 @@ public class GreedyPanel extends JPanel implements Runnable{
             g.drawString("最短距离:"+s, 150,520);
             s=String.valueOf(Time_total);
             g.drawString("总用时:"+s+"毫秒",350, 520);
-            this.psi.shortestDistance =distance_min;
-            if(this.psi.state==1)
+            Config.shortestDistance =distance_min;
+            if(Config.state ==1)
             {
-                this.psi.state++;
-                this.psi.flag=false;
+                Config.state++;
+                Config.flag =false;
             }
 
         }

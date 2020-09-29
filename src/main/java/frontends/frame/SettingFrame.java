@@ -1,11 +1,13 @@
-package ui;
+package frontends.frame;
 
 import backends.Config;
+import frontends.Icons;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class SettingFrame extends JDialog implements ActionListener {
     JPanel jp1=null;
@@ -65,15 +67,15 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp4.add(jcb2);
         jp5.add(jl5);
         jp5.add(jcb3);
-        if(this.psi.N==100)
+        if(Config.N ==100)
         {
             jrb1.setSelected(true);
         }
-        else if(this.psi.N==300)
+        else if(Config.N ==300)
         {
             jrb2.setSelected(true);
         }
-        else if(this.psi.N==500)
+        else if(Config.N ==500)
         {
             jrb3.setSelected(true);
         }
@@ -105,10 +107,10 @@ public class SettingFrame extends JDialog implements ActionListener {
         // TODO Auto-generated method stub
         if(e.getActionCommand().equals("sure"))
         {
-            if(jcb.getSelectedItem().equals("1취")){
+            if(Objects.equals(jcb.getSelectedItem(), "1취")){
                 psi.settime(100);
             }
-            else if(jcb.getSelectedItem().equals("0.1취")){
+            else if(Objects.equals(jcb.getSelectedItem(), "0.1취")){
                 psi.settime(10);
             }
             else{
@@ -116,30 +118,30 @@ public class SettingFrame extends JDialog implements ActionListener {
             }
             if(jrb2.isSelected())
             {
-                psi.N=300;
+                Config.N =300;
             }
             else if(jrb3.isSelected())
             {
-                psi.N=500;
+                Config.N =500;
             }
-            if(jcb2.getSelectedItem().equals("400"))
+            if(Objects.equals(jcb2.getSelectedItem(), "400"))
             {
-                psi.generations =400;
+                Config.generations =400;
             }
-            else if(jcb2.getSelectedItem().equals("600"))
+            else if(Objects.equals(jcb2.getSelectedItem(), "600"))
             {
-                psi.generations =600;
+                Config.generations =600;
             }
             else if(jcb2.getSelectedItem().equals("800"))
             {
-                psi.generations =800;
+                Config.generations =800;
             }
             else if(jcb2.getSelectedItem().equals("1000"))
             {
-                psi.generations =1000;
+                Config.generations =1000;
             }
             int scale=jcb3.getSelectedIndex();
-            psi.copyRate =0.1*(scale+1);
+            Config.copyRate =0.1*(scale+1);
             this.dispose();
         }
         else if(e.getActionCommand().equals("exit")){

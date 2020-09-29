@@ -1,27 +1,27 @@
-package ui;
+package frontends.frame;
 
-import backends.PathList;
+import backends.Path;
 import backends.City;
 import backends.Config;
 import backends.Adapt;
+import com.google.common.collect.Lists;
 
 import javax.swing.*;
 
 
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GeneticPanel extends JPanel implements Runnable{
     DecimalFormat df=new DecimalFormat("######0.00");//最终结果保留两位小数
-    List<City> points=new ArrayList<>();
+    List<City> points=Lists.newArrayList();
     Config psi=null;//接收设置参数
     double distance_max=0;//记录点之间最大距离
     double distance_min=0;//记录最优解
     double distance_now=0;//记录每代最优解
-    PathList list_shortest=null;//记录每代最优个体
-    PathList list_01=null;
+    Path list_shortest=null;//记录每代最优个体
+    Path list_01=null;
     Adapt bestAdapt=null;//记录最优个体
     int N=0;//种群个体数
     double rate_best=0.1;//最优个体复制率
@@ -30,8 +30,8 @@ public class GeneticPanel extends JPanel implements Runnable{
     int time_all=20;//循环代数
     int time_now=0;//当前代数
     double rate_change=0.05;//个体变异率
-    List<PathList> all=null;//种群
-    List<Adapt> allAdapts=new ArrayList<>();//记录种群适应度
+    List<Path> all=null;//种群
+    List<Adapt> allAdapts=Lists.newArrayList();//记录种群适应度
 
     int scale=0;
 
@@ -40,14 +40,14 @@ public class GeneticPanel extends JPanel implements Runnable{
     public GeneticPanel(List<City> p, Config psi){
         this.points=p;
         this.psi=psi;
-        this.N=psi.N;
-        this.rate_best=psi.copyRate;
-        this.time_all=psi.generations;
+        this.N= Config.N;
+        this.rate_best= Config.copyRate;
+        this.time_all= Config.generations;
 
-        list_shortest=new PathList();
+        list_shortest=new Path();
         bestAdapt=new Adapt();
-        all=new ArrayList<>();
-        allAdapts=new ArrayList<>();
+        all=Lists.newArrayList();
+        allAdapts=Lists.newArrayList();
         this.get_max();
         this.get_group(N);
         scale=500/p.size();
@@ -90,16 +90,16 @@ public class GeneticPanel extends JPanel implements Runnable{
         g.drawString(string, 505, 170);
         if(time_now==time_all)
         {
-            psi.shortestPath.removeAllElements();
+            Config.shortestPath.clear();
             while(list_01!=null){
-                psi.shortestPath.add(list_01.no);
+                Config.shortestPath.add(list_01.no);
                 list_01=list_01.next;
             }
-            psi.shortestDistance =distance_min;
-            psi.state++;
+            Config.shortestDistance =distance_min;
+            Config.state++;
         }
     }
-    public void show(PathList li, Graphics g){
+    public void show(Path li, Graphics g){
         g.setColor(Color.yellow);
 
         g.drawString("表示个体", 30, 520);
@@ -136,8 +136,8 @@ public class GeneticPanel extends JPanel implements Runnable{
         int k=0;
         for(int i=0;i<num;i++)
         {
-            PathList li=new PathList();//链表头
-            PathList li_copy=li;
+            Path li=new Path();//链表头
+            Path li_copy=li;
             k=0;
             while(k<size)
             {
@@ -152,14 +152,14 @@ public class GeneticPanel extends JPanel implements Runnable{
                         break;
                     }
                     if(li_copy.next==null)
-                        li_copy.next=new PathList();
+                        li_copy.next=new Path();
                     li_copy=li_copy.next;
                 }
                 li_copy=li;
                 for(int j=0;j<k;j++)
                 {
                     if(li_copy.next==null)
-                        li_copy.next=new PathList();
+                        li_copy.next=new Path();
                     li_copy=li_copy.next;
 
                 }
@@ -179,7 +179,7 @@ public class GeneticPanel extends JPanel implements Runnable{
 
         if(allAdapts.size()!=0)
         {
-            allAdapts=new ArrayList<>();
+            allAdapts= Lists.newArrayList();
         }
 
         for(int i=0;i<all.size();i++)
@@ -194,7 +194,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         }
 
     }
-    public void show(PathList l)
+    public void show(Path l)
     {
         System.out.print(' ');
         for(int i=0;i<points.size();i++)
@@ -227,7 +227,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         if(newAdapts.getDistance()<bestAdapt.getDistance()||bestAdapt.getDistance()==0)
         {
             bestAdapt=newAdapts;
-            list_01=new PathList(list_shortest);
+            list_01=new Path(list_shortest);
         }
 
         distance_now=newAdapts.getDistance();
@@ -238,7 +238,7 @@ public class GeneticPanel extends JPanel implements Runnable{
 
         for(int i=0;i<N*(rate_best);i++)
         {
-            PathList newlList=new PathList(list_01);
+            Path newlList=new Path(list_01);
             Adapt adapt=new Adapt();
             adapt=bestAdapt;
             all.add(0,newlList);
@@ -288,8 +288,8 @@ public class GeneticPanel extends JPanel implements Runnable{
                 {
                     y=(int)(Math.random()*size);
                 }
-                PathList li1=all.get(a);
-                PathList li2=all.get(b);
+                Path li1=all.get(a);
+                Path li2=all.get(b);
                 //PathList w1=new PathList(li1);
                 //PathList w2=new PathList(li2);
                 //all.add(w1);
@@ -316,7 +316,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         for(int i=0;i<N;i++)
         {
 
-            PathList lix=all.get(i);
+            Path lix=all.get(i);
             //PathList wList=new PathList(lix);
             //all.add(wList);
             //随机产生交叉基因片段
@@ -333,7 +333,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         for(int i=0;i<N;i++)
         {
 
-            PathList lix=all.get(i);
+            Path lix=all.get(i);
             //PathList wList=new PathList(lix);
             //all.add(wList);
             //随机产生交叉基因片段
@@ -359,7 +359,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         City point=points.get(m);
         return Math.sqrt(point.getdistence(points.get(n)));
     }
-    public double getdistance(PathList li)
+    public double getdistance(Path li)
     {
         double distance=0;
         int m=li.no;

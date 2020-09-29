@@ -22,21 +22,28 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44411567-ad30-4941-97b7-a3f471364be2" name="Default" comment="xiugai">
+    <list default="true" id="44411567-ad30-4941-97b7-a3f471364be2" name="Default" comment="refactor icons">
       <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/Icons.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_18_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_16_18.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tu/p1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tu/p2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tu/图标2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tu/图标3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tu/图标4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/p5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/HelpFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/HelpFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/SettingFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/SettingFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/TutorialFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/TutorialFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/WorkFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/WorkFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backends/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/Ant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backends/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backends/PathList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backends/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/AntPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/panel/AntPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/GeneticPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/frame/GeneticPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/GreedyPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/panel/GreedyPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/HelpFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/frame/HelpFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/Icons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/Icons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/frame/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/SettingFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/frame/SettingFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/StartUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/panel/StartUpPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/TutorialFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/frame/TutorialFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/WorkFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frontends/frame/WorkFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsp_version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tsp_version.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +88,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -114,12 +121,12 @@
       </method>
     </configuration>
     <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.MainFrame" />
+      <option name="MAIN_CLASS_NAME" value="frontends.frame.MainFrame" />
       <module name="tsp_version" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ui.*" />
+          <option name="PATTERN" value="frontends.frame.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -225,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601391166536</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="refactor icons">
+      <created>1601392639657</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1601392639657</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -248,13 +262,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="xiugai" />
-    <option name="LAST_COMMIT_MESSAGE" value="xiugai" />
+    <MESSAGE value="refactor icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor icons" />
   </component>
   <component name="WindowStateProjectService">
     <state x="663" y="209" width="583" height="668" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1601382495916">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="663" y="209" width="583" height="668" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1601382495916" />
+    <state x="713" y="408" width="484" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1601394726906">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="713" y="408" width="484" height="279" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1080@0.0.1920.1080" timestamp="1601394726906" />
     <state x="760" y="419" width="389" height="249" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601385741486">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -263,22 +282,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="718" y="282" width="613" height="521" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1601391483032" />
-    <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1601392253361">
+    <state x="743" y="297" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601393502154">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253361" />
-    <state width="1874" height="284" key="GridCell.Tab.0.center" timestamp="1601392253361">
+    <state x="743" y="297" width="424" height="491" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1601393502154" />
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom" timestamp="1601394943708">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253361" />
-    <state width="1874" height="284" key="GridCell.Tab.0.left" timestamp="1601392253360">
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1601394943708" />
+    <state width="1874" height="284" key="GridCell.Tab.0.center" timestamp="1601394943708">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253360" />
-    <state width="1874" height="284" key="GridCell.Tab.0.right" timestamp="1601392253361">
+    <state width="1874" height="284" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1601394943708" />
+    <state width="1874" height="284" key="GridCell.Tab.0.left" timestamp="1601394943707">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="284" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601392253361" />
+    <state width="1874" height="284" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1601394943707" />
+    <state width="1874" height="284" key="GridCell.Tab.0.right" timestamp="1601394943708">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1874" height="284" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601394943708" />
     <state width="1874" height="351" key="GridCell.Tab.1.bottom" timestamp="1601391515589">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -295,18 +318,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="351" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1601391515588" />
-    <state x="449" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1601382384738">
+    <state x="776" y="223" width="358" height="640" key="RollbackChangesDialog" timestamp="1601394842538">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="449" y="175" width="1022" height="737" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1601382384738" />
-    <state x="555" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1601391186618">
+    <state x="776" y="223" width="358" height="640" key="RollbackChangesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1601394842538" />
+    <state x="449" y="175" width="1022" height="737" key="SettingsEditor" timestamp="1601392883942">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="555" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1601391186618" />
+    <state x="449" y="175" width="1022" height="737" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1601392883942" />
+    <state x="555" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1601392653561">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="555" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1601392653561" />
     <state x="506" y="259" width="898" height="569" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1601384386350">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="506" y="259" width="898" height="569" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1080@0.0.1920.1080" timestamp="1601384386350" />
+    <state x="651" y="148" width="618" height="783" key="find.popup" timestamp="1601393584675">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="651" y="148" width="618" height="783" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1601393584675" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

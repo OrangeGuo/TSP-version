@@ -1,7 +1,10 @@
-package ui;
+package frontends.frame;
 
 import backends.City;
 import backends.Config;
+import frontends.Icons;
+import frontends.panel.AntPanel;
+import frontends.panel.GreedyPanel;
 
 import javax.swing.*;
 

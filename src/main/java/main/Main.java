@@ -1,10 +1,11 @@
 package main;
 
-import ui.MainFrame;
-
+import lombok.extern.java.Log;
+import frontends.frame.MainFrame;
+@Log
 public class Main {
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        log.info("start");
         MainFrame tsp=new MainFrame();
         Thread t=new Thread(tsp);
         t.start();

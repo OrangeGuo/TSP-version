@@ -1,4 +1,6 @@
-package ui;
+package frontends.frame;
+
+import frontends.Icons;
 
 import javax.swing.*;
 import java.awt.*;

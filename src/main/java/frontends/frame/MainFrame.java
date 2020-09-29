@@ -1,7 +1,10 @@
-package ui;
+package frontends.frame;
 
 import backends.City;
 import backends.Config;
+import com.google.common.collect.Lists;
+import frontends.*;
+import frontends.panel.StartUpPanel;
 
 import java.awt.*;
 
@@ -14,8 +17,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 import javax.swing.*;
@@ -160,12 +163,12 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		if(e.getSource().equals(jb1)){
 			if(flag){
 				Config.flag =true;
-				Config.shortestPath.removeAllElements();
-				if(this.jcb.getSelectedItem().equals("遗传算法"))
+				Config.shortestPath.clear();
+				if(Objects.equals(this.jcb.getSelectedItem(), "遗传算法"))
 				{
 					Config.algoType =0;
 				}
-				else if(this.jcb.getSelectedItem().equals("贪心算法")){
+				else if(Objects.equals(this.jcb.getSelectedItem(), "贪心算法")){
 					Config.algoType =1;
 				}
 				else {
@@ -214,7 +217,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 			jfc.setDialogTitle("请选择文件(当前仅支持TXT格式)");
 			jfc.showOpenDialog(null);
 			jfc.setVisible(true);
-			points=new ArrayList<>();
+			points= Lists.newArrayList();
 			String st=null;
 			try {
 				if(jfc.getSelectedFile().getAbsolutePath()!=null)

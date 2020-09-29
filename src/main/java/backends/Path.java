@@ -1,14 +1,12 @@
 package backends;
 
 //链表用以记录路径(每个路径视为一个个体)
-public class PathList {
+public class Path {
     public int no =-1;
-    public PathList next=null;
+    public Path next=null;
 
-    public PathList(){
 
-    }
-    public PathList(PathList li){
+    public Path(Path li){
         this.no =li.no;
         li=li.next;
         while(li!=null)
@@ -17,27 +15,32 @@ public class PathList {
             li=li.next;
         }
     }
+
+    public Path() {
+
+    }
+
     public void add(int citynum)
     {
-        PathList list=this;
+        Path list=this;
         while(list.next!=null)
         {
             list=list.next;
         }
-        PathList list2=new PathList();
+        Path list2=new Path();
         list2.no =citynum;
         list.next=list2;
     }
-    public PathList remove(int citynum)
+    public Path remove(int citynum)
     {
         if(this.no ==citynum)
         {
             return this.next;
         }
         else {
-            PathList list=this;
-            PathList li=list;
-            PathList li_next=list.next;
+            Path list=this;
+            Path li=list;
+            Path li_next=list.next;
             while(li_next!=null)
             {
                 if(li_next.no ==citynum)
@@ -60,7 +63,7 @@ public class PathList {
         }
         else
         {
-            PathList list_now=this;
+            Path list_now=this;
             for(int j=0;j<i;j++)
             {
                 if(list_now.next!=null)list_now=list_now.next;
@@ -75,7 +78,7 @@ public class PathList {
             this.no =temp;
         }
         else {
-            PathList list_now=this;
+            Path list_now=this;
             for(int j=0;j<i;j++)
             {
                 list_now=list_now.next;
@@ -83,22 +86,22 @@ public class PathList {
             list_now.no =temp;
         }
     }
-    public PathList setfirst(int n)
+    public Path setfirst(int n)
     {
         if(this.no ==n)
         {
             return this;
         }
         else {
-            PathList list_copy=this;
-            PathList list_first=this;
+            Path list_copy=this;
+            Path list_first=this;
             while(list_copy.next!=null)
             {
                 list_copy=list_copy.next;
             }
             while(list_first.next!=null)
             {
-                list_copy.next=new PathList();
+                list_copy.next=new Path();
                 list_copy.next.no =list_first.no;
                 list_copy=list_copy.next;
                 list_first=list_first.next;
@@ -111,7 +114,7 @@ public class PathList {
                     break;
                 }
             }
-            return new PathList();
+            return new Path();
         }
     }
 }
