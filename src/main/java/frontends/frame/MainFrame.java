@@ -25,7 +25,7 @@ import javax.swing.*;
 
 
 //主要交互窗口
-public class MainFrame extends JFrame implements MouseListener,ActionListener,Runnable {
+public class MainFrame extends JFrame implements MouseListener,ActionListener {
 
 	/**
 	 * @param args
@@ -35,7 +35,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	 * 完成日期:16年
 	 */
 	//自定义组件
-	StartUpPanel mp=null;
+	StartUpPanel startPanel=null;
     TutorialFrame dFrame=null;
 	HelpFrame hf=null;
 	SettingFrame sf=null;
@@ -72,13 +72,12 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	boolean flag=false;//是否按要求读入文件
 	int file_error=0;//文件读入错误类型
 
-	public MainFrame(){
+	public MainFrame() throws InterruptedException {
 		//初始化控件
 		jp_01=new JPanel();
 		jp_02=new JPanel();
 
         jsp=new JScrollPane();
-		mp=new StartUpPanel();
 		jmb=new JMenuBar();
 		
 		jm2=new JMenu("帮助设置");
@@ -140,15 +139,15 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		 this.setLocationRelativeTo(null);
     	 this.setTitle("tsp问题");
     	 this.setResizable(false);
-    	
-    	 Thread thread=new Thread(mp);
+    	 startPanel=new StartUpPanel();
+    	 Thread thread=new Thread(startPanel);
  		 thread.start();
-    	 this.add(mp);
+    	 this.add(startPanel);
  		 this.setIconImage(Icons.ProgramIcon.getImage());
     	 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	 this.setVisible(true);
-    
-    
+			flushPanel();
+    	 thread.join();
 
 	}
     public void ErrorMesseger(String string)
@@ -189,15 +188,15 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	    	if(Config.state >1)
 			{
 	    	DecimalFormat df=new DecimalFormat("######0.00");
-			String s="共有"+String.valueOf(Config.shortestPath.size())+"个点\n最短距离为"+String.valueOf(df.format(Config.shortestDistance))+"\n"+"最短路径如下\n";
+			StringBuilder s= new StringBuilder("共有" + Config.shortestPath.size() + "个点\n最短距离为" + df.format(Config.shortestDistance) + "\n" + "最短路径如下\n");
 			for(int i = 0; i< Config.shortestPath.size(); i++)
 			{
 				
-				s+=String.valueOf(Config.shortestPath.get(i));
-				s+='-';
+				s.append(String.valueOf(Config.shortestPath.get(i)));
+				s.append('-');
 			}
-			s+=String.valueOf(Config.shortestPath.get(0));
-			jta=new JTextArea(s,8,50);
+			s.append(String.valueOf(Config.shortestPath.get(0)));
+			jta=new JTextArea(s.toString(),8,50);
 	
 			jta.setLineWrap(true);
 			jta.setWrapStyleWord(true);
@@ -245,28 +244,28 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 					fr=new FileReader(st);
 					br=new BufferedReader(fr);
 					String s="";
-					String string="";
+					StringBuilder string= new StringBuilder();
 					int n=0;
 					try {
 						while((s=br.readLine())!=null)
 						{
-							s.trim();
+							s=s.trim();
 							n++;
 							City p=new City();
 							int i=0;
 							int x=0;
 							int y=0;
-						    string="";
+						    string = new StringBuilder();
 						    while(s.charAt(i)!=' ')
 						    {
 						        i++;
 						    }
 						    i++;
 					        for(;s.charAt(i)!=' ';i++){
-					        	string+=s.charAt(i);
+					        	string.append(s.charAt(i));
 					        }
 					        try {
-								x=Integer.parseInt(string);
+								x=Integer.parseInt(string.toString());
 							} catch (NumberFormatException e1) {
 								// TODO Auto-generated catch block
 						
@@ -279,17 +278,17 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 					        	i++;
 					        }
 					        
-					        string="";
+					        string = new StringBuilder();
 					        for(;i<s.length();i++)
 					        {
 					        	if(s.charAt(i)!=' ')
 					        	{
-					        		string+=s.charAt(i);
+					        		string.append(s.charAt(i));
 					        	}
 					        	else break;
 					        }
 					        try {
-								y=Integer.parseInt(string);
+								y=Integer.parseInt(string.toString());
 							} catch (NumberFormatException e1) {
 								// TODO Auto-generated catch block
 								this.ErrorMesseger("         文件内容错误!!!");
@@ -392,33 +391,19 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		}
 		
 	}
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		for(int i=0;i<6;i++)
-		{
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				}
-		      if(i==5){
-		        		if(!p){
-		     				this.remove(this.mp);
-		     				this.add(this.jp_01);
-		     				this.add(this.jp_02,BorderLayout.NORTH);
-		     				this.add(this.jtl,BorderLayout.SOUTH);
-		     				this.p=true;
-		     				jp_01.updateUI();
-		     				jp_02.updateUI();
-		     				jtl.updateUI();
-		     				this.setJMenuBar(jmb);
-		        		}
-		      }
+	public void flushPanel(){
+		if(!p){
+			this.remove(this.startPanel);
+			this.add(this.jp_01);
+			this.add(this.jp_02,BorderLayout.NORTH);
+			this.add(this.jtl,BorderLayout.SOUTH);
+			this.p=true;
+			jp_01.updateUI();
+			jp_02.updateUI();
+			jtl.updateUI();
+			this.setJMenuBar(jmb);
 		}
 	}
-
 }
 
 
