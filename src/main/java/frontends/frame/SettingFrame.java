@@ -29,9 +29,7 @@ public class SettingFrame extends JDialog implements ActionListener {
     JRadioButton jrb2=null;
     JRadioButton jrb3=null;
     ButtonGroup bg=null;
-    Config psi=null;
-    public SettingFrame(Config psi){
-        this.psi=psi;
+    public SettingFrame(){
         jp1=new JPanel();
         jp2=new JPanel();
         jp3=new JPanel();
@@ -108,13 +106,13 @@ public class SettingFrame extends JDialog implements ActionListener {
         if(e.getActionCommand().equals("sure"))
         {
             if(Objects.equals(jcb.getSelectedItem(), "1√Î")){
-                psi.settime(100);
+                Config.refreshInterval=100;
             }
             else if(Objects.equals(jcb.getSelectedItem(), "0.1√Î")){
-                psi.settime(10);
+                Config.refreshInterval=10;
             }
             else{
-                psi.settime(1);
+                Config.refreshInterval=1;
             }
             if(jrb2.isSelected())
             {

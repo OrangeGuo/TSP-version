@@ -16,7 +16,6 @@ import java.util.List;
 public class GeneticPanel extends JPanel implements Runnable{
     DecimalFormat df=new DecimalFormat("######0.00");//最终结果保留两位小数
     List<City> points=Lists.newArrayList();
-    Config psi=null;//接收设置参数
     double distance_max=0;//记录点之间最大距离
     double distance_min=0;//记录最优解
     double distance_now=0;//记录每代最优解
@@ -37,9 +36,9 @@ public class GeneticPanel extends JPanel implements Runnable{
 
     double distance_all=0;//
     double sum_same=0;//
-    public GeneticPanel(List<City> p, Config psi){
+    public GeneticPanel(List<City> p){
         this.points=p;
-        this.psi=psi;
+
         this.N= Config.N;
         this.rate_best= Config.copyRate;
         this.time_all= Config.generations;

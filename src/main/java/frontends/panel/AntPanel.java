@@ -28,11 +28,11 @@ public class AntPanel extends JPanel {
     int index;
     double distance_min=200000000;//记录最优解
     Path list_01;//记录最优解
-    public AntPanel(List<City> p, Config psi){
+    public AntPanel(List<City> p){
         distance=new double[150][150];
         t=new double[150][150];
         points=p;
-        this.scale=psi.getscale();
+        this.scale=Config.scale;
         for(int i=0;i<p.size();i++)
         {
             City point=p.get(i);

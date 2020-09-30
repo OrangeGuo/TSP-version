@@ -26,12 +26,10 @@ public class GreedyPanel extends JPanel implements Runnable{
     long Time_start=System.currentTimeMillis();
     long Time_total=0;
     long time=10;//最小刷新时间间隔10毫秒
-    public Config psi=null;
-    public GreedyPanel(List<City> p, Config psi){
+    public GreedyPanel(List<City> p){
         point=p;
-        scale=psi.getscale();
-        time*=psi.gettime();
-        this.psi=psi;
+        scale=Config.scale;
+        time*=Config.refreshInterval;
     }
     public void paint(Graphics g)
     {

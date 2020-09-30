@@ -40,7 +40,6 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	HelpFrame hf=null;
 	SettingFrame sf=null;
 	WorkFrame fv=null;
-	Config psi=null;
 	List<City> points=null;
 	//swing组件
 	JToolBar jtl=null;
@@ -79,7 +78,6 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 		jp_02=new JPanel();
 
         jsp=new JScrollPane();
-		psi=new Config();
 		mp=new StartUpPanel();
 		jmb=new JMenuBar();
 		
@@ -174,7 +172,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 				else {
 					Config.algoType =2;
 				}
-				fv=new WorkFrame(points,psi);
+				fv=new WorkFrame(points);
 			}
 			else{
 				if(this.file_error==0)
@@ -191,7 +189,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 	    	if(Config.state >1)
 			{
 	    	DecimalFormat df=new DecimalFormat("######0.00");
-			String s="共有"+String.valueOf(Config.shortestPath.size())+"个点\n最短距离为"+String.valueOf(df.format(this.psi.shortestDistance))+"\n"+"最短路径如下\n";
+			String s="共有"+String.valueOf(Config.shortestPath.size())+"个点\n最短距离为"+String.valueOf(df.format(Config.shortestDistance))+"\n"+"最短路径如下\n";
 			for(int i = 0; i< Config.shortestPath.size(); i++)
 			{
 				
@@ -328,8 +326,8 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 
 
 					}
-				    psi.setscale(500/max);//设置缩放比例
-				    psi.state=1;
+				    Config.scale=(500/max);//设置缩放比例
+				    Config.state=1;
 
 
 				}
@@ -390,7 +388,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener,Ru
 			System.exit(0);
 		}
 		else if(e.getActionCommand().equals("help")){
-	    	   sf=new SettingFrame(psi);
+	    	   sf=new SettingFrame();
 		}
 		
 	}
