@@ -1,6 +1,6 @@
 package backends;
 
-//Á´±íÓÃÒÔ¼ÇÂ¼Â·¾¶(Ã¿¸öÂ·¾¶ÊÓÎªÒ»¸ö¸öÌå)
+//é“¾è¡¨ç”¨ä»¥è®°å½•è·¯å¾„(æ¯ä¸ªè·¯å¾„è§†ä¸ºä¸€ä¸ªä¸ªä½“)
 public class Path {
     public int no =-1;
     public Path next=null;

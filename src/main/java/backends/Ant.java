@@ -4,13 +4,13 @@ import lombok.Data;
 
 @Data
 public class Ant {
-    private Path walkOverCities;//¼ÇÂ¼Â·¾¶(ÒÑ¾­×ß¹ıµÄ³ÇÊĞ)
-    private Path toGoCities;//Î´×ß¹ıµÄ³ÇÊĞ
-    private double distance;//¼ÇÂ¼¾àÀë
-    private int walkOverCityNum;//¼ÇÂ¼ÒÑ×ß¹ıµÄ³ÇÊĞÊıÁ¿
-    private int cityNumLeft;//¼ÇÂ¼Ê£Óà³ÇÊĞÊıÁ¿
-    private int cityNo;//µ±Ç°³ÇÊĞ±àºÅ
-    private int departCityNo;//¼ÇÂ¼³ö·¢µã³ÇÊĞ±àºÅ
+    private Path walkOverCities;//è®°å½•è·¯å¾„(å·²ç»èµ°è¿‡çš„åŸå¸‚)
+    private Path toGoCities;//æœªèµ°è¿‡çš„åŸå¸‚
+    private double distance;//è®°å½•è·ç¦»
+    private int walkOverCityNum;//è®°å½•å·²èµ°è¿‡çš„åŸå¸‚æ•°é‡
+    private int cityNumLeft;//è®°å½•å‰©ä½™åŸå¸‚æ•°é‡
+    private int cityNo;//å½“å‰åŸå¸‚ç¼–å·
+    private int departCityNo;//è®°å½•å‡ºå‘ç‚¹åŸå¸‚ç¼–å·
     public Ant(int s, int city){
         this.departCityNo =s;
         this.distance=0;

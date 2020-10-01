@@ -22,28 +22,28 @@ class TutorialFrame extends JDialog implements ActionListener {
         jtb=new JTabbedPane();
         jta1=new JTextArea();
         jta2=new JTextArea();
-        String s1="µÚÒ»²½:¶ÁÈëÊı¾İ(Ïê¼ûÓÒ±êÇ©Ò³)»òÕßÑ¡ÔñËã·¨\nµÚ¶ş²½:µã»÷ÔËĞĞ\nµÚÈı²½:²é¿´Â·¾¶";
-        String s2="Ëù¶ÁÈëÎÄ¼ş±ØĞëÎªÎÄ±¾ÎÄ¼ş¼´TXT¸ñÊ½\nÎÄ¼şÄÚÈİÖ»ÄÜ³öÏÖÊı×ÖºÍ¿Õ¸ñ\nÃ¿ĞĞÄÚÈİÎª:µãĞòºÅ£¬ºá×ø±ê£¬×İ×ø±ê£¬ÊıÖµ" +
-                "Ö®¼äÁôÒ»¸ö¿Õ¸ñÈçÏÂ:\n1 34 62\n2 98 14\n3 5 25\n......\nTips:ËùÓĞÊıÖµ±ØĞëÎªÕıÕûÊı,ºá×İ×ø±ê²»½¨Òé³¬¹ı1000";
-        jb3=new JButton("ÒÑÔÄ¶Á");
+        String s1="ç¬¬ä¸€æ­¥:è¯»å…¥æ•°æ®(è¯¦è§å³æ ‡ç­¾é¡µ)æˆ–è€…é€‰æ‹©ç®—æ³•\nç¬¬äºŒæ­¥:ç‚¹å‡»è¿è¡Œ\nç¬¬ä¸‰æ­¥:æŸ¥çœ‹è·¯å¾„";
+        String s2="æ‰€è¯»å…¥æ–‡ä»¶å¿…é¡»ä¸ºæ–‡æœ¬æ–‡ä»¶å³TXTæ ¼å¼\næ–‡ä»¶å†…å®¹åªèƒ½å‡ºç°æ•°å­—å’Œç©ºæ ¼\næ¯è¡Œå†…å®¹ä¸º:ç‚¹åºå·ï¼Œæ¨ªåæ ‡ï¼Œçºµåæ ‡ï¼Œæ•°å€¼" +
+                "ä¹‹é—´ç•™ä¸€ä¸ªç©ºæ ¼å¦‚ä¸‹:\n1 34 62\n2 98 14\n3 5 25\n......\nTips:æ‰€æœ‰æ•°å€¼å¿…é¡»ä¸ºæ­£æ•´æ•°,æ¨ªçºµåæ ‡ä¸å»ºè®®è¶…è¿‡1000";
+        jb3=new JButton("å·²é˜…è¯»");
         jta1.setText(s1);
         jta2.setText(s2);
-        jb3.setContentAreaFilled(false);//ÉèÖÃÍ¸Ã÷
+        jb3.setContentAreaFilled(false);//è®¾ç½®é€æ˜
         jb3.addActionListener(this);
-        //jb3.setBorder(BorderFactory.createLoweredBevelBorder());//ÉèÖÃÍ¹Æğ
+        //jb3.setBorder(BorderFactory.createLoweredBevelBorder());//è®¾ç½®å‡¸èµ·
         jp1.setBackground(Color.white);
         jp2.setBackground(Color.white);
         jp1.add(jta1);
         jp2.add(jta2);
         jPanel.add(jb3);
-        jtb.add(jp1,"²Ù×÷ËµÃ÷");
-        jtb.add(jp2,"¶ÁÈëÊı¾İ");
+        jtb.add(jp1,"æ“ä½œè¯´æ˜");
+        jtb.add(jp2,"è¯»å…¥æ•°æ®");
         this.add(jtb);
         this.add(jPanel,BorderLayout.SOUTH);
         this.setIconImage(Icons.TutorialIcon.getImage());
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
-        this.setTitle("°ïÖúÎÄµµ");
+        this.setTitle("å¸®åŠ©æ–‡æ¡£");
         this.setResizable(false);
         this.dispose();
         this.setModal(true);

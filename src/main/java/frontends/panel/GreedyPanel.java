@@ -25,7 +25,7 @@ public class GreedyPanel extends JPanel implements Runnable{
     boolean get=false;
     long Time_start=System.currentTimeMillis();
     long Time_total=0;
-    long time=10;//×îĞ¡Ë¢ĞÂÊ±¼ä¼ä¸ô10ºÁÃë
+    long time=10;//æœ€å°åˆ·æ–°æ—¶é—´é—´éš”10æ¯«ç§’
     public GreedyPanel(List<City> p){
         point=p;
         scale=Config.scale;
@@ -112,20 +112,20 @@ public class GreedyPanel extends JPanel implements Runnable{
             distance_min=distance_now;
             index_min=index_all;
         }
-        g.drawString("Ê±¼ä½ö¹©²Î¿¼", 500, 20);
-        g.drawString("ºìÉ«Ô²µãÎªÆğµã", 500, 40);
+        g.drawString("æ—¶é—´ä»…ä¾›å‚è€ƒ", 500, 20);
+        g.drawString("çº¢è‰²åœ†ç‚¹ä¸ºèµ·ç‚¹", 500, 40);
         if(p){
-            g.drawString("µ±Ç°×Ü¾àÀë:"+s, 0,520);
+            g.drawString("å½“å‰æ€»è·ç¦»:"+s, 0,520);
             s=String.valueOf(df.format(distance_min));
-            g.drawString("µ±Ç°×î¶Ì¾àÀë:"+s, 450, 520);
+            g.drawString("å½“å‰æœ€çŸ­è·ç¦»:"+s, 450, 520);
             Time_total=(System.currentTimeMillis()-Time_start);
             s=String.valueOf(Time_total);
-            g.drawString("×ÜÓÃÊ±:"+s+"ºÁÃë", 250, 520);
+            g.drawString("æ€»ç”¨æ—¶:"+s+"æ¯«ç§’", 250, 520);
         }
         else{
-            g.drawString("×î¶Ì¾àÀë:"+s, 150,520);
+            g.drawString("æœ€çŸ­è·ç¦»:"+s, 150,520);
             s=String.valueOf(Time_total);
-            g.drawString("×ÜÓÃÊ±:"+s+"ºÁÃë",350, 520);
+            g.drawString("æ€»ç”¨æ—¶:"+s+"æ¯«ç§’",350, 520);
             Config.shortestDistance =distance_min;
             if(Config.state ==1)
             {

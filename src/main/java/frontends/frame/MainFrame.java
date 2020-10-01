@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,24 +25,24 @@ import java.util.Objects;
 import javax.swing.*;
 
 
-//Ö÷Òª½»»¥´°¿Ú
+//ä¸»è¦äº¤äº’çª—å£
 public class MainFrame extends JFrame implements MouseListener,ActionListener {
 
 	/**
 	 * @param args
-	 * ³ÌĞòÉè¼Æ:¹ù´óÎª
-	 * ¿ªÊ¼ÈÕÆÚ:16Äê09ÔÂ06ÈÕ
-	 * ³ÌĞò¹¦ÄÜ:½â¾öTSPÎÊÌâ 
-	 * Íê³ÉÈÕÆÚ:16Äê
+	 * ç¨‹åºè®¾è®¡:éƒ­å¤§ä¸º
+	 * å¼€å§‹æ—¥æœŸ:16å¹´09æœˆ06æ—¥
+	 * ç¨‹åºåŠŸèƒ½:è§£å†³TSPé—®é¢˜ 
+	 * å®Œæˆæ—¥æœŸ:16å¹´
 	 */
-	//×Ô¶¨Òå×é¼ş
+	//è‡ªå®šä¹‰ç»„ä»¶
 	StartUpPanel startPanel=null;
     TutorialFrame dFrame=null;
 	HelpFrame hf=null;
 	SettingFrame sf=null;
 	WorkFrame fv=null;
-	List<City> points=null;
-	//swing×é¼ş
+	List<City> points=new ArrayList<>();
+	//swingç»„ä»¶
 	JToolBar jtl=null;
 	JPanel jp_01=null;
 	JPanel jp_02=null;
@@ -68,38 +69,38 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 	JMenuItem jmi7=null;
 
 	
-	boolean p=false;//·ÀÖ¹JFrame´°ÌåÖØ¸´Ìí¼ÓJPanel×é¼ş
-	boolean flag=false;//ÊÇ·ñ°´ÒªÇó¶ÁÈëÎÄ¼ş
-	int file_error=0;//ÎÄ¼ş¶ÁÈë´íÎóÀàĞÍ
+	boolean p=false;//é˜²æ­¢JFrameçª—ä½“é‡å¤æ·»åŠ JPanelç»„ä»¶
+	boolean flag=false;//æ˜¯å¦æŒ‰è¦æ±‚è¯»å…¥æ–‡ä»¶
+	int file_error=0;//æ–‡ä»¶è¯»å…¥é”™è¯¯ç±»å‹
 
 	public MainFrame() throws InterruptedException {
-		//³õÊ¼»¯¿Ø¼ş
+		//åˆå§‹åŒ–æ§ä»¶
 		jp_01=new JPanel();
 		jp_02=new JPanel();
 
         jsp=new JScrollPane();
 		jmb=new JMenuBar();
 		
-		jm2=new JMenu("°ïÖúÉèÖÃ");
-		jm3=new JMenu("ÍË³ö³ÌĞò");
-		jl=new JLabel("Ñ¡ÔñËã·¨");
-		jl2=new JLabel("×´Ì¬À¸");
+		jm2=new JMenu("å¸®åŠ©è®¾ç½®");
+		jm3=new JMenu("é€€å‡ºç¨‹åº");
+		jl=new JLabel("é€‰æ‹©ç®—æ³•");
+		jl2=new JLabel("çŠ¶æ€æ ");
 		jtl=new JToolBar();
 	
         jsp.setBackground(Color.white);
-		jb1=new JButton("ÔËĞĞ");
-		jb2=new JButton("¶ÁÈëÊı¾İ");
-		jb3=new JButton("²é¿´Â·¾¶");
-		String []option={"Ì°ĞÄËã·¨","ÒÅ´«Ëã·¨","ÒÏÈºËã·¨"};
+		jb1=new JButton("è¿è¡Œ");
+		jb2=new JButton("è¯»å…¥æ•°æ®");
+		jb3=new JButton("æŸ¥çœ‹è·¯å¾„");
+		String []option={"è´ªå¿ƒç®—æ³•","é—ä¼ ç®—æ³•","èšç¾¤ç®—æ³•"};
 	
 		jcb=new JComboBox(option);
        
 	
-		jmi4=new JMenuItem("Á¢¼´ÍË³ö");
-		jmi5=new JMenuItem("²ÎÊıÉèÖÃ");
-		jmi6=new JMenuItem("°ïÖúÎÄµµ");
-		jmi7=new JMenuItem("¹ØÓÚ¿ª·¢");
-		//×¢²á¼àÌı
+		jmi4=new JMenuItem("ç«‹å³é€€å‡º");
+		jmi5=new JMenuItem("å‚æ•°è®¾ç½®");
+		jmi6=new JMenuItem("å¸®åŠ©æ–‡æ¡£");
+		jmi7=new JMenuItem("å…³äºå¼€å‘");
+		//æ³¨å†Œç›‘å¬
    
         jb1.addMouseListener(this);
         jb2.addMouseListener(this);
@@ -112,7 +113,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 		jmi6.setActionCommand("six");
 		jmi7.addActionListener(this);
 		jmi7.setActionCommand("seven");
-		//×éºÏ¿Ø¼ş
+		//ç»„åˆæ§ä»¶
 	 
 	    //jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		jp_01.setBackground(Color.white);
@@ -133,11 +134,11 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 		jm2.add(jmi7);
 		jm3.add(jmi4);
         
-		//´°ÌåÊôĞÔÉèÖÃ
+		//çª—ä½“å±æ€§è®¾ç½®
 		 this.setSize(600,480);
 		 //this.setUndecorated(true);
 		 this.setLocationRelativeTo(null);
-    	 this.setTitle("tspÎÊÌâ");
+    	 this.setTitle("tspé—®é¢˜");
     	 this.setResizable(false);
     	 startPanel=new StartUpPanel();
     	 Thread thread=new Thread(startPanel);
@@ -152,7 +153,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 	}
     public void ErrorMesseger(String string)
     {
-    	JOptionPane.showMessageDialog(null,string,"¾¯¸æ",JOptionPane.ERROR_MESSAGE);
+    	JOptionPane.showMessageDialog(null,string,"è­¦å‘Š",JOptionPane.ERROR_MESSAGE);
     }
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -161,11 +162,11 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 			if(flag){
 				Config.flag =true;
 				Config.shortestPath.clear();
-				if(Objects.equals(this.jcb.getSelectedItem(), "ÒÅ´«Ëã·¨"))
+				if(Objects.equals(this.jcb.getSelectedItem(), "é—ä¼ ç®—æ³•"))
 				{
 					Config.algoType =0;
 				}
-				else if(Objects.equals(this.jcb.getSelectedItem(), "Ì°ĞÄËã·¨")){
+				else if(Objects.equals(this.jcb.getSelectedItem(), "è´ªå¿ƒç®—æ³•")){
 					Config.algoType =1;
 				}
 				else {
@@ -176,10 +177,10 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 			else{
 				if(this.file_error==0)
 				{
-					this.ErrorMesseger("        Î´¶ÁÈëÎÄ¼ş!!!");
+					this.ErrorMesseger("        æœªè¯»å…¥æ–‡ä»¶!!!");
 				}
 				else {
-					this.ErrorMesseger("          ¶ÁÈë´íÎó!!!");
+					this.ErrorMesseger("          è¯»å…¥é”™è¯¯!!!");
 				}
 			}
 			
@@ -188,7 +189,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 	    	if(Config.state >1)
 			{
 	    	DecimalFormat df=new DecimalFormat("######0.00");
-			StringBuilder s= new StringBuilder("¹²ÓĞ" + Config.shortestPath.size() + "¸öµã\n×î¶Ì¾àÀëÎª" + df.format(Config.shortestDistance) + "\n" + "×î¶ÌÂ·¾¶ÈçÏÂ\n");
+			StringBuilder s= new StringBuilder("å…±æœ‰" + Config.shortestPath.size() + "ä¸ªç‚¹\næœ€çŸ­è·ç¦»ä¸º" + df.format(Config.shortestDistance) + "\n" + "æœ€çŸ­è·¯å¾„å¦‚ä¸‹\n");
 			for(int i = 0; i< Config.shortestPath.size(); i++)
 			{
 				
@@ -211,10 +212,10 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 		}
 		else if(e.getSource().equals(jb2)){
 			JFileChooser jfc=new JFileChooser();
-			jfc.setDialogTitle("ÇëÑ¡ÔñÎÄ¼ş(µ±Ç°½öÖ§³ÖTXT¸ñÊ½)");
+			jfc.setDialogTitle("è¯·é€‰æ‹©æ–‡ä»¶(å½“å‰ä»…æ”¯æŒTXTæ ¼å¼)");
 			jfc.showOpenDialog(null);
 			jfc.setVisible(true);
-			points= Lists.newArrayList();
+			points.clear();
 			String st=null;
 			try {
 				if(jfc.getSelectedFile().getAbsolutePath()!=null)
@@ -223,12 +224,12 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 				// TODO Auto-generated catch block
 			
 				st=null;
-			}//»ñÈ¡ÎÄ¼şÃû¼°Æä¾ø¶ÔÂ·¾¶
+			}//è·å–æ–‡ä»¶ååŠå…¶ç»å¯¹è·¯å¾„
 			if(st!=null)
 			{
 				int ii=st.length();
 				String name="" +st.charAt(ii-1)+st.charAt(ii-2)+st.charAt(ii-3);
-				double max=0;//¼ÇÂ¼ËùÓĞµãºá×İ×ø±ê×î´ó¾ø¶ÔÖµ
+				double max=0;//è®°å½•æ‰€æœ‰ç‚¹æ¨ªçºµåæ ‡æœ€å¤§ç»å¯¹å€¼
 				this.file_error=1;
 				if(name.equals("txt"))
 				{
@@ -236,7 +237,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 				}
 				else
 				{
-					this.ErrorMesseger("         ÎÄ¼ş¸ñÊ½´íÎó!!!");
+					this.ErrorMesseger("         æ–‡ä»¶æ ¼å¼é”™è¯¯!!!");
 				}
 				FileReader fr=null;
 				BufferedReader br=null;
@@ -269,7 +270,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 							} catch (NumberFormatException e1) {
 								// TODO Auto-generated catch block
 						
-								this.ErrorMesseger("         ÎÄ¼ş¸ñÊ½´íÎó!!!");
+								this.ErrorMesseger("         æ–‡ä»¶æ ¼å¼é”™è¯¯!!!");
 								break;
 								//e1.printStackTrace();
 							}
@@ -291,7 +292,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 								y=Integer.parseInt(string.toString());
 							} catch (NumberFormatException e1) {
 								// TODO Auto-generated catch block
-								this.ErrorMesseger("         ÎÄ¼şÄÚÈİ´íÎó!!!");
+								this.ErrorMesseger("         æ–‡ä»¶å†…å®¹é”™è¯¯!!!");
 								break;
 								//e1.printStackTrace();
 							}
@@ -325,7 +326,7 @@ public class MainFrame extends JFrame implements MouseListener,ActionListener {
 
 
 					}
-				    Config.scale=(500/max);//ÉèÖÃËõ·Å±ÈÀı
+				    Config.scale=(500/max);//è®¾ç½®ç¼©æ”¾æ¯”ä¾‹
 				    Config.state=1;
 
 

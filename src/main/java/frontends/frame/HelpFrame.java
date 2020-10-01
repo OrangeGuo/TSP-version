@@ -24,13 +24,13 @@ class HelpFrame extends JDialog implements MouseListener {
         jp.setBackground(Color.white);
         jta.setEditable(false);
         jta.setBackground(Color.white);
-        jta.setText("    ������ȫ�������д�����Լ�����������������ƾ��ɸ��˶�����ɡ�\n������Ҫ���ڽ��TSP����(��Travelling Sellmen Problems)����ǰ�汾\n�г�������ṩ����" +
-                "�㷨��̰���㷨���Ŵ��㷨������ʵ���Ͻ��TSP��\n����㷨�кܶ��֡����ǿ������ṩ���������㷨���д����ԣ�ʵ���϶�\n��TSP�������⣬һ����������Ǻ���������Ž�" +
-                "ֻ�ܾ����ܽӽ�������\n�⡣��һ���㷨(̰���㷨)����򵥵��㷨ͬʱҲ�����ٲ��õ��㷨����\nΪ����Ч�ʺܵͣ����������ڵ������ٵ��������������Ŵ��㷨������\n���ֵ�" +
-                "���������Ż��㷨�����ڵ����ܶ�������������޽ӽ������Ž�\n�Ľ⣬����̰���㷨�����������ġ�\n    ���ڿ���ʱ��̣ܶ������߻����ڲ��Ե�ʱ�䲢���࣬���Ա������\n��" +
-                "����ĳЩδ֪bug��������ʹ���߾������հ��ղ���˵���������⵼��\n�����쳣�����������豸�������ĳ����쳣bug�����ͼ��������˵\n�����������Ŷ����䣺1772086465@qq" +
-                ".com��" );
-        jb=new JButton("�˳�");
+        jta.setText("    本程序全部代码编写、测试及后期制作，界面设计均由个人独立完成。\n程序主要用于解决TSP问题(即Travelling Sellmen Problems)，当前版本\n中程序仅仅提供两种" +
+                "算法：贪心算法和遗传算法。但其实网上解决TSP问\n题的算法有很多种。但是开发者提供的这两种算法具有代表性：实际上对\n于TSP这类问题，一般情况下我们很难求出最优解" +
+                "只能尽可能接近于最优\n解。第一种算法(贪心算法)是最简单的算法同时也是最少采用的算法，因\n为它的效率很低，仅仅适用于点数很少的情况。而后面的遗传算法及网上\n出现的" +
+                "其衍生和优化算法可以在点数很多的情况下求出无限接近于最优解\n的解，这是贪心算法所不能做到的。\n    由于开发时间很短，开发者花在在测试的时间并不多，所以本程序可\n能" +
+                "存在某些未知bug，所以请使用者尽量按照按照操作说明操作以免导致\n程序异常甚至损坏您的设备。如果真的出现异常bug，请截图并附文字说\n明发到开发团队邮箱：1772086465@qq" +
+                ".com。" );
+        jb=new JButton("退出");
         jb.setBackground(Color.pink);
         jb.addMouseListener(this);
         this.add(jl,BorderLayout.NORTH);
@@ -40,7 +40,7 @@ class HelpFrame extends JDialog implements MouseListener {
         this.setIconImage(Icons.HelpIcon.getImage());
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
-        this.setTitle("����&����");
+        this.setTitle("开发&关于");
         this.setResizable(false);
         this.dispose();
         this.setModal(true);

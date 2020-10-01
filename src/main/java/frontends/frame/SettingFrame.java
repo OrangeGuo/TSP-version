@@ -35,8 +35,8 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp3=new JPanel();
         jp4=new JPanel();
         jp5=new JPanel();
-        apply =new JButton("Ó¦ÓÃ");
-        cancle =new JButton("È¡Ïû");
+        apply =new JButton("åº”ç”¨");
+        cancle =new JButton("å–æ¶ˆ");
         jrb1=new JRadioButton("100");
         jrb2=new JRadioButton("300");
         jrb3=new JRadioButton("500");
@@ -45,12 +45,12 @@ public class SettingFrame extends JDialog implements ActionListener {
         apply.setActionCommand("sure");
         cancle.addActionListener(this);
         cancle.setActionCommand("exit");
-        jl1=new JLabel("ÔËĞĞ´°¿ÚË¢ĞÂÊ±¼ä¼ä¸ô");
-        jl2=new JLabel("³õÊ¼ÖÖÈº¹æÄ£");
-        jl3=new JLabel("(Ì°ĞÄËã·¨)");
-        jl4=new JLabel("ÖÖÈº·±ÑÜ´úÊı");
-        jl5=new JLabel("×îÓÅ¸öÌå¸´ÖÆÂÊ");
-        String []content={"0.01Ãë(ÍÆ¼ö)","0.1Ãë","1Ãë"};
+        jl1=new JLabel("è¿è¡Œçª—å£åˆ·æ–°æ—¶é—´é—´éš”");
+        jl2=new JLabel("åˆå§‹ç§ç¾¤è§„æ¨¡");
+        jl3=new JLabel("(è´ªå¿ƒç®—æ³•)");
+        jl4=new JLabel("ç§ç¾¤ç¹è¡ä»£æ•°");
+        jl5=new JLabel("æœ€ä¼˜ä¸ªä½“å¤åˆ¶ç‡");
+        String []content={"0.01ç§’(æ¨è)","0.1ç§’","1ç§’"};
         String []times={"200","400","600","800","1000"};
         String []rate={"0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9"};
         jcb=new JComboBox(content);
@@ -84,11 +84,11 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp3.add(jrb1);
         jp3.add(jrb2);
         jp3.add(jrb3);
-        //ÉèÖÃÍ¼±ê
+        //è®¾ç½®å›¾æ ‡
         this.setIconImage(Icons.SettingIcon.getImage());
         this.setSize(400,400);
         this.setLocationRelativeTo(null);
-        this.setTitle("ÉèÖÃ");
+        this.setTitle("è®¾ç½®");
         this.setLayout(new GridLayout(8,1));
         this.add(jp1);
         this.add(jp3);
@@ -105,10 +105,10 @@ public class SettingFrame extends JDialog implements ActionListener {
         // TODO Auto-generated method stub
         if(e.getActionCommand().equals("sure"))
         {
-            if(Objects.equals(jcb.getSelectedItem(), "1Ãë")){
+            if(Objects.equals(jcb.getSelectedItem(), "1ç§’")){
                 Config.refreshInterval=100;
             }
-            else if(Objects.equals(jcb.getSelectedItem(), "0.1Ãë")){
+            else if(Objects.equals(jcb.getSelectedItem(), "0.1ç§’")){
                 Config.refreshInterval=10;
             }
             else{

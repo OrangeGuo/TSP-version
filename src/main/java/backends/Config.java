@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Config {
-    public static int refreshInterval =1;//ÔËĞĞ½çÃæË¢ĞÂÊ±¼ä¼ä¸ô¿ØÖÆ
-    public static double scale=1;//¿ØÖÆDrawpanel»æÍ¼·¶Î§
+    public static int refreshInterval =1;//è¿è¡Œç•Œé¢åˆ·æ–°æ—¶é—´é—´éš”æ§åˆ¶
+    public static double scale=1;//æ§åˆ¶Drawpanelç»˜å›¾èŒƒå›´
     public static boolean flag=true;
     public static int algoType =1;
-    public static List<Integer> shortestPath = new ArrayList<>();//¼ÇÂ¼×î¶ÌÂ·¾¶
-    public static int N=100;//¼ÇÂ¼ÖÖÈºÊıÁ¿
-    public static double shortestDistance =0;//¼ÇÂ¼×î¶Ì¾àÀë
-    public static int generations =200;//¼ÇÂ¼ÖÖÈº·±ÑÜ´úÊı
+    public static List<Integer> shortestPath = new ArrayList<>();//è®°å½•æœ€çŸ­è·¯å¾„
+    public static int N=100;//è®°å½•ç§ç¾¤æ•°é‡
+    public static double shortestDistance =0;//è®°å½•æœ€çŸ­è·ç¦»
+    public static int generations =200;//è®°å½•ç§ç¾¤ç¹è¡ä»£æ•°
     public static int state=0;
-    public static double copyRate =0.1;//×îÓÅ¸öÌå¸´ÖÆÂÊ
+    public static double copyRate =0.1;//æœ€ä¼˜ä¸ªä½“å¤åˆ¶ç‡
     public Config(){
 
     }

@@ -14,23 +14,23 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class GeneticPanel extends JPanel implements Runnable{
-    DecimalFormat df=new DecimalFormat("######0.00");//×îÖÕ½á¹û±£ÁôÁ½Î»Ğ¡Êı
+    DecimalFormat df=new DecimalFormat("######0.00");//æœ€ç»ˆç»“æœä¿ç•™ä¸¤ä½å°æ•°
     List<City> points=Lists.newArrayList();
-    double distance_max=0;//¼ÇÂ¼µãÖ®¼ä×î´ó¾àÀë
-    double distance_min=0;//¼ÇÂ¼×îÓÅ½â
-    double distance_now=0;//¼ÇÂ¼Ã¿´ú×îÓÅ½â
-    Path list_shortest=null;//¼ÇÂ¼Ã¿´ú×îÓÅ¸öÌå
+    double distance_max=0;//è®°å½•ç‚¹ä¹‹é—´æœ€å¤§è·ç¦»
+    double distance_min=0;//è®°å½•æœ€ä¼˜è§£
+    double distance_now=0;//è®°å½•æ¯ä»£æœ€ä¼˜è§£
+    Path list_shortest=null;//è®°å½•æ¯ä»£æœ€ä¼˜ä¸ªä½“
     Path list_01=null;
-    Adapt bestAdapt=null;//¼ÇÂ¼×îÓÅ¸öÌå
-    int N=0;//ÖÖÈº¸öÌåÊı
-    double rate_best=0.1;//×îÓÅ¸öÌå¸´ÖÆÂÊ
-    double rate_mix=0;//½»²æÂÊ
-    int best_index=0;//×îÓÅ¸öÌå±àºÅ
-    int time_all=20;//Ñ­»·´úÊı
-    int time_now=0;//µ±Ç°´úÊı
-    double rate_change=0.05;//¸öÌå±äÒìÂÊ
-    List<Path> all=null;//ÖÖÈº
-    List<Adapt> allAdapts=Lists.newArrayList();//¼ÇÂ¼ÖÖÈºÊÊÓ¦¶È
+    Adapt bestAdapt=null;//è®°å½•æœ€ä¼˜ä¸ªä½“
+    int N=0;//ç§ç¾¤ä¸ªä½“æ•°
+    double rate_best=0.1;//æœ€ä¼˜ä¸ªä½“å¤åˆ¶ç‡
+    double rate_mix=0;//äº¤å‰ç‡
+    int best_index=0;//æœ€ä¼˜ä¸ªä½“ç¼–å·
+    int time_all=20;//å¾ªç¯ä»£æ•°
+    int time_now=0;//å½“å‰ä»£æ•°
+    double rate_change=0.05;//ä¸ªä½“å˜å¼‚ç‡
+    List<Path> all=null;//ç§ç¾¤
+    List<Adapt> allAdapts=Lists.newArrayList();//è®°å½•ç§ç¾¤é€‚åº”åº¦
 
     int scale=0;
 
@@ -53,12 +53,12 @@ public class GeneticPanel extends JPanel implements Runnable{
     }
     public void paint(Graphics g)
     {
-        //ÖØÔØ¸¸Àà·½·¨
+        //é‡è½½çˆ¶ç±»æ–¹æ³•
         super.paint(g);
         g.fillRect(0, 0, 500, 600);
         this.start(g);
     }
-    //Æô¶¯Ëã·¨²¢»æÍ¼
+    //å¯åŠ¨ç®—æ³•å¹¶ç»˜å›¾
     public void start(Graphics g)
     {
         g.setColor(Color.cyan);
@@ -72,20 +72,20 @@ public class GeneticPanel extends JPanel implements Runnable{
         g.setColor(Color.yellow);
         this.show(list_shortest,g);
         g.setColor(Color.black);
-        String str="µÚ"+String.valueOf(time_now)+"´ú"+"×îÓÅ½â";
+        String str="ç¬¬"+String.valueOf(time_now)+"ä»£"+"æœ€ä¼˜è§£";
         String string=String.valueOf(df.format(distance_now));
 
         g.drawString(str, 505, 360);
         g.drawString(string, 505, 380);
-        str="ÀúÊ·×îÓÅ½â";
+        str="å†å²æœ€ä¼˜è§£";
         string=String.valueOf(df.format(distance_min));
         g.drawString(str, 505, 400);
         g.drawString(string, 505, 420);
-        str="ÖÖÈºÊıÁ¿:"+String.valueOf(N);
-        string="·±ÑÜ´úÊı:"+String.valueOf(time_all);
+        str="ç§ç¾¤æ•°é‡:"+String.valueOf(N);
+        string="ç¹è¡ä»£æ•°:"+String.valueOf(time_all);
         g.drawString(str, 505, 130);
         g.drawString(string, 505, 150);
-        string="×îÓÅ¸´ÖÆÂÊ:"+String.valueOf(df.format(rate_best));
+        string="æœ€ä¼˜å¤åˆ¶ç‡:"+String.valueOf(df.format(rate_best));
         g.drawString(string, 505, 170);
         if(time_now==time_all)
         {
@@ -101,7 +101,7 @@ public class GeneticPanel extends JPanel implements Runnable{
     public void show(Path li, Graphics g){
         g.setColor(Color.yellow);
 
-        g.drawString("±íÊ¾¸öÌå", 30, 520);
+        g.drawString("è¡¨ç¤ºä¸ªä½“", 30, 520);
         g.setColor(Color.white);
         while(li.next!=null)
         {
@@ -110,7 +110,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         }
         g.fillOval(20, 510, 10, 10);
     }
-    //ÇóµãÖ®¼ä×î´ó¾àÀë
+    //æ±‚ç‚¹ä¹‹é—´æœ€å¤§è·ç¦»
     public void get_max(){
 
         for(int i=0;i<points.size()-1;i++)
@@ -128,21 +128,21 @@ public class GeneticPanel extends JPanel implements Runnable{
         distance_min=points.size()*distance_max;
 
     }
-    //ÖÖÈº³õÊ¼»¯
+    //ç§ç¾¤åˆå§‹åŒ–
     public void get_group(int num){
 
         int size=this.points.size();
         int k=0;
         for(int i=0;i<num;i++)
         {
-            Path li=new Path();//Á´±íÍ·
+            Path li=new Path();//é“¾è¡¨å¤´
             Path li_copy=li;
             k=0;
             while(k<size)
             {
                 li_copy=li;
-                int n=(int)(Math.random()*size);//Éú³É0µ½size-1µÄËæ»úÊı
-                boolean p=true;//·ÀÖ¹Ìí¼ÓÖØ¸´µÄµãĞòºÅ
+                int n=(int)(Math.random()*size);//ç”Ÿæˆ0åˆ°size-1çš„éšæœºæ•°
+                boolean p=true;//é˜²æ­¢æ·»åŠ é‡å¤çš„ç‚¹åºå·
                 for(int j=0;j<k;j++)
                 {
                     if(li_copy.no ==n)
@@ -172,7 +172,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         }
 
     }
-    //¼ÆËãÖÖÈºÊÊÓ¦¶È
+    //è®¡ç®—ç§ç¾¤é€‚åº”åº¦
     public void get_adapt(){
 
 
@@ -183,7 +183,7 @@ public class GeneticPanel extends JPanel implements Runnable{
 
         for(int i=0;i<all.size();i++)
         {
-            //·Ö±ğÈ¡³öÃ¿¸ö¸öÌå¼ÆËãÊÊÓ¦¶È
+            //åˆ†åˆ«å–å‡ºæ¯ä¸ªä¸ªä½“è®¡ç®—é€‚åº”åº¦
             double distance_adapt=this.getdistance(all.get(i));
 
             Adapt newAdapt=new Adapt();
@@ -202,7 +202,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         }
         System.out.println();
     }
-    //¸´ÖÆ
+    //å¤åˆ¶
     public void copy(){
 
         best_index=0;
@@ -212,7 +212,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         for(int i=0;i<allAdapts.size();i++)
         {
             Adapt newAdapt=allAdapts.get(i);
-            if(copy_max>newAdapt.getDistance())//¼ÇÂ¼¸öÌå×î´ó¸´ÖÆÆÚÍûÖµ¼°¸Ã¸öÌå±àºÅ
+            if(copy_max>newAdapt.getDistance())//è®°å½•ä¸ªä½“æœ€å¤§å¤åˆ¶æœŸæœ›å€¼åŠè¯¥ä¸ªä½“ç¼–å·
             {
                 copy_max=newAdapt.getDistance();
                 best_index=i;
@@ -269,10 +269,10 @@ public class GeneticPanel extends JPanel implements Runnable{
 
         N=all.size();
     }
-    //½»²æ
+    //äº¤å‰
     public void mix(){
-        int size=points.size();//µ¥¸ö¸öÌå»ùÒò×ÜÊı
-        int a=-2,b=-1;//½»²æ²½³¤
+        int size=points.size();//å•ä¸ªä¸ªä½“åŸºå› æ€»æ•°
+        int a=-2,b=-1;//äº¤å‰æ­¥é•¿
         while(b<N)
         {
             a+=2;
@@ -293,9 +293,9 @@ public class GeneticPanel extends JPanel implements Runnable{
                 //PathList w2=new PathList(li2);
                 //all.add(w1);
                 //all.add(w2);
-                //½»²æµãÎ»
+                //äº¤å‰ç‚¹ä½
 
-                //¿ªÊ¼½»²æ
+                //å¼€å§‹äº¤å‰
                 int temp=li1.get(x);
                 li1.set(x, li1.get(y));
                 li1.set(y, temp);
@@ -309,7 +309,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         }
 
     }
-    //±äÒì
+    //å˜å¼‚
 
     public void change() {
         for(int i=0;i<N;i++)
@@ -318,11 +318,11 @@ public class GeneticPanel extends JPanel implements Runnable{
             Path lix=all.get(i);
             //PathList wList=new PathList(lix);
             //all.add(wList);
-            //Ëæ»ú²úÉú½»²æ»ùÒòÆ¬¶Î
+            //éšæœºäº§ç”Ÿäº¤å‰åŸºå› ç‰‡æ®µ
             int a=(int)(Math.random()*points.size());
             if(a==points.size()-1) a--;
 
-            //¿ªÊ¼±äÒì
+            //å¼€å§‹å˜å¼‚
             int temp=lix.get(a);
             lix.set(a, lix.get(a+1));
             lix.set(a+1, temp);
@@ -335,13 +335,13 @@ public class GeneticPanel extends JPanel implements Runnable{
             Path lix=all.get(i);
             //PathList wList=new PathList(lix);
             //all.add(wList);
-            //Ëæ»ú²úÉú½»²æ»ùÒòÆ¬¶Î
+            //éšæœºäº§ç”Ÿäº¤å‰åŸºå› ç‰‡æ®µ
             double di=allAdapts.get(i).getDistance()/points.size();
             for(int j=0;j<points.size()-1;j++)
             {
                 if(this.betwwenpoints(j, j+1)>di)
                 {
-                    //¿ªÊ¼±äÒì
+                    //å¼€å§‹å˜å¼‚
                     int temp=lix.get(j);
                     lix.set(j, lix.get(j+1));
                     lix.set(j+1, temp);

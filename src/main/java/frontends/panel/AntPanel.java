@@ -13,21 +13,21 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class AntPanel extends JPanel {
-    DecimalFormat df=new DecimalFormat("######0.00");//×îÖÕ½á¹û±£ÁôÁ½Î»Ğ¡Êı
-    List<Ant> ants=null;//ÒÏÈº
-    List<City> points=null;//³ÇÊĞĞÅÏ¢¼ÇÂ¼
-    double[][] distance;//³ÇÊĞÖ®¼ä¾àÀë¾ØÕó
-    double[][] t;//³ÇÊĞÖ®¼äĞÅÏ¢ËØ¾ØÕó
-    double c=5;//³õÊ¼ĞÅÏ¢ËØÅ¨
-    double Q=100;//Ã¿´ÎÂìÒÏ×ßÍêËùÓĞ³ÇÊĞËùÁôÏÂµÄĞÅËØ
-    double p=0.90;//ĞÅÏ¢ËØ±£ÁôÂÊ
+    DecimalFormat df=new DecimalFormat("######0.00");//æœ€ç»ˆç»“æœä¿ç•™ä¸¤ä½å°æ•°
+    List<Ant> ants=null;//èšç¾¤
+    List<City> points=null;//åŸå¸‚ä¿¡æ¯è®°å½•
+    double[][] distance;//åŸå¸‚ä¹‹é—´è·ç¦»çŸ©é˜µ
+    double[][] t;//åŸå¸‚ä¹‹é—´ä¿¡æ¯ç´ çŸ©é˜µ
+    double c=5;//åˆå§‹ä¿¡æ¯ç´ æµ“
+    double Q=100;//æ¯æ¬¡èš‚èšèµ°å®Œæ‰€æœ‰åŸå¸‚æ‰€ç•™ä¸‹çš„ä¿¡ç´ 
+    double p=0.90;//ä¿¡æ¯ç´ ä¿ç•™ç‡
     int loop_max=100;
     double scale;
     int size=7;
     int time=0;
     int index;
-    double distance_min=200000000;//¼ÇÂ¼×îÓÅ½â
-    Path list_01;//¼ÇÂ¼×îÓÅ½â
+    double distance_min=200000000;//è®°å½•æœ€ä¼˜è§£
+    Path list_01;//è®°å½•æœ€ä¼˜è§£
     public AntPanel(List<City> p){
         distance=new double[150][150];
         t=new double[150][150];
@@ -79,7 +79,7 @@ public class AntPanel extends JPanel {
         g.setColor(Color.yellow);
         g.drawString(string, 100, 520);
     }
-    public void ants_get()//³õÊ¼»¯ÒÏÈº
+    public void ants_get()//åˆå§‹åŒ–èšç¾¤
     {
         ants= Lists.newArrayList();
         for(int i=0;i<points.size();i++)
@@ -89,7 +89,7 @@ public class AntPanel extends JPanel {
             ants.add(an);
         }
     }
-    public void ants_run()//µ¥´ÎÑ­»·£ºËùÓĞÂìÒÏ×ßÍêËùÓĞ³ÇÊĞ
+    public void ants_run()//å•æ¬¡å¾ªç¯ï¼šæ‰€æœ‰èš‚èšèµ°å®Œæ‰€æœ‰åŸå¸‚
     {
         for(int i=1;i<points.size();i++)
         {
@@ -130,7 +130,7 @@ public class AntPanel extends JPanel {
         }
         System.out.println();
     }
-    //Ñ¡ÔñÏÂÒ»³ÇÊĞ
+    //é€‰æ‹©ä¸‹ä¸€åŸå¸‚
     public void choosecity(int n)
     {
         Ant a=ants.get(n);
@@ -139,8 +139,8 @@ public class AntPanel extends JPanel {
         double p[]=new double[150];
         for(int i = 0; i<a.getCityNumLeft(); i++)
         {
-            double di=1/distance[a.getCityNo()][a.getToGoCities().get(i)];//Æô·¢Òò×Ó
-            double ti=t[a.getCityNo()][a.getToGoCities().get(i)];//ĞÅÏ¢ËØÒò×Ó
+            double di=1/distance[a.getCityNo()][a.getToGoCities().get(i)];//å¯å‘å› å­
+            double ti=t[a.getCityNo()][a.getToGoCities().get(i)];//ä¿¡æ¯ç´ å› å­
             p[i]=ti*di*di*di*di*di;
             sump+=p[i];
         }

@@ -12,7 +12,7 @@ public class StartUpPanel extends JPanel implements Runnable{
         super.paint(g);
         g.fillRect(0, 0, 600, 480);
         g.setColor(Color.yellow);
-        Font font=new Font("ËÎÌå",Font.BOLD,100);
+        Font font=new Font("å®‹ä½“",Font.BOLD,100);
         this.setFont(font);
         this.paints(g);
     }
@@ -22,7 +22,7 @@ public class StartUpPanel extends JPanel implements Runnable{
         }
         else
         {
-            g.drawString("TSPÎÊÌâ", 120, 240);
+            g.drawString("TSPé—®é¢˜", 120, 240);
 
         }
     }

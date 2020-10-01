@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-//求解时的运行窗口(弹出)
+//姹傝В鏃剁殑杩愯绐楀彛(寮瑰嚭)
 public class WorkFrame extends JDialog implements MouseListener {
 
     JPanel jp2=null;

@@ -2,9 +2,9 @@ package backends;
 
 import lombok.Data;
 
-//ÊÊÓ¦¶È
+//é€‚åº”åº¦
 @Data
 public class Adapt {
-    private int no =0;//¸öÌå±àºÅ
-    private double distance=0;//¸Ã¸öÌå(Â·¾¶)×Ü¾àÀë
+    private int no =0;//ä¸ªä½“ç¼–å·
+    private double distance=0;//è¯¥ä¸ªä½“(è·¯å¾„)æ€»è·ç¦»
 }
