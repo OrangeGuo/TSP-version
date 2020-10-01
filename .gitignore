@@ -1,1 +1,5 @@
 /bin
+/target
+*.xml
+*.iml
+/.idea
