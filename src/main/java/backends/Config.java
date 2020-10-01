@@ -11,6 +11,7 @@ public class Config {
     public static boolean flag=true;
     public static int algoType =1;
     public static List<Integer> shortestPath = new ArrayList<>();//记录最短路径
+    public static List<City> cities;
     public static int N=100;//记录种群数量
     public static double shortestDistance =0;//记录最短距离
     public static int generations =200;//记录种群繁衍代数

@@ -26,8 +26,8 @@ public class GreedyPanel extends JPanel implements Runnable{
     long Time_start=System.currentTimeMillis();
     long Time_total=0;
     long time=10;//最小刷新时间间隔10毫秒
-    public GreedyPanel(List<City> p){
-        point=p;
+    public GreedyPanel(){
+        point=Config.cities;
         scale=Config.scale;
         time*=Config.refreshInterval;
     }
@@ -54,11 +54,6 @@ public class GreedyPanel extends JPanel implements Runnable{
 
             this.drawline(g,index_min);
         }
-
-
-
-
-
     }
     public void drawline(Graphics g,int n){
         points.addAll(point);

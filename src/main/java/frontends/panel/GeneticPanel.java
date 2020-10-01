@@ -1,4 +1,4 @@
-package frontends.frame;
+package frontends.panel;
 
 import backends.Path;
 import backends.City;
@@ -36,8 +36,8 @@ public class GeneticPanel extends JPanel implements Runnable{
 
     double distance_all=0;//
     double sum_same=0;//
-    public GeneticPanel(List<City> p){
-        this.points=p;
+    public GeneticPanel(){
+        this.points=Config.cities;
 
         this.N= Config.N;
         this.rate_best= Config.copyRate;
@@ -49,7 +49,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         allAdapts=Lists.newArrayList();
         this.get_max();
         this.get_group(N);
-        scale=500/p.size();
+        scale=500/points.size();
     }
     public void paint(Graphics g)
     {
@@ -193,15 +193,7 @@ public class GeneticPanel extends JPanel implements Runnable{
         }
 
     }
-    public void show(Path l)
-    {
-        System.out.print(' ');
-        for(int i=0;i<points.size();i++)
-        {
-            System.out.print(l.get(i)+" ");
-        }
-        System.out.println();
-    }
+
     //复制
     public void copy(){
 

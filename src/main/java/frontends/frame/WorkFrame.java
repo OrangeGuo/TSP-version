@@ -4,6 +4,7 @@ import backends.City;
 import backends.Config;
 import frontends.Icons;
 import frontends.panel.AntPanel;
+import frontends.panel.GeneticPanel;
 import frontends.panel.GreedyPanel;
 
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class WorkFrame extends JDialog implements MouseListener {
     JTextField jtf1=null;
     JTextField jtf2=null;
 
-    public WorkFrame(List<City> p){
+    public WorkFrame(){
 
         jp2=new JPanel();
         jb=new JButton("exit");
@@ -34,19 +35,19 @@ public class WorkFrame extends JDialog implements MouseListener {
 
         jp2.add(jb);
         if(Config.algoType ==1){
-            dp=new GreedyPanel(p);
+            dp=new GreedyPanel();
             Thread thread=new Thread(dp);
             thread.start();
             this.add(dp);
         }
         else if(Config.algoType ==0){
-            np=new GeneticPanel(p);
+            np=new GeneticPanel();
             Thread thread=new Thread(np);
             thread.start();
             this.add(np);
         }
         else {
-            ap=new AntPanel(p);
+            ap=new AntPanel();
             this.add(ap);
         }
         this.add(jp2,BorderLayout.SOUTH);

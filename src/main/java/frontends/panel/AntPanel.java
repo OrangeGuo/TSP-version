@@ -27,18 +27,18 @@ public class AntPanel extends JPanel {
     int time=0;
     int index;
     double distance_min=200000000;//记录最优解
-    Path list_01;//记录最优解
-    public AntPanel(List<City> p){
+    Path shortestPath;//记录最优解
+    public AntPanel(){
         distance=new double[150][150];
         t=new double[150][150];
-        points=p;
+        points=Config.cities;
         this.scale=Config.scale;
-        for(int i=0;i<p.size();i++)
+        for(int i=0;i< points.size();i++)
         {
-            City point=p.get(i);
-            for(int j=0;j<p.size();j++)
+            City point=points.get(i);
+            for(int j=0;j<points.size();j++)
             {
-                distance[i][j]=point.getdistence(p.get(j));
+                distance[i][j]=point.getdistence(points.get(j));
                 t[i][j]=c;
             }
         }
@@ -65,11 +65,11 @@ public class AntPanel extends JPanel {
     {
         for(int i=0;i<points.size();i++)
         {
-            int x=list_01.get(i);
+            int x= shortestPath.get(i);
             City p=points.get(x);
             g.setColor(Color.white);
             g.fillOval((int)(p.getX()*scale),(int)(p.getY()*scale),size,size);
-            int y=list_01.get(i+1);
+            int y= shortestPath.get(i+1);
             City point_near=points.get(y);
             g.setColor(Color.blue);
             g.drawLine((int)(p.getX()*scale+3),(int)(p.getY()*scale+3),(int)(point_near.getX()*scale+3),(int)(point_near.getY()*scale+3));
@@ -106,8 +106,8 @@ public class AntPanel extends JPanel {
             {
                 distance_min=ant.getDistance();
                 index=j;
-                list_01=new Path(ant.getWalkOverCities());
-                list_01.add(ant.getDepartCityNo());
+                shortestPath =new Path(ant.getWalkOverCities());
+                shortestPath.add(ant.getDepartCityNo());
             }
             //System.out.print(Ant.distance+" ");
             ant.getWalkOverCities().add(ant.getDepartCityNo());
@@ -119,17 +119,7 @@ public class AntPanel extends JPanel {
             //System.out.println();
         }
     }
-    public void show(Path l)
-    {
-        System.out.print(' ');
-        Path list=new Path(l);
-        while(list!=null)
-        {
-            System.out.print(list.no +" ");
-            list=list.next;
-        }
-        System.out.println();
-    }
+
     //选择下一城市
     public void choosecity(int n)
     {
