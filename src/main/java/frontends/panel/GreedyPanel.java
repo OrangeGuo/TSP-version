@@ -2,6 +2,7 @@ package frontends.panel;
 
 import backends.City;
 import backends.Config;
+import backends.DistancesCache;
 import com.google.common.collect.Lists;
 
 import javax.swing.*;
@@ -12,8 +13,7 @@ import java.util.List;
 
 
 public class GreedyPanel extends JPanel implements Runnable{
-    List<City> points= Lists.newArrayList();
-    List<City> point=Lists.newArrayList();
+    List<City> cities = Lists.newArrayList();
     DecimalFormat df=new DecimalFormat("######0.00");
     int index_all=0;
     int index_min=0;
@@ -21,13 +21,13 @@ public class GreedyPanel extends JPanel implements Runnable{
     int size=7;
     double distance_min=100000000;
     double distance_now=0;
-    boolean p=true;
+    boolean isRunning =true;
     boolean get=false;
     long Time_start=System.currentTimeMillis();
     long Time_total=0;
     long time=10;//最小刷新时间间隔10毫秒
+    DistancesCache cache=new DistancesCache();
     public GreedyPanel(){
-        point=Config.cities;
         scale=Config.scale;
         time*=Config.refreshInterval;
     }
@@ -37,29 +37,31 @@ public class GreedyPanel extends JPanel implements Runnable{
         g.setColor(Color.black);
         g.fillRect(0, 0, 600, 600);
         g.setColor(Color.white);
-        for (City p : point) {
-            g.fillOval((int) (p.getX() * scale), (int) (p.getY() * scale), size, size);
-        }
+        Config.cities.forEach(city -> {
+            drawCity(g, city);
+        });
 
-
-        if(index_all<point.size())
+        if(index_all<Config.cities.size())
         {
             this.drawline(g,index_all);
             index_all++;
         }
         else
         {
-            if(p) get=true;
-            p=false;
+            if(isRunning) get=true;
+            isRunning =false;
 
             this.drawline(g,index_min);
         }
     }
+    public void drawCity(Graphics g,City city){
+        g.fillOval((int) (city.getX() * scale), (int) (city.getY() * scale), size, size);
+    }
     public void drawline(Graphics g,int n){
-        points.addAll(point);
+        cities.addAll(Config.cities);
         int index=n;
 
-        City point_01=points.get(index);
+        City point_01= cities.get(index);
         if(get&& Config.flag)
         {
             Config.shortestPath.add(point_01.getN());
@@ -69,37 +71,37 @@ public class GreedyPanel extends JPanel implements Runnable{
         g.setColor(Color.blue);
         while(true)
         {
-            City point_first=points.get(index);
-            points.remove(index);
-            double distance=2000000000;
+            City departCity= cities.get(index);
+            cities.remove(index);
+            double distance=Double.MAX_VALUE;
 
-            for(int i=0;i<points.size();i++)
+            for(int i = 0; i< cities.size(); i++)
             {
-                City point_now=points.get(i);
-                if(distance>point_first.getdistence(point_now))
+                City desCity= cities.get(i);
+                if(distance>cache.getDistanceByCity(departCity,desCity))
                 {
-                    distance=point_first.getdistence(point_now);
+                    distance=cache.getDistanceByCity(departCity,desCity);
                     index=i;
                 }
             }
 
-            City point_near=points.get(index);
+            City point_near= cities.get(index);
             if(get&& Config.flag)
             {
                 Config.shortestPath.add(point_near.getN());
             }
-            g.drawLine((int)(point_first.getX()*scale+3),(int)(point_first.getY()*scale+3),(int)(point_near.getX()*scale+3),(int)(point_near.getY()*scale+3));
+            g.drawLine((int)(departCity.getX()*scale+3),(int)(departCity.getY()*scale+3),(int)(point_near.getX()*scale+3),(int)(point_near.getY()*scale+3));
             distance_now+=Math.sqrt(distance);
-            if(points.size()==1)
+            if(cities.size()==1)
             {
                 break;
             }
 
         }
-        City point_last=points.get(0);
+        City point_last= cities.get(0);
         get=false;
-        points.remove(0);
-        distance_now+=Math.sqrt(point_01.getdistence(point_last));
+        cities.remove(0);
+        distance_now+=Math.sqrt(cache.getDistanceByCity(point_01,point_last));
         g.drawLine((int)(point_01.getY()*scale+3),(int)(point_01.getY()*scale+3),(int)(point_last.getX()*scale+3),(int)(point_last.getY()*scale+3));
         g.setColor(Color.cyan);
         String s=String.valueOf(df.format(distance_now));
@@ -109,7 +111,7 @@ public class GreedyPanel extends JPanel implements Runnable{
         }
         g.drawString("时间仅供参考", 500, 20);
         g.drawString("红色圆点为起点", 500, 40);
-        if(p){
+        if(isRunning){
             g.drawString("当前总距离:"+s, 0,520);
             s=String.valueOf(df.format(distance_min));
             g.drawString("当前最短距离:"+s, 450, 520);
