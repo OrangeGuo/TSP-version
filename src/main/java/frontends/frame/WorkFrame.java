@@ -1,24 +1,23 @@
 package frontends.frame;
 
-import backends.City;
 import backends.Config;
+import backends.service.GreedySolver;
 import frontends.Icons;
 import frontends.panel.AntPanel;
 import frontends.panel.GeneticPanel;
-import frontends.panel.GreedyPanel;
+import frontends.panel.ShowPanel;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 
 //求解时的运行窗口(弹出)
 public class WorkFrame extends JDialog implements MouseListener {
 
     JPanel jp2=null;
-    GreedyPanel dp=null;
+    ShowPanel dp=null;
     GeneticPanel np=null;
     AntPanel ap=null;
     JButton jb=null;
@@ -35,7 +34,8 @@ public class WorkFrame extends JDialog implements MouseListener {
 
         jp2.add(jb);
         if(Config.algoType ==1){
-            dp=new GreedyPanel();
+            new GreedySolver().solve();
+            dp=new ShowPanel();
             this.add(dp);
         }
         else if(Config.algoType ==0){

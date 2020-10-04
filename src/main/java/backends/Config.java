@@ -16,6 +16,7 @@ public class Config {
     public static double shortestDistance = 0;//记录最短距离
     public static int generations = 200;//记录种群繁衍代数
     public static int state = 0;
+    public static long runTime;
     public static double copyRate = 0.1;//最优个体复制率
 
     private Config() {

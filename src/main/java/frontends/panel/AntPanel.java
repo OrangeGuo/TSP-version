@@ -1,9 +1,6 @@
 package frontends.panel;
 
-import backends.Ant;
-import backends.Path;
-import backends.City;
-import backends.Config;
+import backends.*;
 import com.google.common.collect.Lists;
 
 import javax.swing.*;
@@ -28,6 +25,7 @@ public class AntPanel extends JPanel {
     int index;
     double distance_min=200000000;//记录最优解
     Path shortestPath;//记录最优解
+    DistancesCache cache=new DistancesCache();
     public AntPanel(){
         distance=new double[150][150];
         t=new double[150][150];
@@ -38,7 +36,7 @@ public class AntPanel extends JPanel {
             City point=points.get(i);
             for(int j=0;j<points.size();j++)
             {
-                distance[i][j]=point.getdistence(points.get(j));
+                distance[i][j]=cache.getDistanceByCity(point,points.get(j));
                 t[i][j]=c;
             }
         }
@@ -54,12 +52,8 @@ public class AntPanel extends JPanel {
         {
             this.ants_get();
             this.ants_run();
-            //System.out.println(i+"   "+distance_min);
         }
-        //System.out.println(distance_min);
-        //this.show(list_01);
-        //System.out.println(this.getdistance(list_01));
-        //this.draw(g);
+        this.draw(g);
     }
     public void draw(Graphics g)
     {
@@ -75,7 +69,7 @@ public class AntPanel extends JPanel {
             g.drawLine((int)(p.getX()*scale+3),(int)(p.getY()*scale+3),(int)(point_near.getX()*scale+3),(int)(point_near.getY()*scale+3));
 
         }
-        String string=String.valueOf(df.format(distance_min))+"      "+String.valueOf(time);
+        String string= df.format(distance_min) +"      "+ time;
         g.setColor(Color.yellow);
         g.drawString(string, 100, 520);
     }
