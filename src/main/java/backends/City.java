@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 public class City {
     private final int x;
     private final int y;
-    private final int n;
+    private final int no;
     public int getdistence(City p){
         int dx=this.x-p.getX();
         int dy=this.y-p.getY();

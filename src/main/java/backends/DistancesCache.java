@@ -21,7 +21,7 @@ public class DistancesCache {
     }
 
     private String getKey(City src, City des) {
-        return src.getN() < des.getN() ? src.getN() + COLON + des.getN() :
-                des.getN() + COLON + src.getN();
+        return src.getNo() < des.getNo() ? src.getNo() + COLON + des.getNo() :
+                des.getNo() + COLON + src.getNo();
     }
 }

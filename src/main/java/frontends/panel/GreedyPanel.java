@@ -4,148 +4,105 @@ import backends.City;
 import backends.Config;
 import backends.DistancesCache;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import javax.swing.*;
 
+
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
-public class GreedyPanel extends JPanel implements Runnable{
-    List<City> cities = Lists.newArrayList();
-    DecimalFormat df=new DecimalFormat("######0.00");
-    int index_all=0;
-    int index_min=0;
-    double scale=1;
-    int size=7;
-    double distance_min=100000000;
-    double distance_now=0;
-    boolean isRunning =true;
-    boolean get=false;
-    long Time_start=System.currentTimeMillis();
-    long Time_total=0;
-    long time=10;//最小刷新时间间隔10毫秒
-    DistancesCache cache=new DistancesCache();
-    public GreedyPanel(){
-        scale=Config.scale;
-        time*=Config.refreshInterval;
+public class GreedyPanel extends JPanel {
+    DecimalFormat df = new DecimalFormat("######0.00");
+    double scale = 1;
+    int size = 7;
+    long solveTime;
+    DistancesCache cache = new DistancesCache();
+
+    public GreedyPanel() {
+        scale = Config.scale;
     }
-    public void paint(Graphics g)
-    {
+
+    public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
         g.fillRect(0, 0, 600, 600);
+        drawPath(g);
+    }
+
+    public void drawCity(Graphics g, City city) {
+        g.fillOval((int) (city.getX() * scale), (int) (city.getY() * scale), size, size);
+    }
+
+    public void drawPath(Graphics g) {
+        long startTime = System.currentTimeMillis();
+        greedySolve();
+        solveTime = System.currentTimeMillis() - startTime;
         g.setColor(Color.white);
         Config.cities.forEach(city -> {
             drawCity(g, city);
         });
-
-        if(index_all<Config.cities.size())
-        {
-            this.drawline(g,index_all);
-            index_all++;
-        }
-        else
-        {
-            if(isRunning) get=true;
-            isRunning =false;
-
-            this.drawline(g,index_min);
-        }
-    }
-    public void drawCity(Graphics g,City city){
-        g.fillOval((int) (city.getX() * scale), (int) (city.getY() * scale), size, size);
-    }
-    public void drawline(Graphics g,int n){
-        cities.addAll(Config.cities);
-        int index=n;
-
-        City point_01= cities.get(index);
-        if(get&& Config.flag)
-        {
-            Config.shortestPath.add(point_01.getN());
-        }
+        Map<Integer, City> cityMap = Config.cities.stream().collect(Collectors.toMap(City::getNo, city -> city));
+        City start = cityMap.get(Config.shortestPath.get(0));
         g.setColor(Color.red);
-        g.fillOval((int)(point_01.getX()*scale-2),(int)(point_01.getY()*scale-2), 10, 10);
+        g.fillOval((int) (start.getX() * scale - 2), (int) (start.getY() * scale - 2), 10, 10);
         g.setColor(Color.blue);
-        while(true)
-        {
-            City departCity= cities.get(index);
-            cities.remove(index);
-            double distance=Double.MAX_VALUE;
-
-            for(int i = 0; i< cities.size(); i++)
-            {
-                City desCity= cities.get(i);
-                if(distance>cache.getDistanceByCity(departCity,desCity))
-                {
-                    distance=cache.getDistanceByCity(departCity,desCity);
-                    index=i;
-                }
-            }
-
-            City point_near= cities.get(index);
-            if(get&& Config.flag)
-            {
-                Config.shortestPath.add(point_near.getN());
-            }
-            g.drawLine((int)(departCity.getX()*scale+3),(int)(departCity.getY()*scale+3),(int)(point_near.getX()*scale+3),(int)(point_near.getY()*scale+3));
-            distance_now+=Math.sqrt(distance);
-            if(cities.size()==1)
-            {
-                break;
-            }
-
+        for (int i = 0; i < Config.shortestPath.size() - 1; i++) {
+            City departCity = cityMap.get(Config.shortestPath.get(i));
+            City cityNext = cityMap.get(Config.shortestPath.get(i + 1));
+            g.drawLine((int) (departCity.getX() * scale + 3), (int) (departCity.getY() * scale + 3), (int) (cityNext.getX() * scale + 3), (int) (cityNext.getY() * scale + 3));
         }
-        City point_last= cities.get(0);
-        get=false;
-        cities.remove(0);
-        distance_now+=Math.sqrt(cache.getDistanceByCity(point_01,point_last));
-        g.drawLine((int)(point_01.getY()*scale+3),(int)(point_01.getY()*scale+3),(int)(point_last.getX()*scale+3),(int)(point_last.getY()*scale+3));
+        City end = cityMap.get(Config.shortestPath.get(Config.shortestPath.size() - 1));
+        g.drawLine((int) (start.getX() * scale + 3), (int) (start.getY() * scale + 3), (int) (end.getX() * scale + 3), (int) (end.getY() * scale + 3));
         g.setColor(Color.cyan);
-        String s=String.valueOf(df.format(distance_now));
-        if(distance_min>distance_now){
-            distance_min=distance_now;
-            index_min=index_all;
-        }
         g.drawString("时间仅供参考", 500, 20);
         g.drawString("红色圆点为起点", 500, 40);
-        if(isRunning){
-            g.drawString("当前总距离:"+s, 0,520);
-            s=String.valueOf(df.format(distance_min));
-            g.drawString("当前最短距离:"+s, 450, 520);
-            Time_total=(System.currentTimeMillis()-Time_start);
-            s=String.valueOf(Time_total);
-            g.drawString("总用时:"+s+"毫秒", 250, 520);
-        }
-        else{
-            g.drawString("最短距离:"+s, 150,520);
-            s=String.valueOf(Time_total);
-            g.drawString("总用时:"+s+"毫秒",350, 520);
-            Config.shortestDistance =distance_min;
-            if(Config.state ==1)
-            {
-                Config.state++;
-                Config.flag =false;
-            }
-
-        }
-
-        distance_now=0;
+        g.drawString("最短距离:" + df.format(Config.shortestDistance), 150, 520);
+        g.drawString("总用时:" + solveTime + "毫秒", 350, 520);
     }
-    @Override
-    public void run() {
-        // TODO Auto-generated method stub
-        while(true)
-        {
-            try {
-                Thread.sleep(time);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+
+    private void greedySolve() {
+        Config.shortestDistance=Double.MAX_VALUE;
+        Config.cities.forEach(this::checkAndUpdatePath);
+        if (Config.state == 1) {
+            Config.state++;
+            Config.flag = false;
+        }
+    }
+
+    private void checkAndUpdatePath(final City depCity) {
+        Set<City> allCities = Sets.newHashSet(Config.cities);
+        City start = depCity;
+        List<Integer> currentPath = Lists.newArrayList(start.getNo());
+        Double currentDistance = 0.;
+        City departCity = start;
+        while (allCities.size() > 1) {
+            allCities.remove(departCity);
+            double distance = Double.MAX_VALUE;
+            City cityNext = null;
+            for (City desCity : allCities) {
+                if (distance > cache.getDistanceByCity(departCity, desCity)) {
+                    distance = cache.getDistanceByCity(departCity, desCity);
+                    cityNext = desCity;
+                }
             }
-            this.repaint();
+            currentPath.add(cityNext.getNo());
+            currentDistance += Math.sqrt(distance);
+            departCity = cityNext;
+        }
+        City end = allCities.stream().findFirst().get();
+        currentPath.add(end.getNo());
+        currentDistance += Math.sqrt(cache.getDistanceByCity(start, end));
+        if (currentDistance < Config.shortestDistance) {
+            Config.shortestDistance = currentDistance;
+            Config.shortestPath.clear();
+            Config.shortestPath.addAll(currentPath);
         }
     }
 }

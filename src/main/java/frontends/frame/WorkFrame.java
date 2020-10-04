@@ -36,8 +36,6 @@ public class WorkFrame extends JDialog implements MouseListener {
         jp2.add(jb);
         if(Config.algoType ==1){
             dp=new GreedyPanel();
-            Thread thread=new Thread(dp);
-            thread.start();
             this.add(dp);
         }
         else if(Config.algoType ==0){
