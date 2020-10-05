@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 @Builder
 public class Adapt {
-    private List<Integer> individual;
     private double distance=0;//该个体(路径)总距离
+    private List<Integer> individual;
 }
