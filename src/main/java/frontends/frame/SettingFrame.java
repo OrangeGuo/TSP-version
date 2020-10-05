@@ -65,15 +65,15 @@ public class SettingFrame extends JDialog implements ActionListener {
         jp4.add(jcb2);
         jp5.add(jl5);
         jp5.add(jcb3);
-        if(Config.N ==100)
+        if(Config.populationNum ==100)
         {
             jrb1.setSelected(true);
         }
-        else if(Config.N ==300)
+        else if(Config.populationNum ==300)
         {
             jrb2.setSelected(true);
         }
-        else if(Config.N ==500)
+        else if(Config.populationNum ==500)
         {
             jrb3.setSelected(true);
         }
@@ -116,11 +116,11 @@ public class SettingFrame extends JDialog implements ActionListener {
             }
             if(jrb2.isSelected())
             {
-                Config.N =300;
+                Config.populationNum =300;
             }
             else if(jrb3.isSelected())
             {
-                Config.N =500;
+                Config.populationNum =500;
             }
             if(Objects.equals(jcb2.getSelectedItem(), "400"))
             {

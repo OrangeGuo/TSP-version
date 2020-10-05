@@ -2,7 +2,7 @@ package backends.service;
 
 import backends.City;
 import backends.Config;
-import backends.DistancesCache;
+import backends.Caches;
 import backends.model.AbstractSolver;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public class GreedySolver extends AbstractSolver {
-    private final DistancesCache cache = new DistancesCache();
+    private final Caches cache = new Caches();
 
     @Override
     public void process() {

@@ -1,10 +1,10 @@
 package frontends.frame;
 
 import backends.Config;
+import backends.service.GeneticSolver;
 import backends.service.GreedySolver;
 import frontends.Icons;
 import frontends.panel.AntPanel;
-import frontends.panel.GeneticPanel;
 import frontends.panel.ShowPanel;
 
 import javax.swing.*;
@@ -18,7 +18,6 @@ public class WorkFrame extends JDialog implements MouseListener {
 
     JPanel jp2=null;
     ShowPanel dp=null;
-    GeneticPanel np=null;
     AntPanel ap=null;
     JButton jb=null;
     JTextField jtf1=null;
@@ -39,10 +38,9 @@ public class WorkFrame extends JDialog implements MouseListener {
             this.add(dp);
         }
         else if(Config.algoType ==0){
-            np=new GeneticPanel();
-            Thread thread=new Thread(np);
-            thread.start();
-            this.add(np);
+            new GeneticSolver().solve();
+            dp=new ShowPanel();
+            this.add(dp);
         }
         else {
             ap=new AntPanel();

@@ -25,7 +25,7 @@ public class AntPanel extends JPanel {
     int index;
     double distance_min=200000000;//记录最优解
     Path shortestPath;//记录最优解
-    DistancesCache cache=new DistancesCache();
+    Caches cache=new Caches();
     public AntPanel(){
         distance=new double[150][150];
         t=new double[150][150];
