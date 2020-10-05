@@ -16,37 +16,28 @@ import java.awt.event.MouseListener;
 //求解时的运行窗口(弹出)
 public class WorkFrame extends JDialog implements MouseListener {
 
-    JPanel jp2=null;
-    ShowPanel dp=null;
-    AntPanel ap=null;
-    JButton jb=null;
-    JTextField jtf1=null;
-    JTextField jtf2=null;
+    JPanel jp2 = null;
+    ShowPanel dp = null;
+    AntPanel ap = null;
+    JButton jb = null;
+    JTextField jtf1 = null;
+    JTextField jtf2 = null;
 
-    public WorkFrame(){
+    public WorkFrame() {
 
-        jp2=new JPanel();
-        jb=new JButton("exit");
+        jp2 = new JPanel();
+        jb = new JButton("exit");
         jb.addMouseListener(this);
 
         jp2.setBackground(Color.CYAN);
 
         jp2.add(jb);
-        if(Config.algoType ==1){
-            new GreedySolver().solve();
-            dp=new ShowPanel();
-            this.add(dp);
-        }
-        else if(Config.algoType ==0){
-            new GeneticSolver().solve();
-            dp=new ShowPanel();
-            this.add(dp);
-        }
-        else {
-            ap=new AntPanel();
-            this.add(ap);
-        }
-        this.add(jp2,BorderLayout.SOUTH);
+        Config.abstractSolver.solve();
+        dp = new ShowPanel();
+        this.add(dp);
+
+
+        this.add(jp2, BorderLayout.SOUTH);
         this.setIconImage(Icons.WorkIcon.getImage());
         this.setSize(600, 600);
         this.setTitle("Find the shortest path");
@@ -61,7 +52,7 @@ public class WorkFrame extends JDialog implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
-        if(e.getSource().equals(jb)){
+        if (e.getSource().equals(jb)) {
             this.dispose();
         }
     }

@@ -11,10 +11,11 @@ import java.util.List;
 import java.util.Set;
 
 public class GreedySolver extends AbstractSolver {
-    private final Caches cache = new Caches();
+    private Caches cache;
 
     @Override
     public void process() {
+        cache = new Caches();
         Config.shortestDistance = Double.MAX_VALUE;
         Config.cities.forEach(this::checkAndUpdatePath);
         if (Config.state == 1) {

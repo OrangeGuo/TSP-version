@@ -162,13 +162,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener {
             if (flag) {
                 Config.flag = true;
                 Config.shortestPath.clear();
-                if (Objects.equals(this.jcb.getSelectedItem(), "遗传算法")) {
-                    Config.algoType = 0;
-                } else if (Objects.equals(this.jcb.getSelectedItem(), "贪心算法")) {
-                    Config.algoType = 1;
-                } else {
-                    Config.algoType = 2;
-                }
+                Config.abstractSolver = Algorithm.getSolverByName((String) this.jcb.getSelectedItem());
                 fv = new WorkFrame();
             } else {
                 if (this.file_error == 0) {
@@ -213,7 +207,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener {
             } catch (Exception e2) {
                 // TODO Auto-generated catch block
 
-			}//获取文件名及其绝对路径
+            }//获取文件名及其绝对路径
             if (st != null) {
                 int ii = st.length();
                 String name = "" + st.charAt(ii - 1) + st.charAt(ii - 2) + st.charAt(ii - 3);
@@ -289,9 +283,9 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener {
 
 
                 } catch (IOException fileNotFoundException) {
-					fileNotFoundException.printStackTrace();
-				}
-			}
+                    fileNotFoundException.printStackTrace();
+                }
+            }
         }
 
 

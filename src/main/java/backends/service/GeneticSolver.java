@@ -13,12 +13,10 @@ import java.util.stream.Collectors;
 public class GeneticSolver extends AbstractSolver {
     List<List<Integer>> population = new ArrayList<>();//种群
     List<Adapt> allAdapts = Lists.newArrayList();//记录种群适应度
-    Caches caches = new Caches();
-    int populationNum = Config.populationNum;//种群个体数
-    double rate_best = Config.copyRate;//最优个体复制率
-    double rate_mix = 0;//交叉率
-    int cityNum = Config.cities.size();
-    List<City> cities = new ArrayList<>(Config.cities);
+    Caches caches;
+    int populationNum;//种群个体数
+    double copyRate;//最优个体复制率
+    int cityNum;
     Adapt bestAdapt;
 
     @Override
@@ -40,6 +38,10 @@ public class GeneticSolver extends AbstractSolver {
 
     //种群初始化
     public void initPopulation() {
+        populationNum = Config.populationNum;//种群个体数
+        copyRate = Config.copyRate;//最优个体复制率
+        cityNum = Config.cities.size();
+        caches = new Caches();
         List<Integer> standardIndividual = Lists.newArrayList();
         for (int i = 0; i < cityNum; i++) {
             standardIndividual.add(i + 1);
@@ -83,7 +85,7 @@ public class GeneticSolver extends AbstractSolver {
                     .distance(currentBestAdapt.getDistance())
                     .build();
         }
-        for (int i = 0; i < populationNum * (rate_best); i++) {
+        for (int i = 0; i < populationNum * (copyRate); i++) {
             List<Integer> newlList = new ArrayList<>(bestAdapt.getIndividual());
             population.add(0, newlList);
             Adapt adapt = Adapt.builder()

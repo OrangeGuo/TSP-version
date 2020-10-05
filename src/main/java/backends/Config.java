@@ -1,5 +1,6 @@
 package backends;
 
+import backends.model.AbstractSolver;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Config {
     public static int refreshInterval = 1;//运行界面刷新时间间隔控制
     public static double scale = 1;//控制Drawpanel绘图范围
     public static boolean flag = true;
-    public static int algoType = 1;
+    public static AbstractSolver abstractSolver;
     public static List<Integer> shortestPath = new ArrayList<>();//记录最短路径
     public static List<City> cities = Lists.newArrayList();
     public static int populationNum = 100;//记录种群数量
