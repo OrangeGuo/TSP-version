@@ -1,10 +1,7 @@
 package frontends.frame;
 
 import backends.Config;
-import backends.service.GeneticSolver;
-import backends.service.GreedySolver;
 import frontends.Icons;
-import frontends.panel.AntPanel;
 import frontends.panel.ShowPanel;
 
 import javax.swing.*;
@@ -18,7 +15,6 @@ public class WorkFrame extends JDialog implements MouseListener {
 
     JPanel jp2 = null;
     ShowPanel dp = null;
-    AntPanel ap = null;
     JButton jb = null;
     JTextField jtf1 = null;
     JTextField jtf2 = null;
