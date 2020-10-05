@@ -17,6 +17,38 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <!-- NOTE: 不需要设置groupId,因为默认为org.apache.maven.plugins -->
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <!-- 指定jar包名称，需appendAssemblyId和finalName配合使用 -->
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <finalName>${project.artifactId}-full</finalName>
+                    <archive>
+                        <manifest>
+                            <!-- 设置主类-->
+                            <mainClass>main.Main</mainClass>
+                            <!-- 将版本信息写入MANIFEST.MF -->
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <!-- this is used for inheritance merges -->
+                        <id>make-assembly</id>
+                        <!-- 将assembly绑定到package阶段 -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
