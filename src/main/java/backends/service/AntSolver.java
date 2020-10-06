@@ -36,7 +36,7 @@ public class AntSolver extends AbstractSolver {
 
     public void init(){
         cache=new Caches();
-        minDistance=Double.MIN_VALUE;
+        minDistance=Double.MAX_VALUE;
         cities = new ArrayList<>(Config.cities);
         distance = new double[cities.size()+1][cities.size()+1];
         t = new double[cities.size()+1][cities.size()+1];
@@ -114,8 +114,6 @@ public class AntSolver extends AbstractSolver {
 
     public double calIndividualDistance(List<Integer> li) {
         double distance = 0;
-        if(li==null||li.isEmpty())
-            return distance;
         for (int i = 0; i < li.size() - 1; i++) {
             City city = cache.getCityByNo(li.get(i));
             City nextCity = cache.getCityByNo(li.get(i + 1));
