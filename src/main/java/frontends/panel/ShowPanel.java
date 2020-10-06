@@ -1,17 +1,14 @@
 package frontends.panel;
 
-import backends.Caches;
-import backends.City;
-import backends.Config;
-import backends.service.GreedySolver;
+import backends.util.Caches;
+import backends.model.City;
+import backends.util.Config;
 
 import javax.swing.*;
 
 
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class ShowPanel extends JPanel {

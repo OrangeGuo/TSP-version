@@ -1,6 +1,6 @@
 package backends.model;
 
-import backends.Config;
+import backends.util.Config;
 
 public abstract class AbstractSolver {
     public void solve() {

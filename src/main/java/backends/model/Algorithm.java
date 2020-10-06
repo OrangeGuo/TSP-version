@@ -1,15 +1,10 @@
-package backends;
+package backends.model;
 
-import backends.model.AbstractSolver;
 import backends.service.AntSolver;
 import backends.service.GeneticSolver;
 import backends.service.GreedySolver;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public enum Algorithm {

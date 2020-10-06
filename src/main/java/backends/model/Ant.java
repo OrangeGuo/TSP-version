@@ -1,4 +1,4 @@
-package backends;
+package backends.model;
 
 import com.google.common.collect.Lists;
 import lombok.Data;

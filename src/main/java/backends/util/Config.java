@@ -1,6 +1,7 @@
-package backends;
+package backends.util;
 
 import backends.model.AbstractSolver;
+import backends.model.City;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package backends.service;
 
-import backends.Ant;
-import backends.Caches;
-import backends.City;
-import backends.Config;
+import backends.model.Ant;
+import backends.util.Caches;
+import backends.model.City;
+import backends.util.Config;
 import backends.model.AbstractSolver;
 import com.google.common.collect.Lists;
 

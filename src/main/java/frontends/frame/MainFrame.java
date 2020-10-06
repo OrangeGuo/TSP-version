@@ -1,8 +1,8 @@
 package frontends.frame;
 
-import backends.Algorithm;
-import backends.City;
-import backends.Config;
+import backends.model.Algorithm;
+import backends.model.City;
+import backends.util.Config;
 import frontends.*;
 import frontends.panel.StartUpPanel;
 import lombok.extern.java.Log;
@@ -17,10 +17,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 
 import javax.swing.*;

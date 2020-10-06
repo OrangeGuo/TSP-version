@@ -1,8 +1,8 @@
 package backends.service;
 
-import backends.City;
-import backends.Config;
-import backends.Caches;
+import backends.model.City;
+import backends.util.Config;
+import backends.util.Caches;
 import backends.model.AbstractSolver;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

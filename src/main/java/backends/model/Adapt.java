@@ -1,4 +1,4 @@
-package backends;
+package backends.model;
 
 import lombok.Builder;
 import lombok.Data;

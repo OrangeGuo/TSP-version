@@ -1,6 +1,6 @@
 package frontends.frame;
 
-import backends.Config;
+import backends.util.Config;
 import frontends.Icons;
 import frontends.panel.ShowPanel;
 
