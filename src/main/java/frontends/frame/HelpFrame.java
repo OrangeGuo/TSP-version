@@ -1,6 +1,6 @@
 package frontends.frame;
 
-import frontends.Icons;
+import backends.util.Icons;
 
 import javax.swing.*;
 import java.awt.*;

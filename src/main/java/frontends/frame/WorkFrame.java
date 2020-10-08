@@ -1,8 +1,8 @@
 package frontends.frame;
 
 import backends.util.Config;
-import frontends.Icons;
-import frontends.panel.ShowPanel;
+import backends.util.Icons;
+import frontends.panel.SolutionPanel;
 
 import javax.swing.*;
 
@@ -14,7 +14,7 @@ import java.awt.event.MouseListener;
 public class WorkFrame extends JDialog implements MouseListener {
 
     JPanel jp2 = null;
-    ShowPanel dp = null;
+    SolutionPanel dp = null;
     JButton jb = null;
     JTextField jtf1 = null;
     JTextField jtf2 = null;
@@ -29,7 +29,7 @@ public class WorkFrame extends JDialog implements MouseListener {
 
         jp2.add(jb);
         Config.abstractSolver.solve();
-        dp = new ShowPanel();
+        dp = new SolutionPanel();
         this.add(dp);
 
 

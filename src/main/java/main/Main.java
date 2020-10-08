@@ -1,15 +1,18 @@
 package main;
 
-import lombok.extern.java.Log;
-import frontends.frame.MainFrame;
+import backends.model.Solution;
+import backends.util.SolutionUtil;
 import lombok.extern.log4j.Log4j2;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.io.*;
+import java.util.ArrayList;
 
 @Log4j2
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        log.info("start");
-        MainFrame tsp=new MainFrame();
+
+    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
+        SolutionUtil.loadFromFile();
     }
+
+
 }

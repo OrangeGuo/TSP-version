@@ -3,7 +3,7 @@ package frontends.frame;
 import backends.model.Algorithm;
 import backends.model.City;
 import backends.util.Config;
-import frontends.*;
+import backends.util.Icons;
 import frontends.panel.StartUpPanel;
 import lombok.extern.java.Log;
 

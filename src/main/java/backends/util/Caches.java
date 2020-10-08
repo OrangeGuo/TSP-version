@@ -21,7 +21,7 @@ public class Caches {
         String key = getKey(src, des);
         if (!distances.containsKey(key)) {
             log.info("Cache miss:{}", key);
-            distances.put(key, src.getdistence(des));
+            distances.put(key, src.getDistance(des));
         }
         return distances.get(key);
     }

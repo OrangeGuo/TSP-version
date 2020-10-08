@@ -11,12 +11,12 @@ import java.awt.*;
 import java.text.DecimalFormat;
 
 
-public class ShowPanel extends JPanel {
+public class SolutionPanel extends JPanel {
     DecimalFormat df = new DecimalFormat("######0.00");
     double scale = 1;
     int size = 7;
     Caches caches=new Caches();
-    public ShowPanel() {
+    public SolutionPanel() {
         scale = Config.scale;
     }
 

@@ -1,7 +1,7 @@
 package frontends.frame;
 
 import backends.util.Config;
-import frontends.Icons;
+import backends.util.Icons;
 
 import javax.swing.*;
 import java.awt.*;
