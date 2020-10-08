@@ -19,6 +19,10 @@ public class GeneticSolver extends AbstractSolver {
     int cityNum;
     Adapt bestAdapt;
 
+    public GeneticSolver(String name) {
+        super(name);
+    }
+
     @Override
     public void process() {
         initPopulation();

@@ -6,6 +6,7 @@ import backends.model.City;
 import backends.util.Config;
 import backends.model.AbstractSolver;
 import com.google.common.collect.Lists;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,13 @@ public class AntSolver extends AbstractSolver {
     double p = 0.90;//信息素保留率
     int index;
     double minDistance;//记录最优解
-    List<Integer> shortestPath=Lists.newArrayList();//记录最优解
+    List<Integer> shortestPath = Lists.newArrayList();//记录最优解
     Caches cache;
+    
+    public AntSolver(String name) {
+        super(name);
+    }
+
     @Override
     public void process() {
         init();
@@ -30,16 +36,16 @@ public class AntSolver extends AbstractSolver {
             initAnts();
             antsWalk();
         }
-        Config.shortestPath=shortestPath.stream().map(item->item+1).collect(Collectors.toList());
-        Config.shortestDistance=calIndividualDistance(Config.shortestPath);
+        Config.shortestPath = shortestPath.stream().map(item -> item + 1).collect(Collectors.toList());
+        Config.shortestDistance = calIndividualDistance(Config.shortestPath);
     }
 
-    public void init(){
-        cache=new Caches();
-        minDistance=Double.MAX_VALUE;
+    public void init() {
+        cache = new Caches();
+        minDistance = Double.MAX_VALUE;
         cities = new ArrayList<>(Config.cities);
-        distance = new double[cities.size()+1][cities.size()+1];
-        t = new double[cities.size()+1][cities.size()+1];
+        distance = new double[cities.size() + 1][cities.size() + 1];
+        t = new double[cities.size() + 1][cities.size() + 1];
         for (int i = 0; i < cities.size(); i++) {
             City point = cities.get(i);
             for (int j = 0; j < cities.size(); j++) {
@@ -48,6 +54,7 @@ public class AntSolver extends AbstractSolver {
             }
         }
     }
+
     public void initAnts()//初始化蚁群
     {
         ants = Lists.newArrayList();
@@ -56,6 +63,7 @@ public class AntSolver extends AbstractSolver {
             ants.add(an);
         }
     }
+
     public void antsWalk()//单次循环：所有蚂蚁走完所有城市
     {
         for (int i = 1; i < cities.size(); i++) {
@@ -80,6 +88,7 @@ public class AntSolver extends AbstractSolver {
 
         }
     }
+
     //选择下一城市
     public void chooseCity(int n) {
         Ant a = ants.get(n);
@@ -107,8 +116,8 @@ public class AntSolver extends AbstractSolver {
     }
 
     public double getDistancesByCityNo(int m, int n) {
-        City city = cache.getCityByNo(m+1);
-        City nextCity = cache.getCityByNo(n+1);
+        City city = cache.getCityByNo(m + 1);
+        City nextCity = cache.getCityByNo(n + 1);
         return Math.sqrt(cache.getDistanceByCity(city, nextCity));
     }
 

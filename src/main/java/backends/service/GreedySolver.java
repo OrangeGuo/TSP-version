@@ -13,6 +13,10 @@ import java.util.Set;
 public class GreedySolver extends AbstractSolver {
     private Caches cache;
 
+    public GreedySolver(String name) {
+        super(name);
+    }
+
     @Override
     public void process() {
         cache = new Caches();
@@ -44,7 +48,6 @@ public class GreedySolver extends AbstractSolver {
             departCity = cityNext;
         }
         City end = allCities.stream().findFirst().get();
-        currentPath.add(end.getNo());
         currentDistance += Math.sqrt(cache.getDistanceByCity(depCity, end));
         if (currentDistance < Config.shortestDistance) {
             Config.shortestDistance = currentDistance;

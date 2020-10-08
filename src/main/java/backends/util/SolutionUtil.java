@@ -1,29 +1,34 @@
 package backends.util;
 
 import backends.model.Solution;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@Log4j2
 public final class SolutionUtil {
     private static final String path = "src/main/resources/data/solutions.dat";
 
-    public static Optional<Solution> loadFromFile() throws IOException, ClassNotFoundException {
+    public static Optional<ArrayList<Solution>> loadFromFile() {
         checkAndCreateDir();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))) {
-            Solution solution = (Solution) ois.readObject();
-            return Optional.of(solution);
-        } catch (FileNotFoundException fileNotFoundException) {
+            ArrayList<Solution> solutions = (ArrayList<Solution>) ois.readObject();
+            return Optional.of(solutions);
+        } catch (Exception exception) {
             return Optional.empty();
         }
     }
 
-    public static void saveToFile(Solution solution) throws FileNotFoundException, IOException {
+    public static void saveToFile(ArrayList<Solution> solutions) {
         checkAndCreateDir();
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
-            oos.writeObject(solution);
+            oos.writeObject(solutions);
             oos.flush();
+        } catch (Exception exception) {
+            log.error(exception);
         }
     }
 
