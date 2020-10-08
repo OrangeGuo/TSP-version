@@ -26,8 +26,10 @@ public class WorkFrame extends JDialog implements MouseListener {
     SolutionPanel dp;
     JButton exitButton;
     JButton switchButton;
-    Caches caches=new Caches();
+    Caches caches = new Caches();
+    int index = 0;
     ArrayList<Solution> solutions;
+
     public WorkFrame() {
 
         buttonPanel = new JPanel();
@@ -42,7 +44,7 @@ public class WorkFrame extends JDialog implements MouseListener {
 
         buttonPanel.add(switchButton);
         Config.abstractSolver.solve();
-        Solution solution=Solution.builder().bestPath((ArrayList<City>) Config.shortestPath.stream().map(cityNo -> caches.getCityByNo(cityNo)).collect(Collectors.toList()))
+        Solution solution = Solution.builder().bestPath((ArrayList<City>) Config.shortestPath.stream().map(cityNo -> caches.getCityByNo(cityNo)).collect(Collectors.toList()))
                 .runTime(Config.runTime)
                 .distance(Config.shortestDistance)
                 .algorithm(Config.abstractSolver.getName())
@@ -51,18 +53,13 @@ public class WorkFrame extends JDialog implements MouseListener {
 
         dp = new SolutionPanel(solution);
         this.add(dp);
-        Optional<ArrayList<Solution>> optionalSolutions=SolutionUtil.loadFromFile();
-        if(optionalSolutions.isPresent())
-            solutions=optionalSolutions.get();
-        else {
-            solutions= Lists.newArrayList(solution);
-            SolutionUtil.saveToFile(solutions);
-        }
+
+        solutions = SolutionUtil.updateBestSolutions(caches, solution);
 
 
         this.add(buttonPanel, BorderLayout.SOUTH);
         this.setIconImage(Icons.WorkIcon.getImage());
-        this.setSize(600, 600);
+        this.setSize(630, 600);
         this.setTitle("Find the shortest path");
         this.setLocationRelativeTo(null);
         this.setModal(true);
@@ -77,10 +74,10 @@ public class WorkFrame extends JDialog implements MouseListener {
         // TODO Auto-generated method stub
         if (e.getSource().equals(exitButton)) {
             this.dispose();
-        }
-        else {
-           dp.setSolution(solutions.get(0));
-           dp.repaint();
+        } else {
+            dp.setSolution(solutions.get(index++));
+            index = index % solutions.size();
+            dp.repaint();
         }
     }
 

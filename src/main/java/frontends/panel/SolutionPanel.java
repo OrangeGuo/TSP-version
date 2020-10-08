@@ -35,7 +35,7 @@ public class SolutionPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.black);
-        g.fillRect(0, 0, 600, 600);
+        g.fillRect(0, 0, 630, 600);
         drawPath(g, solution);
     }
 
