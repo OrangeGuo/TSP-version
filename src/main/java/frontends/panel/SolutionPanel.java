@@ -28,7 +28,6 @@ public class SolutionPanel extends JPanel {
 
 
     public SolutionPanel(Solution solution) {
-        scale = Config.scale;
         this.solution = solution;
     }
 
@@ -45,6 +44,7 @@ public class SolutionPanel extends JPanel {
 
     private void drawPath(Graphics g, Solution solution) {
         List<City> cities = solution.getBestPath();
+        updateScaleOnMax(cities);
         g.setColor(Color.white);
         cities.forEach(city -> {
             drawCity(g, city);
@@ -67,5 +67,14 @@ public class SolutionPanel extends JPanel {
         g.drawString(solution.getAlgorithm(), 500, 80);
         g.drawString("最短距离:" + df.format(solution.getDistance()), 150, 520);
         g.drawString("总用时:" + solution.getRunTime() + "毫秒", 350, 520);
+    }
+
+    private void updateScaleOnMax(List<City> cities) {
+        double max = 0;
+        for (City city : cities) {
+            double temp = Math.max(city.getY(), city.getX());
+            max = Math.max(temp, max);
+        }
+        scale = 500 / max;
     }
 }
