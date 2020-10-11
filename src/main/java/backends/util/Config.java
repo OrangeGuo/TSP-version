@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Config {
     public static int refreshInterval = 1;//运行界面刷新时间间隔控制
-    public static double scale = 1;//控制Drawpanel绘图范围
     public static boolean flag = true;
     public static AbstractSolver abstractSolver;
     public static List<Integer> shortestPath = new ArrayList<>();//记录最短路径

@@ -208,7 +208,6 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener {
             if (st != null) {
                 int ii = st.length();
                 String name = "" + st.charAt(ii - 1) + st.charAt(ii - 2) + st.charAt(ii - 3);
-                double max = 0;//记录所有点横纵坐标最大绝对值
                 this.file_error = 1;
                 if (name.equals("txt")) {
                     flag = true;
@@ -266,16 +265,12 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener {
                                 break;
                                 //e1.printStackTrace();
                             }
-                            if (max < Math.max(x, y)) {
-                                max = Math.max(x, y);
-                            }
                             Config.cities.add(new City(x, y, n));
                         }
                     } catch (IOException ioException) {
                         log.info("load file failed");
                     }
 
-                    Config.scale = (500 / max);//设置缩放比例
                     Config.state = 1;
 
 
