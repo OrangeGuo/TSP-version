@@ -143,9 +143,9 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener {
         this.setIconImage(Icons.ProgramIcon.getImage());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        flushPanel();
-        thread.join();
 
+        thread.join();
+        flushPanel();
     }
 
     public void ErrorMesseger(String string) {
